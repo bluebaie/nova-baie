@@ -1,0 +1,14 @@
+# Normalize line endings for consistency across OSes
+* text=auto eol=lf
+
+# Binary files — no line ending conversion
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.svg binary
+*.ico binary
+*.mp4 binary
+*.webm binary
+*.woff binary
+*.woff2 binary

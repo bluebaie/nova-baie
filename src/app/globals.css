@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
+/* =========================
+   DESIGN TOKENS (Nova Baie)
+   ========================= */
+@theme {
+  --color-nova-navy: #163A70;
+  --color-nova-blue: #2E7BC6;
+  --color-nova-horizon: #DCE7F7;
+  --color-nova-sand: #F8F7F4;
+  --color-nova-sage: #8FAFA8;
+  --color-nova-text: #5E6B7E;
+  --color-nova-ink: #243041;
+
+  --shadow-soft: 0 10px 30px rgba(22, 58, 112, 0.08);
+  --shadow-card: 0 12px 40px rgba(22, 58, 112, 0.10);
+
+  --radius-2xl: 1.25rem;
+}
+
+/* =========================
+   BASE
+   ========================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F8F7F4;
+  --foreground: #243041;
+
+  /* FONTS */
+  --font-title: var(--font-playfair);
+  --font-body: var(--font-inter);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body);
+}
+
+/* =========================
+   TYPOGRAPHIE
+   ========================= */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.02em;
+    font-family: var(--font-title);
+  }
+
+  h1 {
+    @apply text-4xl md:text-6xl font-semibold leading-tight text-nova-navy;
+  }
+
+  h2 {
+    @apply text-3xl md:text-5xl font-semibold leading-tight text-nova-navy;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl font-semibold text-nova-navy;
+  }
+
+  p {
+    @apply text-base md:text-lg leading-8 text-nova-text;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* =========================
+   COMPONENTS
+   ========================= */
+@layer components {
+  /* Sections espacées */
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+
+  /* Container principal */
+  .container-shell {
+    @apply mx-auto w-full max-w-[1200px] px-6 md:px-8;
+  }
+
+  /* Header glass */
+  .glass-header {
+    @apply border-b border-nova-navy/10 bg-white/90 backdrop-blur;
+  }
+
+  /* Card premium */
+  .card-premium {
+    @apply rounded-[1.25rem] border border-nova-navy/10 bg-white shadow-[0_10px_30px_rgba(22,58,112,0.08)];
+  }
+
+  /* Meilleur rendu texte */
+  .text-balance {
+    text-wrap: balance;
+  }
 }
