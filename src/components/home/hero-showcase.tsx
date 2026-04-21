@@ -29,7 +29,8 @@ export function HeroShowcase() {
   }, []);
 
   return (
-    <div className="relative mx-auto w-full max-w-[680px]">
+    <div className="relative isolate mx-auto w-full max-w-[680px]">
+      <div className="pointer-events-none absolute -inset-8 -z-10 blur-3xl bg-[radial-gradient(circle_at_50%_50%,rgba(46,123,198,0.25),transparent_70%)]" />
       <div className="relative overflow-hidden rounded-[2rem] border border-white/12 bg-white/8 shadow-[0_30px_90px_rgba(10,22,40,0.35)] backdrop-blur-sm">
         <div className="flex items-center gap-2 border-b border-white/10 px-5 py-4">
           <span className="h-3 w-3 rounded-full bg-white/25" />

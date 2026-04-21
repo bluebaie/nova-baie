@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -21,11 +22,20 @@ export function Header() {
     <header className="glass-header fixed inset-x-0 top-0 z-50">
       <Container>
         <div className="flex h-24 items-center justify-between">
-          <Link
-            href="/"
-            className="text-lg font-semibold tracking-tight text-nova-navy"
-          >
-            Nova Baie
+          <Link href="/" className="flex items-center gap-3">
+            <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-nova-navy">
+              <Image
+                src="/logo-nova-baie.jpg"
+                alt="Nova Baie - Agence web création sites tourisme"
+                fill
+                sizes="36px"
+                priority
+                className="object-contain"
+              />
+            </div>
+            <span className="text-lg font-semibold tracking-tight text-nova-navy">
+              Nova Baie
+            </span>
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
@@ -49,7 +59,7 @@ export function Header() {
 
                   <span
                     className={cn(
-                      "absolute left-0 -bottom-0.5 h-px bg-nova-navy transition-all duration-300",
+                      "absolute left-0 -bottom-0.5 h-[1.5px] bg-gradient-to-r from-nova-blue to-nova-navy transition-all duration-300",
                       active ? "w-full" : "w-0 group-hover:w-full"
                     )}
                   />

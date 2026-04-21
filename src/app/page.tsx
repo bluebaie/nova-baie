@@ -5,6 +5,7 @@ import { ReasonsSection } from "@/components/home/reasons-section";
 import { WorkPreviewSection } from "@/components/home/work-preview-section";
 import { MethodSection } from "@/components/home/method-section";
 import { AboutLinkSection } from "@/components/home/about-link-section";
+import { MaintenanceSection } from "@/components/home/maintenance-section";
 import { FinalCtaSection } from "@/components/home/final-cta-section";
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <WorkPreviewSection />
       <MethodSection />
       <AboutLinkSection />
+      <MaintenanceSection />
       <FinalCtaSection />
     </>
   );

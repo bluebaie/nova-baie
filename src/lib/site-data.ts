@@ -126,56 +126,56 @@ export const reasons = [
 
 export const processSteps = [
   {
-    title: "Prise de contact",
-    description: "Premier échange pour comprendre la structure, l’objectif et le niveau d’ambition.",
+    title: "Échange initial",
+    description: "On discute de votre structure, vos objectifs et vos attentes. Aucun engagement.",
     icon: MessageCircle
   },
   {
-    title: "Qualification & cadrage",
-    description: "Choix de l’offre adaptée, définition du périmètre et validation du projet.",
+    title: "Cadrage & offre",
+    description: "On définit le périmètre exact, le niveau d’offre adapté et on valide ensemble.",
     icon: Search
   },
   {
-    title: "Direction visuelle",
-    description: "Architecture, hiérarchie, positionnement visuel et intentions de conversion.",
+    title: "Direction créative",
+    description: "Architecture, identité visuelle, ton et logique de conversion. Vous validez avant qu’on code.",
     icon: Globe
   },
   {
     title: "Développement",
-    description: "Création du site, intégration des contenus et ajustements finaux.",
+    description: "Intégration des contenus, des photos, optimisation mobile et SEO technique.",
     icon: House
   },
   {
-    title: "Validation & mise en ligne",
-    description: "Tests, derniers réglages, mise en ligne et transmission propre.",
+    title: "Mise en ligne",
+    description: "Tests complets, transmission des accès et suivi post-lancement inclus.",
     icon: ShieldCheck
   }
 ];
 
 export const projects = [
   {
-    title: "Maison de vacances premium",
-    category: "Hébergement",
+    title: "Gîtes en Baie",
+    category: "Propriétaire multi-logements • Baie de Somme",
     description:
-      "Refonte de la présence en ligne pour valoriser un bien haut de gamme et clarifier l’expérience proposée.",
-    image: "/images/project-1.jpg",
-    tags: ["Image", "Clarté", "Conversion"]
+      "Site vitrine pour un propriétaire gérant plusieurs gîtes en Baie de Somme. Catalogue complet des logements, intégration des avis Airbnb & Booking, système de réservation et pages découverte de la région.",
+    image: "/images/project-gites-en-baie.jpg",
+    imageAlt: "Site web Gîtes en Baie - Réalisation Nova Baie - Multi-hébergements Baie de Somme",
+    url: "https://www.gite-baie.com/",
+    tags: ["Multi-logements", "Réservation", "SEO local"],
+    stats: "4.9/5 Airbnb · +900 avis · 7 hébergements",
+    previewBg: "#1B3A2D"
   },
   {
-    title: "Conciergerie locale",
-    category: "Conciergerie",
+    title: "Le Refuge de la Marmotte",
+    category: "Hébergement ski • Sainte-Foy-Tarentaise",
     description:
-      "Structuration d’une offre de service, hiérarchisation des contenus et amélioration de la crédibilité commerciale.",
-    image: "/images/project-2.jpg",
-    tags: ["Offre", "Parcours", "Confiance"]
-  },
-  {
-    title: "Domaine touristique",
-    category: "Tourisme",
-    description:
-      "Base évolutive conçue pour accueillir plusieurs pages, des contenus saisonniers et une logique de croissance.",
-    image: "/images/project-3.jpg",
-    tags: ["Évolutif", "SEO", "Positionnement"]
+      "Site vitrine pour un appartement ski 4 personnes au pied des pistes. Galerie immersive, présentation du confort, localisation et réservation directe.",
+    image: "/images/project-ski-saintefoy.jpg",
+    imageAlt: "Site web Le Refuge de la Marmotte - Réalisation Nova Baie - Location ski Sainte-Foy-Tarentaise",
+    url: "https://www.ski-saintefoy.com/",
+    tags: ["Hébergement", "Montagne", "Réservation directe", "Galerie"],
+    stats: "4.82/5 Airbnb · 8.6/10 Booking",
+    previewBg: "#0F1923"
   }
 ];
 
@@ -191,8 +191,8 @@ export const aboutValues = [
 export const company = {
   name: "Nova Baie",
   descriptor: "Création de sites web premium pour les professionnels du tourisme",
-  email: "contact@novabaie.fr",
-  phone: "+33 0 0 00 00 00",
+  email: "contact.novabaie@gmail.com",
+  phone: "+33 7 63 54 67 27",
   baseLocation: "Baie de Somme",
   footerText:
     "Nova Baie conçoit des sites web premium pour les professionnels du tourisme qui souhaitent mieux valoriser leur image et leur offre."

@@ -1,93 +1,101 @@
-import { PageHero } from "@/components/ui/page-hero";
-import { Container } from "@/components/ui/container";
-import { company } from "@/lib/site-data";
-import { Button } from "@/components/ui/button";
+export const metadata = {
+  title: 'Contact — Devis gratuit site web tourisme',
+  description: 'Demandez un devis gratuit pour votre site web tourisme. Nova Baie répond sous 24h. Hébergements, conciergeries, gîtes, hôtels indépendants. Sans engagement.',
+  keywords: ['devis site web tourisme', 'contact agence web hébergement', 'demander site web conciergerie', 'devis gratuit site web gîte'],
+  openGraph: {
+    title: 'Contact Nova Baie — Devis gratuit sous 24h',
+    description: 'Parlez de votre projet à Nova Baie. Devis gratuit, réponse sous 24h, sans engagement.',
+    url: 'https://www.nova-baie.com/contact'
+  },
+  alternates: { canonical: 'https://www.nova-baie.com/contact' }
+}
+
+import { Mail, Phone, MapPin } from 'lucide-react'
+import { Container } from '@/components/ui/container'
+import { ContactForm } from '@/components/contact/contact-form'
 
 export default function ContactPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Contact"
-        title="Parlons de votre projet"
-        description="Que vous lanciez une activité, que vous souhaitiez monter en gamme ou refondre une présence existante, Nova Baie peut vous aider à construire un site plus juste, plus premium et plus efficace."
-      />
-
-      <section className="section-padding">
+      {/* ── Hero ── */}
+      <section className="relative overflow-hidden bg-nova-navy pb-16 pt-32">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(46,123,198,0.15),transparent_50%)]" />
         <Container>
-          <div className="grid gap-8 md:grid-cols-[1fr_0.85fr]">
-            <form className="card-premium p-8 md:p-10">
-              <div className="grid gap-5">
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-nova-navy">
-                    Nom
-                  </label>
-                  <input className="w-full rounded-xl border border-nova-navy/10 bg-white px-4 py-3 outline-none focus:border-nova-blue" />
-                </div>
+          <div className="relative z-10 max-w-3xl">
+          <span className="inline-flex rounded-full border border-white/20 bg-white/[0.08] px-4 py-1.5 text-xs uppercase tracking-widest text-white/70">
+            Contact
+          </span>
+          <h1 className="mt-6 text-balance text-white">Parlons de votre projet</h1>
+          <p className="mt-6 max-w-2xl leading-8 text-white/75">
+            Devis gratuit, sans engagement. Je vous réponds sous 24h avec une première analyse de votre besoin.
+          </p>
+        </div>
+        </Container>
+      </section>
 
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-nova-navy">
-                    Email
-                  </label>
-                  <input type="email" className="w-full rounded-xl border border-nova-navy/10 bg-white px-4 py-3 outline-none focus:border-nova-blue" />
-                </div>
+      {/* ── Contenu ── */}
+      <section className="bg-nova-sand py-12 md:py-20">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[1.5fr_0.5fr] lg:items-start">
 
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-nova-navy">
-                    Structure
-                  </label>
-                  <input className="w-full rounded-xl border border-nova-navy/10 bg-white px-4 py-3 outline-none focus:border-nova-blue" />
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-nova-navy">
-                    Type de projet
-                  </label>
-                  <select className="w-full rounded-xl border border-nova-navy/10 bg-white px-4 py-3 outline-none focus:border-nova-blue">
-                    <option>Site Essentiel</option>
-                    <option>Site Signature</option>
-                    <option>Site Performance</option>
-                    <option>Je ne sais pas encore</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-nova-navy">
-                    Message
-                  </label>
-                  <textarea rows={6} className="w-full rounded-xl border border-nova-navy/10 bg-white px-4 py-3 outline-none focus:border-nova-blue" />
-                </div>
-
-                <div>
-                  <Button href="#">Envoyer la demande</Button>
-                </div>
-              </div>
-            </form>
-
-            <div className="card-premium p-8 md:p-10">
-              <h2>Contact direct</h2>
-              <p className="mt-5">
-                Vous pouvez aussi prendre contact directement pour présenter votre
-                structure, votre projet ou votre besoin de refonte.
+            {/* Colonne gauche — formulaire */}
+            <div className="rounded-[1.5rem] border border-nova-navy/6 bg-white p-8 shadow-sm">
+              <h2 className="text-xl font-semibold text-nova-navy">Votre demande</h2>
+              <p className="mb-6 mt-2 text-sm text-nova-text">
+                Remplissez ce formulaire — je reviens vers vous sous 24h avec une réponse claire.
               </p>
+              <ContactForm />
+            </div>
 
-              <div className="mt-8 space-y-5">
-                <div>
-                  <p className="text-sm uppercase tracking-[0.16em] text-nova-text">Email</p>
-                  <p className="mt-2 text-lg text-nova-navy">{company.email}</p>
-                </div>
-                <div>
-                  <p className="text-sm uppercase tracking-[0.16em] text-nova-text">Téléphone</p>
-                  <p className="mt-2 text-lg text-nova-navy">{company.phone}</p>
-                </div>
-                <div>
-                  <p className="text-sm uppercase tracking-[0.16em] text-nova-text">Base</p>
-                  <p className="mt-2 text-lg text-nova-navy">{company.baseLocation}</p>
+            {/* Colonne droite — infos */}
+            <div className="flex flex-col gap-4">
+
+              {/* Card 1 — contact direct */}
+              <div className="rounded-2xl border border-nova-navy/8 bg-white p-6">
+                <p className="mb-4 text-base font-semibold text-nova-navy">Me contacter directement</p>
+                <div className="flex flex-col gap-3">
+                  <a
+                    href="mailto:contact.novabaie@gmail.com"
+                    className="flex items-center gap-3 text-sm text-nova-navy hover:text-nova-blue transition-colors"
+                  >
+                    <Mail className="h-4 w-4 shrink-0 text-nova-blue" />
+                    contact.novabaie@gmail.com
+                  </a>
+                  <a
+                    href="tel:+33763546727"
+                    className="flex items-center gap-3 text-sm text-nova-navy hover:text-nova-blue transition-colors"
+                  >
+                    <Phone className="h-4 w-4 shrink-0 text-nova-blue" />
+                    +33 7 63 54 67 27
+                  </a>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-4 w-4 shrink-0 text-nova-blue" />
+                    <span className="text-sm text-nova-text">Baie de Somme, France</span>
+                  </div>
                 </div>
               </div>
+
+              {/* Card 2 — étapes suivantes */}
+              <div className="rounded-2xl bg-nova-navy p-6">
+                <p className="mb-4 text-sm font-semibold text-white">Ce qui se passe ensuite</p>
+                <div className="flex flex-col gap-2">
+                  <p className="text-sm leading-7 text-white/75">01 — Je lis votre demande et analyse votre projet</p>
+                  <p className="text-sm leading-7 text-white/75">02 — Je vous recontacte sous 24h</p>
+                  <p className="text-sm leading-7 text-white/75">03 — Je vous envoie un devis détaillé sous 48h</p>
+                </div>
+              </div>
+
+              {/* Card 3 — réassurance */}
+              <div className="rounded-xl bg-nova-horizon p-4">
+                <p className="text-center text-xs leading-6 text-nova-navy">
+                  Réponse sous 24h · Devis gratuit · Sans engagement
+                </p>
+              </div>
+
             </div>
           </div>
         </Container>
       </section>
     </>
-  );
+  )
 }
