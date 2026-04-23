@@ -12,7 +12,7 @@ const sections = [
   {
     title: "Éditeur du site",
     content:
-      "Nova Baie — [Forme juridique à compléter] — SIRET : [à compléter] — Adresse : [à compléter] — Email : contact.novabaie@gmail.com",
+      "Nova Baie — Entrepreneur individuel — SIRET : 917 905 887 00027 — TVA : FR96917905887 — 28 Route de Forest-Montiers, 80120 Saint-Quentin-en-Tourmont — Email : contact.novabaie@gmail.com — Tél : +33 7 63 54 67 27 — Directrice : Christelle Guilbert",
   },
   {
     title: "Hébergement",
