@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Playfair_Display, Inter } from "next/font/google";
 import SchemaOrg from '@/components/seo/schema-org';
+import Script from 'next/script';
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -107,6 +108,21 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} bg-nova-sand text-nova-ink antialiased`}
       >
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MV4VJGBB"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MV4VJGBB');`,
+          }}
+        />
         <Header />
         <main>{children}</main>
         <Footer />
