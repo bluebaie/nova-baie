@@ -86,12 +86,9 @@ export const metadata: Metadata = {
     languages: { 'fr-FR': 'https://www.nova-baie.com' }
   },
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.svg', type: 'image/svg+xml' }
-    ],
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico'
   }
 };
 
