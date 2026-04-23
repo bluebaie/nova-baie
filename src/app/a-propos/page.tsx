@@ -86,11 +86,14 @@ export default function AboutPage() {
               </span>
               <h3 className="mt-5 text-white">Notre partenaire terrain</h3>
 
-              {/* TODO: remplacer par logo-blue-baie.png quand disponible */}
               <div className="flex items-center gap-3 mt-4">
-                <div className="h-12 w-12 rounded-full bg-white/15 flex items-center justify-center">
-                  <span className="text-white font-semibold text-lg">BB</span>
-                </div>
+                <Image
+                  src="/images/logo-blue-baie.png"
+                  alt="Logo Blue Baie Conciergerie"
+                  width={48}
+                  height={48}
+                  className="rounded-full"
+                />
                 <span className="text-white font-semibold">Blue Baie Conciergerie</span>
               </div>
 
@@ -163,11 +166,14 @@ export default function AboutPage() {
             <p className="text-sm uppercase tracking-widest text-white/60">
               En partenariat avec
             </p>
-            {/* TODO: remplacer par logo-blue-baie.png quand disponible */}
             <div className="flex items-center gap-3">
-              <div className="h-14 w-14 rounded-full bg-white/15 flex items-center justify-center">
-                <span className="text-white font-semibold text-xl">BB</span>
-              </div>
+              <Image
+                src="/images/logo-blue-baie.png"
+                alt="Logo Blue Baie Conciergerie"
+                width={56}
+                height={56}
+                className="rounded-full"
+              />
               <span className="text-white font-semibold text-lg">Blue Baie Conciergerie</span>
             </div>
             <Link
