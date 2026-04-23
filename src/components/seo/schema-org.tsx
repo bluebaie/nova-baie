@@ -10,7 +10,7 @@ export default function SchemaOrg() {
         "url": "https://www.nova-baie.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://www.nova-baie.com/images/logo-nova-baie.jpg",
+          "url": "https://www.nova-baie.com/logo-nova-baie.jpg",
           "width": 400,
           "height": 400
         },
