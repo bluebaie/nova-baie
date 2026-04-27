@@ -55,9 +55,7 @@ export function AboutLinkSection() {
 
               <div className="mt-8">
                 <a
-                  href="https://bluebaie.fr"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/a-propos"
                   className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-nova-navy transition-all duration-200 hover:bg-white/90"
                 >
                   Découvrir Nova Baie
