@@ -126,12 +126,12 @@ export function ContactForm() {
           onChange={(e) => setTypeProjet(e.target.value)}
           className={inputClass}
         >
-          <option value="" disabled>Choisir une offre...</option>
-          <option>Site Présence — à partir de 800€</option>
-          <option>Site Conversion — à partir de 1 500€</option>
-          <option>Site Acquisition — à partir de 3 000€</option>
-          <option>Maintenance uniquement</option>
-          <option>Je ne sais pas encore — besoin de conseils</option>
+          <option value="">Votre type de projet...</option>
+          <option value="presence">Présence — Être visible et crédible</option>
+          <option value="conversion">Conversion — Générer plus de demandes</option>
+          <option value="acquisition">Acquisition — Croître et attirer du trafic</option>
+          <option value="maintenance">Maintenance uniquement</option>
+          <option value="conseil">Je ne sais pas encore — besoin de conseils</option>
         </select>
       </div>
 

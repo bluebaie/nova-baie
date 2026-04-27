@@ -1,13 +1,12 @@
 export const metadata = {
-  title: 'À propos — Nova Baie & Blue Baie Conciergerie',
-  description: "Nova Baie est la branche web de Blue Baie Conciergerie, spécialiste de l'hébergement touristique en Baie de Somme depuis 2023. Une agence web née du terrain, pas d'un bureau.",
-  keywords: ['Nova Baie agence web', 'Blue Baie Conciergerie', 'agence web tourisme Baie de Somme', 'spécialiste site web hébergement', 'création site web conciergerie'],
+  title: 'À propos — Nova Baie, agence web spécialisée tourisme',
+  description: "Nova Baie est née de 10 ans de terrain en location saisonnière avec Blue Baie Conciergerie. Une expertise unique pour créer des sites web qui parlent vraiment aux voyageurs.",
+  alternates: { canonical: 'https://www.nova-baie.com/a-propos' },
   openGraph: {
-    title: 'À propos — Nova Baie, branche web de Blue Baie Conciergerie',
-    description: "Une agence web née d'une pratique concrète du tourisme et de la location courte durée en Baie de Somme.",
-    url: 'https://www.nova-baie.com/a-propos'
+    title: 'À propos — Nova Baie',
+    description: "Nova Baie est née de 10 ans de terrain en location saisonnière. Une agence web spécialisée tourisme.",
+    url: 'https://www.nova-baie.com/a-propos',
   },
-  alternates: { canonical: 'https://www.nova-baie.com/a-propos' }
 }
 
 import Image from "next/image";

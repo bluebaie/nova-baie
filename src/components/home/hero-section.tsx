@@ -58,7 +58,7 @@ export function HeroSection() {
           </div>
 
           {/* Colonne droite */}
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <HeroShowcase />
           </div>
         </div>

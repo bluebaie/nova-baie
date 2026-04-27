@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export function WorkPreviewSection() {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-nova-sand">
       <Container>
         <SectionHeading
           eyebrow="Réalisations"

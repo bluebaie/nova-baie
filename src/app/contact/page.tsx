@@ -1,13 +1,12 @@
 export const metadata = {
-  title: 'Contact — Devis gratuit site web tourisme',
-  description: 'Demandez un devis gratuit pour votre site web tourisme. Nova Baie répond sous 24h. Hébergements, conciergeries, gîtes, hôtels indépendants. Sans engagement.',
-  keywords: ['devis site web tourisme', 'contact agence web hébergement', 'demander site web conciergerie', 'devis gratuit site web gîte'],
+  title: 'Contact — Devis gratuit sous 24h',
+  description: 'Demandez un devis pour votre site web tourisme. Réponse sous 24h, devis gratuit et sans engagement. Conciergeries, gîtes, hôtels, hébergements.',
+  alternates: { canonical: 'https://www.nova-baie.com/contact' },
   openGraph: {
-    title: 'Contact Nova Baie — Devis gratuit sous 24h',
-    description: 'Parlez de votre projet à Nova Baie. Devis gratuit, réponse sous 24h, sans engagement.',
-    url: 'https://www.nova-baie.com/contact'
+    title: 'Contact — Nova Baie',
+    description: 'Demandez un devis pour votre site web tourisme. Réponse sous 24h.',
+    url: 'https://www.nova-baie.com/contact',
   },
-  alternates: { canonical: 'https://www.nova-baie.com/contact' }
 }
 
 import { Mail, Phone, MapPin } from 'lucide-react'
