@@ -32,7 +32,7 @@ const demos: Demo[] = [
     label: "Le Bout du Monde",
     subtitle: "Deux gîtes d'exception en Baie de Somme",
     domain: "le-bout-du-monde.org",
-    image: "/images/realisation-le-bout-du-monde.jpg",
+    video: "/videos/le-bout-du-monde-demo.mp4",
   },
 ];
 
