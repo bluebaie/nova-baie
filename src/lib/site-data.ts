@@ -177,6 +177,18 @@ export const projects = [
     tags: ["Hébergement", "Montagne", "Réservation directe", "Galerie"],
     stats: "4.82/5 Airbnb · 8.6/10 Booking",
     previewBg: "#0F1923"
+  },
+  {
+    title: "Le Bout du Monde",
+    category: "Gîtes • Baie de Somme",
+    description:
+      "Deux gîtes d'exception nichés entre terre et mer au cœur de la Baie de Somme. Construction écologique en ossature bois, isolation chanvre et terre, enduits argile. Gîte 1 (4 voyageurs) noté 4.92/5 sur 131 avis Airbnb.",
+    image: "/images/realisation-le-bout-du-monde.jpg",
+    imageAlt: "Site web Le Bout du Monde - Réalisation Nova Baie - Gîtes éco-construction Baie de Somme",
+    url: "https://www.le-bout-du-monde.fr",
+    tags: ["Éco-construction", "Multi-logements", "Baie de Somme"],
+    stats: "4.92/5 Airbnb · 131 avis · 2 gîtes indépendants",
+    previewBg: "#2C1810"
   }
 ];
 
