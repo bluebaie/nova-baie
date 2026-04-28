@@ -43,9 +43,9 @@ export function LatestActualitesSection() {
             >
               {/* Image */}
               <div className="relative h-52 w-full flex-shrink-0 overflow-hidden bg-nova-horizon sm:h-auto sm:w-52 md:w-60">
-                {item.image ? (
+                {item.images?.[0] ? (
                   <Image
-                    src={item.image}
+                    src={item.images?.[0]}
                     alt={item.titre}
                     fill
                     className="object-cover"
