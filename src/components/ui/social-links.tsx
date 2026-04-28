@@ -41,9 +41,9 @@ const socials = [
 
 export function SocialLinks({
   variant,
-  linkedIn = '#',
-  instagram = '#',
-  facebook = '#',
+  linkedIn = 'https://www.linkedin.com/company/nova-baie/',
+  instagram = 'https://www.instagram.com/nova_baie?igsh=MXVtbnZpcjNraXRvaQ==',
+  facebook = 'https://www.facebook.com/share/1DqhF55Bps/',
 }: Props) {
   const hrefs: Record<string, string> = { linkedIn, instagram, facebook }
 
