@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
+import { Link } from '@/lib/navigation'
 import { Container } from '@/components/ui/container'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { actualites } from '@/lib/actualites-data'
@@ -11,10 +12,9 @@ const categoryStyles: Record<string, string> = {
   Conseil: 'bg-nova-horizon text-nova-navy',
 }
 
-export function LatestActualitesSection() {
-  const latest = [...actualites]
-    .sort((a, b) => b.id - a.id)
-    .slice(0, 3)
+export async function LatestActualitesSection() {
+  const t = await getTranslations('latestNews')
+  const latest = [...actualites].sort((a, b) => b.id - a.id).slice(0, 3)
 
   if (latest.length === 0) return null
 
@@ -23,15 +23,12 @@ export function LatestActualitesSection() {
       <Container>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            eyebrow="Actualités"
-            title="Dernières actualités"
-            description="Projets, conseils et vie de Nova Baie"
+            eyebrow={t('eyebrow')}
+            title={t('title')}
+            description={t('description')}
           />
-          <Link
-            href="/actualites"
-            className="shrink-0 text-sm font-medium text-nova-blue transition-colors hover:text-nova-navy"
-          >
-            Voir toutes les actualités →
+          <Link href="/actualites" className="shrink-0 text-sm font-medium text-nova-blue transition-colors hover:text-nova-navy">
+            {t('seeAll')}
           </Link>
         </div>
 
@@ -41,11 +38,10 @@ export function LatestActualitesSection() {
               key={item.id}
               className="flex flex-col overflow-hidden rounded-2xl border border-nova-navy/8 bg-white shadow-[0_4px_20px_rgba(22,58,112,0.05)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(22,58,112,0.10)] sm:flex-row"
             >
-              {/* Image */}
               <div className="relative h-52 w-full flex-shrink-0 overflow-hidden bg-nova-horizon sm:h-auto sm:w-52 md:w-60">
                 {item.images?.[0] ? (
                   <Image
-                    src={item.images?.[0]}
+                    src={item.images[0]}
                     alt={item.titre}
                     fill
                     className="object-cover"
@@ -56,34 +52,19 @@ export function LatestActualitesSection() {
                 )}
               </div>
 
-              {/* Texte */}
               <div className="flex flex-1 flex-col justify-between gap-3 p-6">
                 <div>
                   <div className="flex items-center gap-3">
-                    <span
-                      className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${
-                        categoryStyles[item.categorie] ?? 'bg-nova-horizon text-nova-navy'
-                      }`}
-                    >
+                    <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${categoryStyles[item.categorie] ?? 'bg-nova-horizon text-nova-navy'}`}>
                       {item.categorie}
                     </span>
                     <time className="text-xs text-nova-text/50">{item.date}</time>
                   </div>
-
-                  <h3 className="mt-3 text-base font-semibold leading-7 text-nova-navy">
-                    {item.titre}
-                  </h3>
-
-                  <p className="mt-2 line-clamp-2 text-sm leading-7 text-nova-text">
-                    {item.resume}
-                  </p>
+                  <h3 className="mt-3 text-base font-semibold leading-7 text-nova-navy">{item.titre}</h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-7 text-nova-text">{item.resume}</p>
                 </div>
-
-                <Link
-                  href="/actualites"
-                  className="self-start text-sm font-medium text-nova-blue transition-colors hover:text-nova-navy"
-                >
-                  Lire →
+                <Link href="/actualites" className="self-start text-sm font-medium text-nova-blue transition-colors hover:text-nova-navy">
+                  {t('read')}
                 </Link>
               </div>
             </article>
@@ -95,7 +76,7 @@ export function LatestActualitesSection() {
             href="/actualites"
             className="inline-flex items-center justify-center rounded-full border border-nova-navy/15 bg-white px-6 py-3 text-sm font-medium text-nova-navy transition-all duration-200 hover:border-nova-navy/30 hover:shadow-sm"
           >
-            Voir toutes les actualités →
+            {t('viewAll')}
           </Link>
         </div>
       </Container>

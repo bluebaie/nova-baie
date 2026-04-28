@@ -1,0 +1,373 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "realisations": "Portfolio",
+    "actualites": "News",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "header": {
+    "requestSite": "Get a website"
+  },
+  "footer": {
+    "description": "Nova Baie creates premium websites for tourism professionals who want to better showcase their image and offerings.",
+    "linksTitle": "Nova Baie",
+    "links": {
+      "services": "Tourism website creation",
+      "realisations": "Our portfolio",
+      "about": "About Nova Baie",
+      "contact": "Request a quote",
+      "mentions": "Legal notice"
+    },
+    "copyright": "© {year} Nova Baie — All rights reserved"
+  },
+  "common": {
+    "requestQuote": "Request a quote",
+    "requestSite": "Get a website",
+    "requestProject": "Request a project",
+    "talkProject": "Talk about your project",
+    "talkProjectCta": "Let's talk about your project",
+    "seeOffers": "View services",
+    "seeRealisations": "View portfolio",
+    "seeAllActualites": "View all news →",
+    "read": "Read →",
+    "response24h": "Response within 24h · Free quote · No commitment",
+    "scrollHint": "← Scroll →",
+    "siteRealized": "Completed project",
+    "seeSite": "View site →"
+  },
+  "hero": {
+    "tagline": "Nova Baie",
+    "title": "Premium websites\nfor tourism professionals",
+    "description": "Nova Baie creates premium websites for concierge services, tourist accommodations, seasonal rentals and hospitality businesses — from the Bay of Somme to all of France — who want to better showcase their image and convert more visitors.",
+    "cta1": "Talk about your project",
+    "cta2": "View services",
+    "imageAlt": "Premium websites for tourism professionals - Nova Baie"
+  },
+  "target": {
+    "eyebrow": "Who we serve",
+    "title": "Websites designed for tourism professionals who want greater visibility",
+    "description": "Nova Baie addresses tourism businesses that want more than just an elegant website — a tool capable of improving their image, SEO, and ability to generate bookings.",
+    "items": [
+      "Concierge services",
+      "Holiday cottages & vacation homes",
+      "Premium seasonal rentals",
+      "Unique accommodations",
+      "Hotels",
+      "Campsites & tourist estates"
+    ]
+  },
+  "offers": {
+    "eyebrow": "Services",
+    "title": "A website matched to your ambition",
+    "description": "3 levels of support based on your objectives: gain visibility, convert better, or grow your business.",
+    "cta": "Request a quote",
+    "items": [
+      {
+        "name": "Presence",
+        "intention": "To exist with a professional image and inspire trust from the very first visit.",
+        "featured": false
+      },
+      {
+        "name": "Conversion",
+        "intention": "To transform your website into a business tool that generates real inquiries.",
+        "featured": true
+      },
+      {
+        "name": "Acquisition",
+        "intention": "To make your website a long-term growth and acquisition driver.",
+        "featured": false
+      }
+    ]
+  },
+  "reasons": {
+    "eyebrow": "Why Nova Baie",
+    "title": "A more relevant approach than a generalist agency",
+    "description": "Nova Baie doesn't start from a purely technical logic. The website is designed as a tool for image, clarity and conversion.",
+    "statsNote": "Blue Baie Conciergerie data — summer seasons 2024 and 2025",
+    "stats": [
+      { "value": "1,040", "label": "guests welcomed in summer 2025" },
+      { "value": "716", "label": "guests welcomed in summer 2024" },
+      { "value": "10 yrs", "label": "of seasonal rental experience" }
+    ],
+    "items": [
+      {
+        "title": "Real tourism specialization",
+        "description": "Nova Baie works with accommodation professionals, hospitality businesses and tourism service providers."
+      },
+      {
+        "title": "A more premium image",
+        "description": "Your website shouldn't just exist. It should reassure, enhance and better present your offering."
+      },
+      {
+        "title": "A structure built to convert",
+        "description": "Clear navigation, strong hierarchy, useful content and a journey oriented towards contact."
+      },
+      {
+        "title": "An approach grounded in reality",
+        "description": "The Blue Baie connection brings concrete understanding of the field, client expectations and image challenges."
+      }
+    ]
+  },
+  "work": {
+    "eyebrow": "Portfolio",
+    "title": "Projects designed to elevate an image, not just fill pages",
+    "description": "The website must inspire trust within the first few seconds. Each Nova Baie project is designed to showcase an identity, an offering and a level of service.",
+    "cta": "View portfolio",
+    "projects": [
+      {
+        "title": "Gîtes en Baie",
+        "category": "Multi-property owner · Bay of Somme",
+        "description": "Showcase website for a property owner managing several holiday cottages in the Bay of Somme. Full property catalogue, Airbnb & Booking review integration, booking system and regional discovery pages.",
+        "tags": ["Multi-properties", "Booking", "Local SEO"],
+        "stats": "4.9/5 Airbnb · +900 reviews · 7 properties"
+      },
+      {
+        "title": "Le Refuge de la Marmotte",
+        "category": "Ski accommodation · Sainte-Foy-Tarentaise",
+        "description": "Showcase website for a 4-person ski apartment at the foot of the slopes. Immersive gallery, comfort presentation, location and direct booking.",
+        "tags": ["Accommodation", "Mountain", "Direct booking", "Gallery"],
+        "stats": "4.82/5 Airbnb · 8.6/10 Booking"
+      }
+    ]
+  },
+  "latestNews": {
+    "eyebrow": "News",
+    "title": "Latest news",
+    "description": "Projects, advice and Nova Baie life",
+    "seeAll": "View all news →",
+    "read": "Read →",
+    "viewAll": "View all news →"
+  },
+  "method": {
+    "eyebrow": "Process",
+    "title": "A simple, clear and well-defined process",
+    "description": "The project moves forward with a readable, structured and reassuring logic from the first exchange to launch.",
+    "duration": "From the first discussion to launch: 3 to 6 weeks depending on the project.",
+    "scrollHint": "← Scroll →",
+    "steps": [
+      {
+        "title": "Initial exchange",
+        "description": "We discuss your structure, objectives and expectations. No commitment."
+      },
+      {
+        "title": "Scoping & proposal",
+        "description": "We define the exact scope, the right service level and validate together."
+      },
+      {
+        "title": "Creative direction",
+        "description": "Architecture, visual identity, tone and conversion logic. You validate before we code."
+      },
+      {
+        "title": "Development",
+        "description": "Content and photo integration, mobile optimization and technical SEO."
+      },
+      {
+        "title": "Launch",
+        "description": "Full testing, access handover and post-launch support included."
+      }
+    ]
+  },
+  "aboutLink": {
+    "eyebrow": "Blue Baie Conciergerie",
+    "title": "10 years of seasonal rental, a premium standard",
+    "p1": "Behind Nova Baie is 10 years of direct seasonal rental practice — managed properties, welcomed guests, mastered platforms. Blue Baie Conciergerie was created in 2023 to structure this activity. Nova Baie is its digital branch.",
+    "p2": "This field experience isn't a marketing argument. It's what allows us to build websites that truly resonate: for travelers and property owners alike, with a real understanding of visibility, trust and booking challenges.",
+    "cta": "Discover Nova Baie",
+    "cards": [
+      {
+        "title": "Real field knowledge",
+        "text": "Property owners, travelers, platforms: over 10 years of direct seasonal rental practice in the Bay of Somme."
+      },
+      {
+        "title": "Quality standards on every project",
+        "text": "One level of output: premium. No templates, no compromise on image."
+      },
+      {
+        "title": "Websites designed to convert",
+        "text": "Every design decision serves a clear business objective."
+      }
+    ]
+  },
+  "maintenance": {
+    "eyebrow": "After delivery",
+    "title": "Your site delivered, monitored and maintained",
+    "description": "Every project includes post-launch support. We stay available after going live.",
+    "cta": "Let's talk about your project"
+  },
+  "finalCta": {
+    "maintenanceTitle": "3 months of maintenance included",
+    "maintenanceSubtitle": "Included with every Nova Baie website creation at launch",
+    "tags": ["Updates included", "Backups", "Responsive support"],
+    "metrics": "1,040 guests welcomed · 10 years in the field · 100% tourism",
+    "eyebrow": "Contact",
+    "title": "Your site deserves more than a template.",
+    "description": "Nova Baie builds premium websites for tourism professionals who want an image that matches their offering. No compromise, no generic.",
+    "cta1": "Request a project",
+    "cta2": "View portfolio",
+    "reassurance": "Response within 24h · Free quote · No commitment"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's talk about your project",
+    "description": "Free quote, no commitment. I'll respond within 24h with an initial analysis of your needs.",
+    "form": {
+      "title": "Your request",
+      "subtitle": "Fill in this form — I'll get back to you within 24h with a clear response.",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "structure": "Business",
+      "projectType": "Project type",
+      "message": "Message",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your@email.com",
+      "phonePlaceholder": "+33 6 00 00 00 00",
+      "structurePlaceholder": "Your accommodation or business name",
+      "projectTypePlaceholder": "Your project type...",
+      "messagePlaceholder": "Describe your structure, project and objectives...",
+      "options": {
+        "presence": "Presence — Be visible and credible",
+        "conversion": "Conversion — Generate more inquiries",
+        "acquisition": "Acquisition — Grow and attract traffic",
+        "maintenance": "Maintenance only",
+        "conseil": "Not sure yet — need advice"
+      },
+      "submit": "Send my request",
+      "sending": "Sending...",
+      "successTitle": "Message sent!",
+      "successDescription": "I'll respond within 24h to {email}. In the meantime, feel free to check out our services.",
+      "successCta": "View services →",
+      "error": "An error occurred. Write to us directly at"
+    },
+    "info": {
+      "title": "Contact me directly",
+      "nextSteps": "What happens next",
+      "step1": "01 — I read your request and analyze your project",
+      "step2": "02 — I contact you within 24h",
+      "step3": "03 — I send you a detailed quote within 48h",
+      "reassurance": "Response within 24h · Free quote · No commitment",
+      "location": "Bay of Somme, France"
+    }
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Support tailored to your project",
+    "description": "Nova Baie offers 3 levels based on your objectives and type of structure. We define together the most relevant format.",
+    "forWhoLabel": "Who it's for",
+    "changeLabel": "What it changes",
+    "cta": "Request a quote",
+    "diffEyebrow": "Our approach",
+    "diffTitle": "What truly sets us apart",
+    "diffDescription": "Nova Baie was born from the field — not from a generalist agency office.",
+    "diffItems": [
+      "Real tourism field knowledge",
+      "One level of output: premium",
+      "A structured process with no surprises"
+    ],
+    "finalCtaTitle": "Got a project? Let's talk.",
+    "finalCtaCta": "Request a quote",
+    "offers": [
+      {
+        "name": "Presence",
+        "forWho": "Holiday cottages, seasonal rentals, small structures",
+        "change": "A professional image to inspire trust and receive inquiries."
+      },
+      {
+        "name": "Conversion",
+        "forWho": "Concierge services, premium accommodations, independent hotels",
+        "change": "A structured website to convince and generate more prospects."
+      },
+      {
+        "name": "Acquisition",
+        "forWho": "Multi-properties, growing concierge services",
+        "change": "A complete business tool to attract traffic and convert."
+      }
+    ],
+    "metaTitle": "Our services — Tourism website creation",
+    "metaDescription": "3 levels of support for creating your tourism website: Presence, Conversion, Acquisition. A format suited to every structure."
+  },
+  "realisations": {
+    "eyebrow": "Portfolio",
+    "title": "Projects that are sober, consistent and built to last",
+    "description": "This page showcases current and future projects with a simple, reusable premium structure.",
+    "metaTitle": "Portfolio — Completed tourism websites",
+    "metaDescription": "Discover websites created by Nova Baie for tourism professionals: holiday cottages in the Bay of Somme, ski accommodations, concierge services."
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Nova Baie, the web branch of Blue Baie Conciergerie",
+    "description": "Born from concrete tourism and short-term rental practice, Nova Baie builds websites that speak the same language as your clients.",
+    "historyEyebrow": "Our story",
+    "historyTitle": "An agency born from the field, not an office",
+    "historyP1": "Nova Baie is the digital arm of Blue Baie Conciergerie — same company, same standards, focused on one specific challenge: giving tourism professionals an online presence that matches their real offering.",
+    "historyP2": "Blue Baie Conciergerie was born in 2023 from over 7 years of direct seasonal rental in the Bay of Somme. Nova Baie was launched in 2026 to meet a concrete need: giving tourism professionals a digital presence that matches their offering.",
+    "timeline": [
+      { "label": "Since 2016", "desc": "Direct seasonal rental in the Bay of Somme" },
+      { "label": "2023", "desc": "Creation of Blue Baie Conciergerie" },
+      { "label": "2026", "desc": "Launch of Nova Baie, premium web branch" }
+    ],
+    "bbEyebrow": "Blue Baie Conciergerie",
+    "bbTitle": "Our field partner",
+    "bbDescription": "Blue Baie Conciergerie manages high-end tourist accommodations in the Bay of Somme: guest welcoming, platform management, maintenance and owner follow-up.",
+    "bbCta": "Discover Blue Baie Conciergerie",
+    "missionTitle": "A clear mission",
+    "missionP1": "Bridging the gap between the real quality of a tourism offering and its online presentation, with more elegant, clearer and better structured websites.",
+    "missionP2": "Nova Baie doesn't just sell a website. The brand builds a durable commercial tool in service of image, credibility and conversion.",
+    "dnaTitle": "Brand DNA",
+    "dnaValues": ["Quality", "Clarity", "Excellence", "Consistency", "Elegance", "Field knowledge"],
+    "dnaDescription": "The desired tone remains premium, calm, reliable, structured and human.",
+    "partnerLabel": "In partnership with",
+    "partnerLink": "bluebaie.fr →",
+    "metaTitle": "About — Nova Baie, specialist tourism web agency",
+    "metaDescription": "Nova Baie was born from 10 years of seasonal rental with Blue Baie Conciergerie. Unique expertise for creating websites that truly speak to travelers."
+  },
+  "actualites": {
+    "eyebrow": "News",
+    "title": "News",
+    "description": "Projects, updates and Nova Baie life",
+    "readMore": "Read more",
+    "collapse": "Collapse",
+    "metaTitle": "News — Nova Baie",
+    "metaDescription": "Follow the latest Nova Baie news: new projects, completions and publications."
+  },
+  "mentions": {
+    "eyebrow": "Legal",
+    "title": "Legal notice",
+    "description": "Legal information relating to nova-baie.com and its publisher.",
+    "sections": [
+      {
+        "title": "Site publisher",
+        "content": "Nova Baie — Sole trader — SIRET: 917 905 887 00027 — VAT: FR96917905887 — 28 Route de Forest-Montiers, 80120 Saint-Quentin-en-Tourmont — Email: contact.novabaie@gmail.com — Tel: +33 7 63 54 67 27 — Director: Christelle Guilbert"
+      },
+      {
+        "title": "Hosting",
+        "content": "This site is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States."
+      },
+      {
+        "title": "Intellectual property",
+        "content": "All content on this site (text, visuals, logo) is the exclusive property of Nova Baie. Any reproduction is prohibited without prior authorization."
+      },
+      {
+        "title": "Personal data",
+        "content": "Information collected via the contact form is used solely to respond to your request. It is not passed on to third parties. In accordance with GDPR, you have the right to access, modify and delete your data."
+      },
+      {
+        "title": "Cookies",
+        "content": "This site does not use advertising cookies. Technical cookies may be used for the proper functioning of the site."
+      }
+    ],
+    "metaTitle": "Legal notice — Nova Baie",
+    "metaDescription": "Legal information relating to nova-baie.com: publisher, hosting, intellectual property, personal data and cookies."
+  },
+  "home": {
+    "metaTitle": "Nova Baie — Premium websites for tourism professionals",
+    "metaDescription": "Nova Baie creates premium websites for concierge services, holiday cottages, tourist accommodations and independent hotels. Refined design, optimized SEO, field expertise."
+  },
+  "lang": {
+    "fr": "FR",
+    "en": "EN",
+    "switchTo": "Français"
+  }
+}

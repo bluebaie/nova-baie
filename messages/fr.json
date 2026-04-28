@@ -1,0 +1,373 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "realisations": "Réalisations",
+    "actualites": "Actualités",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "header": {
+    "requestSite": "Demander un site"
+  },
+  "footer": {
+    "description": "Nova Baie conçoit des sites web premium pour les professionnels du tourisme qui souhaitent mieux valoriser leur image et leur offre.",
+    "linksTitle": "Nova Baie",
+    "links": {
+      "services": "Création de site web tourisme",
+      "realisations": "Nos réalisations",
+      "about": "À propos de Nova Baie",
+      "contact": "Demander un devis",
+      "mentions": "Mentions légales"
+    },
+    "copyright": "© {year} Nova Baie — Tous droits réservés"
+  },
+  "common": {
+    "requestQuote": "Demander un devis",
+    "requestSite": "Demander un site",
+    "requestProject": "Demander un projet",
+    "talkProject": "Parler de votre projet",
+    "talkProjectCta": "Parlons de votre projet",
+    "seeOffers": "Voir les offres",
+    "seeRealisations": "Voir les réalisations",
+    "seeAllActualites": "Voir toutes les actualités →",
+    "read": "Lire →",
+    "response24h": "Réponse sous 24h · Devis gratuit · Sans engagement",
+    "scrollHint": "← Faites défiler →",
+    "siteRealized": "Site réalisé",
+    "seeSite": "Voir le site →"
+  },
+  "hero": {
+    "tagline": "Nova Baie",
+    "title": "Des sites web premium\npour les professionnels du tourisme",
+    "description": "Nova Baie conçoit des sites web premium pour les conciergeries, hébergements touristiques, locations saisonnières et acteurs de l'hospitalité — de la Baie de Somme à toute la France — qui veulent mieux valoriser leur image et convertir davantage.",
+    "cta1": "Parler de votre projet",
+    "cta2": "Voir les offres",
+    "imageAlt": "Sites web premium pour professionnels du tourisme - Nova Baie"
+  },
+  "target": {
+    "eyebrow": "Cibles",
+    "title": "Des sites pensés pour les professionnels du tourisme qui veulent plus de visibilité",
+    "description": "Nova Baie s'adresse aux acteurs du tourisme qui ne veulent pas seulement un site élégant, mais un outil capable d'améliorer leur image, leur référencement et leur capacité à générer des réservations.",
+    "items": [
+      "Conciergeries",
+      "Gîtes et maisons de vacances",
+      "Locations saisonnières premium",
+      "Hébergements insolites",
+      "Hôtels",
+      "Campings et domaines touristiques"
+    ]
+  },
+  "offers": {
+    "eyebrow": "Offres",
+    "title": "Un site adapté à votre niveau d'ambition",
+    "description": "3 niveaux d'accompagnement selon vos objectifs : être visible, mieux convertir ou développer votre activité.",
+    "cta": "Demander un devis",
+    "items": [
+      {
+        "name": "Présence",
+        "intention": "Pour exister avec une image professionnelle et inspirer confiance dès la première visite.",
+        "featured": false
+      },
+      {
+        "name": "Conversion",
+        "intention": "Pour transformer votre site en outil commercial qui génère de vraies demandes.",
+        "featured": true
+      },
+      {
+        "name": "Acquisition",
+        "intention": "Pour faire de votre site un levier de croissance et d'acquisition long terme.",
+        "featured": false
+      }
+    ]
+  },
+  "reasons": {
+    "eyebrow": "Pourquoi Nova Baie",
+    "title": "Une approche plus pertinente qu'une agence généraliste",
+    "description": "Nova Baie ne part pas d'une logique purement technique. Le site est pensé comme un outil d'image, de clarté et de conversion.",
+    "statsNote": "Données Blue Baie Conciergerie — saisons estivales 2024 et 2025",
+    "stats": [
+      { "value": "1 040", "label": "voyageurs accueillis en été 2025" },
+      { "value": "716", "label": "voyageurs accueillis en été 2024" },
+      { "value": "10 ans", "label": "d'expérience en location saisonnière" }
+    ],
+    "items": [
+      {
+        "title": "Une vraie spécialisation tourisme",
+        "description": "Nova Baie s'adresse aux professionnels de l'hébergement, de l'hospitalité et des services touristiques."
+      },
+      {
+        "title": "Une image plus haut de gamme",
+        "description": "Le site ne doit pas seulement exister. Il doit rassurer, valoriser et mieux présenter l'offre."
+      },
+      {
+        "title": "Une structure pensée pour convertir",
+        "description": "Navigation claire, hiérarchie forte, contenus utiles et parcours orienté prise de contact."
+      },
+      {
+        "title": "Une approche ancrée dans le réel",
+        "description": "Le lien avec Blue Baie apporte une compréhension concrète du terrain, des attentes clients et des enjeux d'image."
+      }
+    ]
+  },
+  "work": {
+    "eyebrow": "Réalisations",
+    "title": "Des réalisations conçues pour valoriser une image, pas seulement remplir des pages",
+    "description": "Le site doit inspirer confiance dès les premières secondes. Chaque projet Nova Baie est pensé pour mettre en valeur une identité, une offre et un niveau de service.",
+    "cta": "Voir les réalisations",
+    "projects": [
+      {
+        "title": "Gîtes en Baie",
+        "category": "Propriétaire multi-logements • Baie de Somme",
+        "description": "Site vitrine pour un propriétaire gérant plusieurs gîtes en Baie de Somme. Catalogue complet des logements, intégration des avis Airbnb & Booking, système de réservation et pages découverte de la région.",
+        "tags": ["Multi-logements", "Réservation", "SEO local"],
+        "stats": "4.9/5 Airbnb · +900 avis · 7 hébergements"
+      },
+      {
+        "title": "Le Refuge de la Marmotte",
+        "category": "Hébergement ski • Sainte-Foy-Tarentaise",
+        "description": "Site vitrine pour un appartement ski 4 personnes au pied des pistes. Galerie immersive, présentation du confort, localisation et réservation directe.",
+        "tags": ["Hébergement", "Montagne", "Réservation directe", "Galerie"],
+        "stats": "4.82/5 Airbnb · 8.6/10 Booking"
+      }
+    ]
+  },
+  "latestNews": {
+    "eyebrow": "Actualités",
+    "title": "Dernières actualités",
+    "description": "Projets, conseils et vie de Nova Baie",
+    "seeAll": "Voir toutes les actualités →",
+    "read": "Lire →",
+    "viewAll": "Voir toutes les actualités →"
+  },
+  "method": {
+    "eyebrow": "Méthode",
+    "title": "Une méthode simple, claire et bien cadrée",
+    "description": "Le projet avance avec une logique lisible, structurée et rassurante du premier échange à la mise en ligne.",
+    "duration": "De la première discussion à la mise en ligne : 3 à 6 semaines selon le projet.",
+    "scrollHint": "← Faites défiler →",
+    "steps": [
+      {
+        "title": "Échange initial",
+        "description": "On discute de votre structure, vos objectifs et vos attentes. Aucun engagement."
+      },
+      {
+        "title": "Cadrage & offre",
+        "description": "On définit le périmètre exact, le niveau d'offre adapté et on valide ensemble."
+      },
+      {
+        "title": "Direction créative",
+        "description": "Architecture, identité visuelle, ton et logique de conversion. Vous validez avant qu'on code."
+      },
+      {
+        "title": "Développement",
+        "description": "Intégration des contenus, des photos, optimisation mobile et SEO technique."
+      },
+      {
+        "title": "Mise en ligne",
+        "description": "Tests complets, transmission des accès et suivi post-lancement inclus."
+      }
+    ]
+  },
+  "aboutLink": {
+    "eyebrow": "Blue Baie Conciergerie",
+    "title": "10 ans de location saisonnière, une exigence premium",
+    "p1": "Derrière Nova Baie, il y a 10 ans de pratique directe de la location saisonnière — des propriétés gérées, des voyageurs accueillis, des plateformes maîtrisées. Blue Baie Conciergerie a été créée en 2023 pour structurer cette activité. Nova Baie en est la branche digitale.",
+    "p2": "Cette expérience du terrain n'est pas un argument marketing. C'est ce qui nous permet de construire des sites qui parlent juste : aux voyageurs comme aux propriétaires, avec une compréhension réelle des enjeux de visibilité, de confiance et de réservation.",
+    "cta": "Découvrir Nova Baie",
+    "cards": [
+      {
+        "title": "Connaissance terrain réelle",
+        "text": "Propriétaires, voyageurs, plateformes : plus de 10 ans de pratique directe de la location saisonnière en Baie de Somme."
+      },
+      {
+        "title": "Exigence qualité sur chaque projet",
+        "text": "Un seul niveau de rendu : premium. Pas de template, pas de compromis sur l'image."
+      },
+      {
+        "title": "Des sites pensés pour convertir",
+        "text": "Chaque décision de design sert un objectif commercial clair."
+      }
+    ]
+  },
+  "maintenance": {
+    "eyebrow": "Après la livraison",
+    "title": "Votre site livré, suivi et maintenu",
+    "description": "Chaque projet inclut un accompagnement post-lancement. On reste disponibles après la mise en ligne.",
+    "cta": "Parlons de votre projet"
+  },
+  "finalCta": {
+    "maintenanceTitle": "3 mois de maintenance offerts",
+    "maintenanceSubtitle": "Inclus avec chaque création de site Nova Baie au lancement",
+    "tags": ["Mises à jour incluses", "Sauvegardes", "Support réactif"],
+    "metrics": "1 040 voyageurs accueillis · 10 ans de terrain · 100% tourisme",
+    "eyebrow": "Contact",
+    "title": "Votre site mérite mieux qu'un template.",
+    "description": "Nova Baie construit des sites premium pour les professionnels du tourisme qui veulent une image à la hauteur de leur offre. Pas de compromis, pas de générique.",
+    "cta1": "Demander un projet",
+    "cta2": "Voir les réalisations",
+    "reassurance": "Réponse sous 24h · Devis gratuit · Sans engagement"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Parlons de votre projet",
+    "description": "Devis gratuit, sans engagement. Je vous réponds sous 24h avec une première analyse de votre besoin.",
+    "form": {
+      "title": "Votre demande",
+      "subtitle": "Remplissez ce formulaire — je reviens vers vous sous 24h avec une réponse claire.",
+      "name": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "structure": "Structure",
+      "projectType": "Type de projet",
+      "message": "Message",
+      "namePlaceholder": "Votre nom",
+      "emailPlaceholder": "votre@email.com",
+      "phonePlaceholder": "+33 6 00 00 00 00",
+      "structurePlaceholder": "Nom de votre hébergement ou structure",
+      "projectTypePlaceholder": "Votre type de projet...",
+      "messagePlaceholder": "Décrivez votre structure, votre projet et vos objectifs...",
+      "options": {
+        "presence": "Présence — Être visible et crédible",
+        "conversion": "Conversion — Générer plus de demandes",
+        "acquisition": "Acquisition — Croître et attirer du trafic",
+        "maintenance": "Maintenance uniquement",
+        "conseil": "Je ne sais pas encore — besoin de conseils"
+      },
+      "submit": "Envoyer ma demande",
+      "sending": "Envoi en cours...",
+      "successTitle": "Message envoyé !",
+      "successDescription": "Je vous réponds sous 24h à l'adresse {email}. En attendant, n'hésitez pas à consulter les offres.",
+      "successCta": "Voir les offres →",
+      "error": "Une erreur est survenue. Écrivez-nous directement à"
+    },
+    "info": {
+      "title": "Me contacter directement",
+      "nextSteps": "Ce qui se passe ensuite",
+      "step1": "01 — Je lis votre demande et analyse votre projet",
+      "step2": "02 — Je vous recontacte sous 24h",
+      "step3": "03 — Je vous envoie un devis détaillé sous 48h",
+      "reassurance": "Réponse sous 24h · Devis gratuit · Sans engagement",
+      "location": "Baie de Somme, France"
+    }
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Un accompagnement adapté à votre projet",
+    "description": "Nova Baie propose 3 niveaux selon vos objectifs et votre type de structure. On définit ensemble le format le plus pertinent.",
+    "forWhoLabel": "Pour qui",
+    "changeLabel": "Ce que ça change",
+    "cta": "Demander un devis",
+    "diffEyebrow": "Notre approche",
+    "diffTitle": "Ce qui nous différencie vraiment",
+    "diffDescription": "Nova Baie est né du terrain — pas d'un bureau d'agence généraliste.",
+    "diffItems": [
+      "Connaissance terrain réelle du tourisme",
+      "Un seul niveau de rendu : premium",
+      "Un process cadré, sans surprise"
+    ],
+    "finalCtaTitle": "Vous avez un projet ? On en parle.",
+    "finalCtaCta": "Demander un devis",
+    "offers": [
+      {
+        "name": "Présence",
+        "forWho": "Gîtes, locations saisonnières, petites structures",
+        "change": "Une image professionnelle pour inspirer confiance et recevoir des demandes."
+      },
+      {
+        "name": "Conversion",
+        "forWho": "Conciergeries, hébergements premium, hôtels indépendants",
+        "change": "Un site structuré pour convaincre et générer davantage de prospects."
+      },
+      {
+        "name": "Acquisition",
+        "forWho": "Multi-logements, conciergeries en développement",
+        "change": "Un outil business complet pour attirer du trafic et convertir."
+      }
+    ],
+    "metaTitle": "Nos offres — Création de site web tourisme",
+    "metaDescription": "3 niveaux d'accompagnement pour créer votre site web tourisme : Présence, Conversion, Acquisition. Un format adapté à chaque structure, de la conciergerie au gîte."
+  },
+  "realisations": {
+    "eyebrow": "Réalisations",
+    "title": "Des projets sobres, cohérents et pensés pour durer",
+    "description": "Cette page est conçue pour accueillir vos réalisations actuelles et futures avec une structure premium simple à réutiliser.",
+    "metaTitle": "Réalisations — Sites web tourisme réalisés",
+    "metaDescription": "Découvrez les sites web réalisés par Nova Baie pour des professionnels du tourisme : gîtes en Baie de Somme, hébergements ski, conciergeries."
+  },
+  "about": {
+    "eyebrow": "À propos",
+    "title": "Nova Baie, la branche web de Blue Baie Conciergerie",
+    "description": "Née d'une pratique concrète du tourisme et de la location courte durée, Nova Baie construit des sites qui parlent le même langage que vos clients.",
+    "historyEyebrow": "Notre histoire",
+    "historyTitle": "Une agence née du terrain, pas d'un bureau",
+    "historyP1": "Nova Baie est l'objet digital de Blue Baie Conciergerie — même entreprise, même exigence, focalisée sur un enjeu précis : donner aux professionnels du tourisme une présence en ligne à la hauteur de leur offre réelle.",
+    "historyP2": "Blue Baie Conciergerie est née en 2023 d'une pratique de plus de 7 ans de location saisonnière directe en Baie de Somme. Nova Baie a été lancée en 2026 pour répondre à un besoin concret : donner aux professionnels du tourisme une présence digitale à la hauteur de leur offre.",
+    "timeline": [
+      { "label": "Depuis 2016", "desc": "Location saisonnière directe en Baie de Somme" },
+      { "label": "2023", "desc": "Création de Blue Baie Conciergerie" },
+      { "label": "2026", "desc": "Lancement de Nova Baie, branche web premium" }
+    ],
+    "bbEyebrow": "Blue Baie Conciergerie",
+    "bbTitle": "Notre partenaire terrain",
+    "bbDescription": "Blue Baie Conciergerie gère des hébergements touristiques haut de gamme en Baie de Somme : accueil voyageurs, gestion plateformes, entretien et suivi propriétaires.",
+    "bbCta": "Découvrir Blue Baie Conciergerie",
+    "missionTitle": "Une mission claire",
+    "missionP1": "Corriger l'écart entre la qualité réelle d'une offre touristique et sa présentation en ligne, avec des sites plus élégants, plus clairs et mieux structurés.",
+    "missionP2": "Nova Baie ne vend pas simplement un site. La marque construit un support commercial durable au service de l'image, de la crédibilité et de la conversion.",
+    "dnaTitle": "ADN de marque",
+    "dnaValues": ["Qualité", "Clarté", "Exigence", "Cohérence", "Élégance", "Connaissance terrain"],
+    "dnaDescription": "Le ton recherché reste premium, calme, fiable, structuré et humain.",
+    "partnerLabel": "En partenariat avec",
+    "partnerLink": "bluebaie.fr →",
+    "metaTitle": "À propos — Nova Baie, agence web spécialisée tourisme",
+    "metaDescription": "Nova Baie est née de 10 ans de terrain en location saisonnière avec Blue Baie Conciergerie. Une expertise unique pour créer des sites web qui parlent vraiment aux voyageurs."
+  },
+  "actualites": {
+    "eyebrow": "Actualités",
+    "title": "Actualités",
+    "description": "Projets, réalisations et vie de Nova Baie",
+    "readMore": "Lire la suite",
+    "collapse": "Réduire",
+    "metaTitle": "Actualités — Nova Baie",
+    "metaDescription": "Suivez les dernières actualités de Nova Baie : nouveaux projets, réalisations et publications."
+  },
+  "mentions": {
+    "eyebrow": "Légal",
+    "title": "Mentions légales",
+    "description": "Informations légales relatives au site nova-baie.com et à son éditeur.",
+    "sections": [
+      {
+        "title": "Éditeur du site",
+        "content": "Nova Baie — Entrepreneur individuel — SIRET : 917 905 887 00027 — TVA : FR96917905887 — 28 Route de Forest-Montiers, 80120 Saint-Quentin-en-Tourmont — Email : contact.novabaie@gmail.com — Tél : +33 7 63 54 67 27 — Directrice : Christelle Guilbert"
+      },
+      {
+        "title": "Hébergement",
+        "content": "Ce site est hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis."
+      },
+      {
+        "title": "Propriété intellectuelle",
+        "content": "L'ensemble des contenus présents sur ce site (textes, visuels, logo) sont la propriété exclusive de Nova Baie. Toute reproduction est interdite sans autorisation préalable."
+      },
+      {
+        "title": "Données personnelles",
+        "content": "Les informations collectées via le formulaire de contact sont utilisées uniquement pour répondre à votre demande. Elles ne sont pas transmises à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de modification et de suppression de vos données."
+      },
+      {
+        "title": "Cookies",
+        "content": "Ce site n'utilise pas de cookies publicitaires. Des cookies techniques peuvent être utilisés pour le bon fonctionnement du site."
+      }
+    ],
+    "metaTitle": "Mentions légales — Nova Baie",
+    "metaDescription": "Informations légales relatives au site nova-baie.com : éditeur, hébergement, propriété intellectuelle, données personnelles et cookies."
+  },
+  "home": {
+    "metaTitle": "Nova Baie — Sites web premium pour professionnels du tourisme",
+    "metaDescription": "Nova Baie conçoit des sites web premium pour les conciergeries, gîtes, hébergements touristiques et hôtels indépendants. Design soigné, SEO optimisé, expertise terrain."
+  },
+  "lang": {
+    "fr": "FR",
+    "en": "EN",
+    "switchTo": "English"
+  }
+}

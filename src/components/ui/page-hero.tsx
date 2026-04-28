@@ -1,13 +1,16 @@
-import Link from "next/link";
-import { Container } from "./container";
+import { getTranslations } from 'next-intl/server'
+import { Link } from '@/lib/navigation'
+import { Container } from './container'
 
 type Props = {
-  eyebrow: string;
-  title: string;
-  description: string;
-};
+  eyebrow: string
+  title: string
+  description: string
+}
 
-export function PageHero({ eyebrow, title, description }: Props) {
+export async function PageHero({ eyebrow, title, description }: Props) {
+  const t = await getTranslations('common')
+
   return (
     <section className="relative overflow-hidden bg-nova-navy pb-16 pt-32">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(46,123,198,0.15),transparent_50%)]" />
@@ -25,17 +28,17 @@ export function PageHero({ eyebrow, title, description }: Props) {
               href="/contact"
               className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-nova-navy transition-all duration-200 hover:bg-white/90"
             >
-              Parler de votre projet
+              {t('talkProject')}
             </Link>
             <Link
               href="/services"
               className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white/80 transition-all duration-200 hover:border-white hover:text-white"
             >
-              Voir les offres
+              {t('seeOffers')}
             </Link>
           </div>
         </div>
       </Container>
     </section>
-  );
+  )
 }

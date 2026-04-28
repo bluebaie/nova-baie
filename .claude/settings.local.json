@@ -10,7 +10,14 @@
       "Bash(git push *)",
       "Bash(node -e \"console.log\\(require\\('./node_modules/next/package.json'\\).version\\)\")",
       "Bash(npx next *)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(npm install *)",
+      "Bash(node -e \"const ni = require\\('node_modules/next-intl/package.json'\\); const exports = ni.exports; console.log\\(Object.keys\\(exports\\).slice\\(0,20\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(mkdir -p src/app/\\\\[locale\\\\]/services)",
+      "Bash(mkdir -p src/app/\\\\[locale\\\\]/realisations)",
+      "Bash(mkdir -p src/app/\\\\[locale\\\\]/contact)",
+      "Bash(mkdir -p src/app/\\\\[locale\\\\]/a-propos)",
+      "Bash(mkdir -p src/app/\\\\[locale\\\\]/mentions-legales)"
     ]
   }
 }

@@ -1,18 +1,21 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Container } from "@/components/ui/container";
-import { SocialLinks } from "@/components/ui/social-links";
-import { company } from "@/lib/site-data";
+import { getTranslations } from 'next-intl/server'
+import Image from 'next/image'
+import { Link } from '@/lib/navigation'
+import { Container } from '@/components/ui/container'
+import { SocialLinks } from '@/components/ui/social-links'
+import { company } from '@/lib/site-data'
 
-const footerLinks = [
-  { href: "/services", label: "Création de site web tourisme" },
-  { href: "/realisations", label: "Nos réalisations" },
-  { href: "/a-propos", label: "À propos de Nova Baie" },
-  { href: "/contact", label: "Demander un devis" },
-  { href: "/mentions-legales", label: "Mentions légales" },
-];
+export async function Footer() {
+  const t = await getTranslations('footer')
 
-export function Footer() {
+  const footerLinks = [
+    { href: '/services' as const, label: t('links.services') },
+    { href: '/realisations' as const, label: t('links.realisations') },
+    { href: '/a-propos' as const, label: t('links.about') },
+    { href: '/contact' as const, label: t('links.contact') },
+    { href: '/mentions-legales' as const, label: t('links.mentions') },
+  ]
+
   return (
     <footer className="mt-20 border-t border-nova-navy/10 bg-white">
       <Container>
@@ -30,34 +33,28 @@ export function Footer() {
               </div>
               <span className="text-base font-semibold text-nova-navy">{company.name}</span>
             </div>
-            <p className="mt-4 max-w-xl">{company.footerText}</p>
-            <p className="mt-6 text-sm text-nova-text">
-              {company.descriptor}
-            </p>
+            <p className="mt-4 max-w-xl">{t('description')}</p>
+            <p className="mt-6 text-sm text-nova-text">{company.descriptor}</p>
             <div className="mt-6">
               <SocialLinks variant="footer" />
             </div>
           </div>
 
           <nav aria-label="Liens du site">
-            <h3 className="text-sm font-semibold text-nova-navy">Nova Baie</h3>
+            <h3 className="text-sm font-semibold text-nova-navy">{t('linksTitle')}</h3>
             <div className="mt-3 grid gap-3">
               {footerLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm text-nova-text hover:text-nova-navy"
-                >
+                <Link key={item.href} href={item.href} className="text-sm text-nova-text hover:text-nova-navy">
                   {item.label}
                 </Link>
               ))}
             </div>
           </nav>
         </div>
-      <div className="border-t border-nova-navy/10 py-4 text-center text-xs text-nova-text/50">
-          © {new Date().getFullYear()} Nova Baie — Tous droits réservés
+        <div className="border-t border-nova-navy/10 py-4 text-center text-xs text-nova-text/50">
+          {t('copyright', { year: new Date().getFullYear() })}
         </div>
       </Container>
     </footer>
-  );
+  )
 }
