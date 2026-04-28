@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { SocialLinks } from "@/components/ui/social-links";
 import { navigation } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
@@ -68,7 +69,9 @@ export function Header() {
             })}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden items-center gap-4 md:flex">
+            <SocialLinks variant="header" />
+            <span className="h-5 w-px bg-nova-navy/15" aria-hidden="true" />
             <Button href="/contact">Demander un site</Button>
           </div>
 

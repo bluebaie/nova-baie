@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
+import { SocialLinks } from "@/components/ui/social-links";
 import { company } from "@/lib/site-data";
 
 const footerLinks = [
@@ -33,6 +34,9 @@ export function Footer() {
             <p className="mt-6 text-sm text-nova-text">
               {company.descriptor}
             </p>
+            <div className="mt-6">
+              <SocialLinks variant="footer" />
+            </div>
           </div>
 
           <nav aria-label="Liens du site">
