@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -12,11 +12,37 @@ type Props = {
 export function ImageCarousel({ images, alt }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const touchStartX = useRef(0)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const prev = () =>
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current)
+    if (images.length <= 1) return
+    timerRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }, 3000)
+  }, [images.length])
+
+  useEffect(() => {
+    startTimer()
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current)
+    }
+  }, [startTimer])
+
+  const prev = () => {
     setCurrentIndex((i) => (i > 0 ? i - 1 : images.length - 1))
-  const next = () =>
+    startTimer()
+  }
+
+  const next = () => {
     setCurrentIndex((i) => (i < images.length - 1 ? i + 1 : 0))
+    startTimer()
+  }
+
+  const goTo = (i: number) => {
+    setCurrentIndex(i)
+    startTimer()
+  }
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX
@@ -92,7 +118,7 @@ export function ImageCarousel({ images, alt }: Props) {
               <button
                 key={i}
                 type="button"
-                onClick={() => setCurrentIndex(i)}
+                onClick={() => goTo(i)}
                 aria-label={`Image ${i + 1}`}
                 className={`rounded-full transition-all duration-200 ${
                   i === currentIndex

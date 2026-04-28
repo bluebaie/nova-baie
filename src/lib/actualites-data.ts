@@ -31,11 +31,11 @@ Dans ce contexte, la présence en ligne devient déterminante. Un site web n'est
 
 C'est sur cette logique que Nova Baie a été construite. Nous concevons des sites web premium pour les professionnels du tourisme, avec une approche simple : valoriser ce qui existe déjà… et le transformer en levier de conversion.`,
     images: [
-      "/images/actualites/post2-5.png",
       "/images/actualites/post2-1.png",
       "/images/actualites/post2-2.png",
       "/images/actualites/post2-3.png",
       "/images/actualites/post2-4.png",
+      "/images/actualites/post2-5.png",
     ],
     lien: "https://nova-baie.com",
     labelLien: "nova-baie.com",
