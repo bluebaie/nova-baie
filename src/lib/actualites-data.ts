@@ -5,6 +5,7 @@ export type Actualite = {
   titre: string
   resume: string
   contenuComplet: string
+  image?: string
   lien?: string
   labelLien?: string
   plateformes?: string[]
@@ -29,6 +30,7 @@ Dans ce contexte, la présence en ligne devient déterminante. Un site web n'est
 — faciliter la prise de décision
 
 C'est sur cette logique que Nova Baie a été construite. Nous concevons des sites web premium pour les professionnels du tourisme, avec une approche simple : valoriser ce qui existe déjà… et le transformer en levier de conversion.`,
+    image: "/images/actualites/post2-1.png",
     lien: "https://nova-baie.com",
     labelLien: "nova-baie.com",
     plateformes: ["LinkedIn", "Instagram", "Facebook"],
