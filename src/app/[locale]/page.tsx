@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HeroSection } from '@/components/home/hero-section';
@@ -36,16 +37,35 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
+      {/* Above fold — rendered immediately */}
       <HeroSection />
       <TargetSection />
-      <OffersSection />
-      <ReasonsSection />
-      <WorkPreviewSection />
-      <LatestActualitesSection />
-      <MethodSection />
-      <AboutLinkSection />
-      <MaintenanceSection />
-      <FinalCtaSection />
+
+      {/* Below fold — streamed progressively */}
+      <Suspense fallback={<div className="h-64 animate-pulse bg-nova-sand" />}>
+        <OffersSection />
+      </Suspense>
+      <Suspense fallback={<div className="h-64 animate-pulse bg-white" />}>
+        <ReasonsSection />
+      </Suspense>
+      <Suspense fallback={<div className="h-64 animate-pulse bg-nova-sand" />}>
+        <WorkPreviewSection />
+      </Suspense>
+      <Suspense fallback={<div className="h-48 animate-pulse bg-white" />}>
+        <LatestActualitesSection />
+      </Suspense>
+      <Suspense fallback={<div className="h-48 animate-pulse bg-nova-sand" />}>
+        <MethodSection />
+      </Suspense>
+      <Suspense fallback={null}>
+        <AboutLinkSection />
+      </Suspense>
+      <Suspense fallback={null}>
+        <MaintenanceSection />
+      </Suspense>
+      <Suspense fallback={null}>
+        <FinalCtaSection />
+      </Suspense>
     </>
   );
 }

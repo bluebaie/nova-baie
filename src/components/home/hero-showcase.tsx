@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Demo = {
   id: string;
@@ -9,6 +9,7 @@ type Demo = {
   subtitle: string;
   domain: string;
   video?: string;
+  poster?: string;
   image?: string;
 };
 
@@ -19,6 +20,7 @@ const demos: Demo[] = [
     subtitle: "Site vitrine multi-hébergements en Baie de Somme",
     domain: "gite-baie.com",
     video: "/videos/gites-en-baie-demo.mp4",
+    poster: "/images/project-gites-en-baie.jpg",
   },
   {
     id: "sainte-foy",
@@ -26,6 +28,7 @@ const demos: Demo[] = [
     subtitle: "Site vitrine hébergement montagne / location saisonnière",
     domain: "ski-saintefoy.com",
     video: "/videos/sainte-foy-demo.mp4",
+    poster: "/images/project-ski-saintefoy.jpg",
   },
   {
     id: "le-bout-du-monde",
@@ -33,11 +36,13 @@ const demos: Demo[] = [
     subtitle: "Deux gîtes d'exception en Baie de Somme",
     domain: "le-bout-du-monde.org",
     video: "/videos/le-bout-du-monde-demo.mp4",
+    poster: "/images/realisation-le-bout-du-monde.jpg",
   },
 ];
 
 export function HeroShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,6 +50,19 @@ export function HeroShowcase() {
     }, 9000);
     return () => clearInterval(interval);
   }, []);
+
+  // Only play the active video, only on desktop (lg = 1024px)
+  useEffect(() => {
+    if (window.innerWidth < 1024) return;
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
+      if (index === activeIndex) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, [activeIndex]);
 
   return (
     <div className="relative isolate mx-auto w-full max-w-[680px]">
@@ -75,13 +93,14 @@ export function HeroShowcase() {
             >
               {demo.video && (
                 <video
+                  ref={(el) => { videoRefs.current[index] = el; }}
                   className="h-full w-full object-cover"
                   src={demo.video}
-                  autoPlay
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload="none"
+                  poster={demo.poster}
                 />
               )}
               {demo.image && (

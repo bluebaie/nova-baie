@@ -48,7 +48,7 @@ export async function HeroSection() {
         </div>
       </Container>
 
-      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce max-md:hidden">
         <ChevronDown className="h-6 w-6 text-white/60" />
       </div>
     </section>
