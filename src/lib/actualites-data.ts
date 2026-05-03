@@ -13,6 +13,71 @@ export type Actualite = {
 
 export const actualites: Actualite[] = [
   {
+    id: 3,
+    date: "3 mai 2026",
+    categorie: "Conseil",
+    titre: "Être présent sur Airbnb ou Booking ne suffit plus.",
+    images: [
+      "/images/actualites/post4-1.png",
+      "/images/actualites/post4-2.png",
+      "/images/actualites/post4-3.png",
+      "/images/actualites/post4-4.png",
+      "/images/actualites/post4-5.png",
+      "/images/actualites/post4-6.png",
+    ],
+    resume: "Dans le tourisme, la différence ne se joue plus uniquement sur l'offre. Elle se joue sur la perception. En quelques secondes, un voyageur décide de rester — ou de partir.",
+    contenuComplet: `Aujourd'hui, être présent sur Airbnb ou Booking ne suffit plus.
+
+Dans le tourisme, la différence ne se joue plus uniquement sur l'offre.
+Elle se joue sur la perception.
+
+En quelques secondes, un voyageur décide :
+— de rester
+— ou de partir
+
+Et dans ce laps de temps très court, ce qu'il voit… ce n'est pas votre logement.
+C'est votre image.
+
+Le problème que nous observons chez la majorité des professionnels du tourisme est simple : tout est dispersé.
+— plusieurs logements
+— plusieurs plateformes
+— plusieurs liens
+— des avis répartis
+— une communication fragmentée
+
+Chaque élément existe… mais rarement comme un ensemble cohérent.
+
+Résultat :
+👉 une image floue
+👉 une offre difficile à lire
+👉 un parcours client peu maîtrisé
+👉 une dépendance forte aux plateformes
+
+Chez Nova Baie, nous faisons un choix différent.
+
+Nous concevons des sites web premium pour les professionnels du tourisme partout en France. Avec une logique simple :
+👉 centraliser
+👉 structurer
+👉 valoriser
+
+Un site n'est pas seulement une vitrine. C'est un levier. Il doit :
+— clarifier votre offre
+— rassurer immédiatement
+— guider le visiteur
+— et transformer une visite en réservation
+
+👉 Un seul site.
+👉 Une seule expérience.
+👉 Une image maîtrisée.
+
+Du littoral à la montagne, Nova Baie accompagne les acteurs du tourisme dans la construction d'une présence digitale cohérente, durable et performante.
+
+📩 Si vous développez une activité dans le tourisme ou gérez plusieurs hébergements, nous serions ravis d'échanger.`,
+    lien: "https://nova-baie.com",
+    labelLien: "nova-baie.com",
+    plateformes: ["LinkedIn", "Instagram", "Facebook"],
+  },
+  {
     id: 2,
     date: "2 mai 2026",
     categorie: "Conseil",
