@@ -2,7 +2,6 @@ import {
   Globe,
   Hotel,
   House,
-  Landmark,
   MessageCircle,
   Search,
   ShieldCheck,

@@ -1,3 +1,4 @@
+import { localeAlternates } from '@/lib/seo';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
@@ -14,9 +15,9 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'about' });
   const base = locale === 'fr' ? 'https://www.nova-baie.com' : 'https://www.nova-baie.com/en';
   return {
-    title: t('metaTitle'),
+    title: { absolute: t('metaTitle') },
     description: t('metaDescription'),
-    alternates: { canonical: `${base}/a-propos` },
+    alternates: localeAlternates(locale, '/a-propos'),
     openGraph: { title: t('metaTitle'), description: t('metaDescription'), url: `${base}/a-propos` },
   };
 }

@@ -1,3 +1,4 @@
+import { localeAlternates } from '@/lib/seo';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageHero } from '@/components/ui/page-hero';
@@ -10,12 +11,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'mentions' });
-  const base = locale === 'fr' ? 'https://www.nova-baie.com' : 'https://www.nova-baie.com/en';
   return {
-    title: t('metaTitle'),
+    title: { absolute: t('metaTitle') },
     description: t('metaDescription'),
     robots: { index: false, follow: false },
-    alternates: { canonical: `${base}/mentions-legales` },
+    alternates: localeAlternates(locale, '/mentions-legales'),
   };
 }
 

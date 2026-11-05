@@ -236,8 +236,8 @@
       },
       "submit": "Send my request",
       "sending": "Sending...",
-      "successTitle": "Message sent!",
-      "successDescription": "I'll respond within 24h to {email}. In the meantime, feel free to check out our services.",
+      "successTitle": "Request accepted",
+      "successDescription": "Our forwarding service accepted your request. This does not yet confirm email delivery or further processing. If in doubt, contact us directly.",
       "successCta": "View services →",
       "error": "An error occurred. Write to us directly at"
     },
@@ -369,5 +369,13 @@
     "fr": "FR",
     "en": "EN",
     "switchTo": "Français"
+  },
+  "errors": {
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "This page does not exist or has moved.",
+    "title": "Something went wrong",
+    "description": "Please try again. If the problem persists, contact us directly.",
+    "retry": "Try again",
+    "home": "Back to home"
   }
 }

@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nova Baie
 
-## Getting Started
+Site Next.js App Router bilingue : français sans préfixe, anglais sous `/en`.
+Le LOT A consolide le socle existant ; aucune refonte graphique ni administration.
 
-First, run the development server:
+## Prérequis et installation locale
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js **24.19.0** (`.nvmrc`), famille Node 24 LTS ; npm **11.17.0**.
+- `npm ci` installe exactement le verrou. Ne pas utiliser `audit fix --force`.
+- `npm run dev` démarre le serveur de développement.
+- `npm run lint`, `npm run typecheck`, `npm test` vérifient le code.
+- `npm run build` produit un build local ; `npm start` le sert localement.
+- `npm run check` enchaîne lint, types, tests unitaires puis build.
+- `npm run test:e2e` utilise le build existant et **Google Chrome installé** ; lance un serveur exclusivement sur `localhost:3146`. Ne pas lancer sur un autre serveur.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Les tests navigateur bloquent les requêtes hors de cette origine et neutralisent
+les variables de contact du serveur de test. Les tests unitaires injectent des
+réponses HTTP fictives ; aucun webhook réel n'est utilisé.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`next/font` conserve Inter et Playfair Display ; le premier build peut télécharger
+ces polices. Le compilateur SWC WASM officiel est disponible comme secours local
+si le système refuse le binaire natif. Voir les limites Windows dans
+[le dossier LOT A](docs/lot-a.md). Ne pas désactiver la sécurité Windows.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Contact : configuration privée requise
 
-## Learn More
+Voir `.env.example` : aucune valeur réelle n'est fournie. Ne pas copier une valeur
+de secret dans le code, la documentation ou la conversation.
 
-To learn more about Next.js, take a look at the following resources:
+Le navigateur appelle uniquement `POST /api/contact`. Cette route valide les
+données, contrôle l'origine, applique une limitation distribuée puis appelle Make
+avec un délai de 8 secondes. Le navigateur attend au maximum 20 secondes.
+Seul un HTTP 2xx de Make conduit à `202 {code: "accepted"}`. Cela indique une
+acceptation par le service HTTP, pas la livraison d'un email.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Le formulaire est **indisponible (503) tant que sa configuration privée et sa
+limitation distribuée ne sont pas valides**. Ce comportement est volontaire.
+La création d'un service ou une configuration distante exige un accord humain.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Aucune conservation durable des demandes n'est ajoutée. Le futur LOT D devra la
+prévoir. Ne pas supposer que Make stocke ou livre les demandes sans vérification.
 
-## Deploy on Vercel
+## Sécurité et opérations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Ne jamais exposer de webhook via une variable `NEXT_PUBLIC_*`.
+- Les dépendances de sécurité sont épinglées et les overrides documentés.
+- `npm audit` consulte le registre, sans modifier l'application distante.
+- Les scripts `scripts/compress-*.mjs` **réécrivent des médias** ; ils ne font pas
+  partie des vérifications et ne doivent pas être exécutés sans besoin explicite.
+- Les contrôles ne prouvent pas la conformité RGPD ; GTM, les prestataires et les
+  durées de conservation nécessitent une revue humaine.
+- Aucune publication automatique ni CI de déploiement n'est ajoutée.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Voir [docs/lot-a.md](docs/lot-a.md) pour le contrat Make, la matrice des routes,
+les décisions de sécurité et la liste des interventions administrateur.

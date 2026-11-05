@@ -67,14 +67,6 @@ export async function generateMetadata({
       description: t('metaDescription'),
       images: ['/images/og-image.jpg'],
     },
-    robots: { index: true, follow: true },
-    alternates: {
-      canonical: 'https://www.nova-baie.com',
-      languages: {
-        'fr': 'https://www.nova-baie.com',
-        'en': 'https://www.nova-baie.com/en',
-      },
-    },
     icons: {
       icon: '/favicon.ico',
       shortcut: '/favicon.ico',

@@ -1,3 +1,4 @@
+import { localeAlternates } from '@/lib/seo';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Mail, Phone, MapPin } from 'lucide-react';
@@ -14,9 +15,9 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'contact' });
   const base = locale === 'fr' ? 'https://www.nova-baie.com' : 'https://www.nova-baie.com/en';
   return {
-    title: `${t('title')} — Nova Baie`,
+    title: { absolute: `${t('title')} — Nova Baie` },
     description: t('description'),
-    alternates: { canonical: `${base}/contact` },
+    alternates: localeAlternates(locale, '/contact'),
     openGraph: { title: t('title'), description: t('description'), url: `${base}/contact` },
   };
 }

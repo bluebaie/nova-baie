@@ -236,8 +236,8 @@
       },
       "submit": "Envoyer ma demande",
       "sending": "Envoi en cours...",
-      "successTitle": "Message envoyé !",
-      "successDescription": "Je vous réponds sous 24h à l'adresse {email}. En attendant, n'hésitez pas à consulter les offres.",
+      "successTitle": "Demande acceptée",
+      "successDescription": "Votre demande a été acceptée par notre service de transmission. Cela ne confirme pas encore la livraison d’un email ni son traitement. En cas de doute, contactez-nous directement.",
       "successCta": "Voir les offres →",
       "error": "Une erreur est survenue. Écrivez-nous directement à"
     },
@@ -369,5 +369,13 @@
     "fr": "FR",
     "en": "EN",
     "switchTo": "English"
+  },
+  "errors": {
+    "notFoundTitle": "Page introuvable",
+    "notFoundDescription": "Cette page n’existe pas ou a été déplacée.",
+    "title": "Une erreur est survenue",
+    "description": "Veuillez réessayer. Si le problème persiste, contactez-nous directement.",
+    "retry": "Réessayer",
+    "home": "Retour à l’accueil"
   }
 }

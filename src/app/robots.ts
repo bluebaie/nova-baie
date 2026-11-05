@@ -6,12 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/']
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-        crawlDelay: 0
+        disallow: ['/api/', '/admin/', '/en/admin/']
       }
     ],
     sitemap: 'https://www.nova-baie.com/sitemap.xml',

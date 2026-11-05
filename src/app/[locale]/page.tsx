@@ -1,3 +1,4 @@
+import { localeAlternates } from '@/lib/seo';
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -20,9 +21,9 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
   return {
-    title: t('metaTitle'),
+    title: { absolute: t('metaTitle') },
     description: t('metaDescription'),
-    alternates: { canonical: locale === 'fr' ? 'https://www.nova-baie.com' : 'https://www.nova-baie.com/en' },
+    alternates: localeAlternates(locale, ''),
     openGraph: {
       title: t('metaTitle'),
       description: t('metaDescription'),

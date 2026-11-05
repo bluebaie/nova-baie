@@ -1,3 +1,4 @@
+import { localeAlternates } from '@/lib/seo';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageHero } from '@/components/ui/page-hero';
@@ -16,7 +17,7 @@ export async function generateMetadata({
   return {
     title: t('metaTitle'),
     description: t('metaDescription'),
-    alternates: { canonical: `${base}/realisations` },
+    alternates: localeAlternates(locale, '/realisations'),
     openGraph: { title: t('metaTitle'), description: t('metaDescription'), url: `${base}/realisations` },
   };
 }
