@@ -1,6 +1,7 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -11,37 +12,19 @@ type Props = {
 
 export function ImageCarousel({ images, alt }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const t = useTranslations('actualites')
   const touchStartX = useRef(0)
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
-
-  const startTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current)
-    if (images.length <= 1) return
-    timerRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
-  }, [images.length])
-
-  useEffect(() => {
-    startTimer()
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current)
-    }
-  }, [startTimer])
 
   const prev = () => {
     setCurrentIndex((i) => (i > 0 ? i - 1 : images.length - 1))
-    startTimer()
   }
 
   const next = () => {
     setCurrentIndex((i) => (i < images.length - 1 ? i + 1 : 0))
-    startTimer()
   }
 
   const goTo = (i: number) => {
     setCurrentIndex(i)
-    startTimer()
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -85,7 +68,6 @@ export function ImageCarousel({ images, alt }: Props) {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              priority={i === 0}
             />
           </div>
         ))}
@@ -97,8 +79,8 @@ export function ImageCarousel({ images, alt }: Props) {
           <button
             type="button"
             onClick={prev}
-            aria-label="Image précédente"
-            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-1.5 shadow-md backdrop-blur-sm transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100"
+            aria-label={t('previous')}
+            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-md"
           >
             <ChevronLeft className="h-4 w-4 text-nova-navy" />
           </button>
@@ -106,8 +88,8 @@ export function ImageCarousel({ images, alt }: Props) {
           <button
             type="button"
             onClick={next}
-            aria-label="Image suivante"
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-1.5 shadow-md backdrop-blur-sm transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100"
+            aria-label={t('next')}
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-md"
           >
             <ChevronRight className="h-4 w-4 text-nova-navy" />
           </button>
@@ -119,7 +101,8 @@ export function ImageCarousel({ images, alt }: Props) {
                 key={i}
                 type="button"
                 onClick={() => goTo(i)}
-                aria-label={`Image ${i + 1}`}
+                aria-label={t('image', { number: i + 1 })}
+                aria-pressed={i === currentIndex}
                 className={`rounded-full transition-all duration-200 ${
                   i === currentIndex
                     ? 'h-1.5 w-4 bg-white'

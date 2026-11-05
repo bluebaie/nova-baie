@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createContactHandler } from '../src/lib/contact/handler';
-import { validateContact, CONTACT_LIMITS } from '../src/lib/contact/validation';
+import { validateContact, CONTACT_LIMITS, PROJECT_TYPES } from '../src/lib/contact/validation';
 import { createRedisLimiter } from '../src/lib/contact/rate-limit';
 import { submitContact } from '../src/lib/contact/submit';
 
-const valid = { nom: ' Test ', email: 'test@example.invalid', telephone: '', structure: 'Demo', typeProjet: 'presence', message: 'Test uniquement' };
+const valid = { nom: ' Test ', email: 'test@example.invalid', telephone: '', structure: 'Demo', typeProjet: 'website', message: 'Test uniquement' };
 const origin = 'https://nova.example.invalid';
 const webhookUrl = 'https://hook.eu1.make.com/FAKE-NOT-A-REAL-WEBHOOK';
 function request(body: unknown = valid, headers: Record<string, string> = {}) {
@@ -29,6 +29,23 @@ test('normalization and unchanged Make contract; source/date server-owned, honey
   assert.deepEqual(await response.json(), { code: 'accepted' });
   assert.deepEqual(payload, { ...valid, nom: 'Test', source: 'Site Nova Baie', date: '2026-11-05T12:00:00.000Z' });
   assert.equal(response.headers.get('cache-control'), 'no-store');
+});
+
+for (const typeProjet of PROJECT_TYPES) test(`new topic ${typeProjet} preserves the Make payload structure`, async () => {
+  const response = await setup(async (_url, init) => {
+    const payload = JSON.parse(String(init?.body));
+    assert.equal(payload.typeProjet, typeProjet);
+    assert.deepEqual(Object.keys(payload).sort(), ['nom', 'email', 'telephone', 'structure', 'typeProjet', 'message', 'source', 'date'].sort());
+    return new Response('Accepted');
+  })(request({ ...valid, typeProjet }));
+  assert.equal(response.status, 202);
+});
+
+test('project topic is optional, and former package codes are rejected', () => {
+  assert.equal(validateContact({ nom: 'Test', email: valid.email, message: 'A need' }).typeProjet, 'other');
+  for (const typeProjet of ['presence', 'conversion', 'acquisition', 'maintenance', 'conseil']) {
+    assert.throws(() => validateContact({ ...valid, typeProjet }));
+  }
 });
 
 for (const [name, body] of Object.entries({

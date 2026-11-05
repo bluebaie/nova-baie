@@ -1,5 +1,5 @@
 export const CONTACT_LIMITS = { nom: 120, email: 254, telephone: 40, structure: 200, message: 5000 } as const;
-export const PROJECT_TYPES = ['presence', 'conversion', 'acquisition', 'maintenance', 'conseil'] as const;
+export const PROJECT_TYPES = ['website', 'business_app', 'automation_api', 'ai', 'identity_design', 'seo', 'other'] as const;
 export type ContactData = { nom: string; email: string; telephone: string; structure: string; typeProjet: string; message: string };
 export class ContactInputError extends Error {}
 
@@ -11,7 +11,7 @@ export function validateContact(input: unknown): ContactData {
   if (data.website !== undefined && data.website !== '') throw new ContactInputError();
   const result: Record<string, string> = {};
   for (const [key, max] of Object.entries({ ...CONTACT_LIMITS, typeProjet: 32 })) {
-    const value = data[key] ?? (key === 'telephone' || key === 'structure' ? '' : undefined);
+    const value = data[key] ?? (key === 'telephone' || key === 'structure' ? '' : key === 'typeProjet' ? 'other' : undefined);
     if (typeof value !== 'string' || value.length > max) throw new ContactInputError();
     const normalized = value.normalize('NFC').replace(/\r\n?/g, '\n').trim();
     // Keep multiline messages, but reject control characters and header injection in other fields.

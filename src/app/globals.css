@@ -35,6 +35,9 @@ html {
 }
 
 body {
+  /* Resolve font aliases where next/font variables are applied (on body). */
+  --font-title: var(--font-playfair);
+  --font-body: var(--font-inter);
   background: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
@@ -154,4 +157,16 @@ body::before {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Accessible defaults for the editorial structure; no new animation library. */
+:focus-visible {
+  outline: 3px solid #2E7BC6;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body::before { animation: none; will-change: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }

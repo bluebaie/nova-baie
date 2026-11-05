@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 type ButtonProps = {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "light";
   className?: string;
 };
 
@@ -23,6 +23,7 @@ export function Button({
           "bg-nova-navy text-white hover:bg-nova-blue",
         variant === "secondary" &&
           "border border-white/70 text-white backdrop-blur hover:border-white hover:bg-white/10",
+        variant === "light" && "bg-white text-nova-navy hover:bg-nova-horizon",
         className
       )}
     >

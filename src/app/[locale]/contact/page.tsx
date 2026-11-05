@@ -1,25 +1,18 @@
-import { localeAlternates } from '@/lib/seo';
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/page-metadata';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { ContactForm } from '@/components/contact/contact-form';
 import { company } from '@/lib/site-data';
+import { Link } from '@/lib/navigation';
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+}) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'contact' });
-  const base = locale === 'fr' ? 'https://www.nova-baie.com' : 'https://www.nova-baie.com/en';
-  return {
-    title: { absolute: `${t('title')} — Nova Baie` },
-    description: t('description'),
-    alternates: localeAlternates(locale, '/contact'),
-    openGraph: { title: t('title'), description: t('description'), url: `${base}/contact` },
-  };
+  return pageMetadata(locale, 'contact', '/contact');
 }
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -53,6 +46,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
               <h2 className="text-xl font-semibold text-nova-navy">{t('form.title')}</h2>
               <p className="mb-6 mt-2 text-sm text-nova-text">{t('form.subtitle')}</p>
               <ContactForm />
+              <Link href="/mentions-legales#confidentialite" className="mt-5 inline-block text-xs text-nova-blue underline">{t('info.privacy')}</Link>
             </div>
 
             {/* Infos */}

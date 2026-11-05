@@ -18,7 +18,26 @@ for (const prefix of ['', '/en']) {
       await expect(page.locator('header')).toBeVisible();
       await expect(page.locator('footer')).toBeVisible();
       await expect(page.locator('link[hreflang="en"]')).toHaveAttribute('href', `https://www.nova-baie.com/en${path}`);
+      await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', `https://www.nova-baie.com${prefix}${path}`);
+      await expect(page.locator('meta[property="og:image"]').first()).toHaveAttribute('content', /https:\/\/www\.nova-baie\.com\/opengraph-image/);
+      await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /\S.{30,}/);
+      await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content', (await page.locator('meta[property="og:title"]').getAttribute('content'))!);
       expect((await page.title()).match(/Nova Baie/g)?.length).toBe(1);
+      await expect(page.locator('header nav').first().locator('a')).toHaveCount(4);
+      const body = await page.locator('main').innerText();
+      expect(body).not.toMatch(/€|\b\d+\s*EUR\b|Site Essentiel|Site Signature|Site Performance|24h|48h|3 mois|3 months|3 niveaux|3 levels/);
+      const headings = await page.locator('main').evaluate(main => [...main.querySelectorAll('h1,h2,h3,h4')].map(heading => Number(heading.tagName[1])));
+      expect(headings.every((level, index) => index === 0 || level <= headings[index - 1] + 1)).toBe(true);
+      const schema = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent() ?? '{}');
+      expect(schema['@graph'][0].inLanguage).toBe(prefix ? 'en-GB' : 'fr-FR');
+      expect(JSON.stringify(schema)).not.toMatch(/priceRange|€|sites web premium pour les professionnels du tourisme/i);
+      const links = await page.locator('a[href^="/"]').evaluateAll(anchors => [...new Set(anchors.map(anchor => anchor.getAttribute('href')!))]);
+      for (const href of links) {
+        const local = new URL(href, 'http://localhost:3146');
+        const linked = await page.request.get(local.pathname);
+        expect(linked.status(), href).toBe(200);
+        if (local.hash) expect(await linked.text(), href).toContain(`id="${local.hash.slice(1)}"`);
+      }
     });
   }
   test(`localized 404 ${prefix}`, async ({ page }) => {
@@ -33,7 +52,7 @@ for (const prefix of ['', '/en']) {
     await page.goto(`${prefix}/contact`);
     await page.locator('#contact-nom').fill('Test local');
     await page.locator('#contact-email').fill('test@example.invalid');
-    await page.locator('#contact-type').selectOption('presence');
+    await page.locator('#contact-type').selectOption('website');
     await page.locator('#contact-message').fill('Simulation locale uniquement');
     await page.locator('form button[type="submit"]').click();
     if (status === 202) {
@@ -57,6 +76,12 @@ test('mobile menu and language switch remain usable', async ({ page }) => {
   await page.getByRole('button', { name: 'Ouvrir le menu' }).click();
   await page.locator('header').getByRole('button', { name: 'English' }).last().click();
   await expect(page).toHaveURL(/\/en\/contact$/);
+  const menu = page.getByRole('button', { name: 'Open menu' });
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  await menu.click();
+  await page.keyboard.press('Escape');
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  await expect(menu).toBeFocused();
 });
 
 test('existing logo and hero actually load in the browser', async ({ page }) => {
@@ -64,6 +89,8 @@ test('existing logo and hero actually load in the browser', async ({ page }) => 
   for (const selector of ['header img', 'main section:first-child img']) {
     await expect.poll(() => page.locator(selector).first().evaluate(image => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
   }
+  expect(await page.locator('h1').evaluate(heading => getComputedStyle(heading).fontFamily)).toMatch(/playfair/i);
+  expect(await page.locator('body').evaluate(body => getComputedStyle(body).fontFamily)).toMatch(/inter/i);
 });
 
 test('URL normalization, robots, sitemap and safe unconfigured API', async ({ request }) => {
@@ -82,13 +109,24 @@ test('URL normalization, robots, sitemap and safe unconfigured API', async ({ re
   const sitemap = await request.get('/sitemap.xml');
   expect(sitemap.status()).toBe(200);
   expect(await sitemap.text()).not.toMatch(/lastmod|mentions-legales/);
-  const contact = await request.post('/api/contact', { headers: { origin: 'http://localhost:3146' }, data: { nom: 'Local', email: 'test@example.invalid', telephone: '', structure: '', typeProjet: 'presence', message: 'Local only' } });
+  const contact = await request.post('/api/contact', { headers: { origin: 'http://localhost:3146' }, data: { nom: 'Local', email: 'test@example.invalid', telephone: '', structure: '', typeProjet: 'website', message: 'Local only' } });
   expect(contact.status()).toBe(503);
   expect((await request.get('/api/contact')).status()).toBe(405);
   const home = await request.get('/');
   expect(home.headers()['x-content-type-options']).toBe('nosniff');
   expect(home.headers()['x-frame-options']).toBe('DENY');
   expect(home.headers()['x-xss-protection']).toBeUndefined();
+  const og = await request.get('/opengraph-image');
+  expect(og.status()).toBe(200);
+  expect(og.headers()['content-type']).toContain('image/png');
+  expect((await og.body()).length).toBeGreaterThan(1000);
+});
+
+test('reduced motion disables decorative movement and smooth scrolling', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  expect(await page.evaluate(() => getComputedStyle(document.body, '::before').animationName)).toBe('none');
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
 });
 
 test('private contact configuration stays out of client bundles', () => {
@@ -99,3 +137,77 @@ test('private contact configuration stays out of client bundles', () => {
   expect(bundles.length).toBeGreaterThan(0);
   for (const file of bundles) expect(readFileSync(file, 'utf8')).not.toMatch(/MAKE_WEBHOOK_URL|CONTACT_REDIS_REST_TOKEN|CONTACT_RATE_LIMIT_SECRET|hook\.[a-z0-9-]+\.make\.com/);
 });
+
+for (const prefix of ['', '/en']) {
+  test(`compact homepage and six truthful portfolio entries ${prefix || 'fr'}`, async ({ page }) => {
+    const videos: string[] = [];
+    page.on('request', request => { if (request.url().includes('.mp4')) videos.push(request.url()); });
+    await page.goto(prefix || '/');
+    await expect(page.locator('main > section')).toHaveCount(6);
+    await expect(page.locator('[data-project]')).toHaveCount(3);
+    for (const image of await page.locator('[data-project] img').all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(() => image.evaluate(element => (element as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    }
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.screenshot({ path: `test-results/lot-b-home-${prefix ? 'en' : 'fr'}-desktop.png`, fullPage: true });
+    await page.goto(`${prefix}/realisations`);
+    await expect(page.locator('[data-project]')).toHaveCount(6);
+    await expect(page.locator('[data-project="csc"]')).toContainText(prefix ? 'Being finalised' : 'En finalisation');
+    await expect(page.locator('[data-project="csc"] a')).toHaveCount(0);
+    await expect(page.locator('[data-project="saint-jean"] a')).toHaveAttribute('href', 'https://conciergeriesaintjean.fr/');
+    expect(videos).toHaveLength(0);
+    await expect(page.locator('video')).toHaveCount(0);
+    for (const image of await page.locator('[data-project] img').all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(() => image.evaluate(element => (element as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    }
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.screenshot({ path: `test-results/lot-b-projects-${prefix ? 'en' : 'fr'}.png`, fullPage: true });
+    await page.locator('[data-project="bout-du-monde"] button').click();
+    const video = page.locator('video');
+    await expect(video).toHaveAttribute('preload', 'none');
+    await expect(video).not.toHaveAttribute('autoplay');
+    await expect(video).toHaveJSProperty('paused', true);
+    expect(videos).toHaveLength(0);
+    await video.evaluate(async element => { const player = element as HTMLVideoElement; player.muted = true; await player.play(); });
+    await expect.poll(() => video.evaluate(element => (element as HTMLVideoElement).currentTime)).toBeGreaterThan(0);
+    await video.evaluate(element => (element as HTMLVideoElement).pause());
+  });
+  test(`seven contact topics and three required fields ${prefix || 'fr'}`, async ({ page }) => {
+    let payload: Record<string, string> | undefined;
+    await page.route('**/api/contact', async route => {
+      payload = route.request().postDataJSON();
+      await route.fulfill({ status: 202, contentType: 'application/json', body: '{"code":"accepted"}' });
+    });
+    for (const type of ['website', 'business_app', 'automation_api', 'ai', 'identity_design', 'seo', 'other']) {
+      await page.goto(`${prefix}/contact`);
+      await expect(page.locator('form [required]')).toHaveCount(3);
+      await expect(page.locator('#contact-type option')).toHaveCount(7);
+      await page.locator('#contact-nom').fill('Test local');
+      await page.locator('#contact-email').fill('test@example.invalid');
+      await page.locator('#contact-type').selectOption(type);
+      await page.locator('#contact-message').fill('Local simulation');
+      await page.locator('form button[type="submit"]').click();
+      await expect(page.getByRole('status')).toBeVisible();
+      expect(payload?.typeProjet).toBe(type);
+      expect(payload).not.toHaveProperty('source');
+      expect(payload).not.toHaveProperty('date');
+    }
+  });
+  for (const width of [390, 768, 1024]) test(`responsive main pages ${prefix || 'fr'} at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    for (const path of ['', '/services', '/realisations', '/contact']) {
+      await page.goto(`${prefix}${path}` || '/');
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+      if (width === 390 && path === '') {
+        for (const image of await page.locator('[data-project] img').all()) {
+          await image.scrollIntoViewIfNeeded();
+          await expect.poll(() => image.evaluate(element => (element as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+        }
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.screenshot({ path: `test-results/lot-b-home-${prefix ? 'en' : 'fr'}-mobile.png`, fullPage: true });
+      }
+    }
+  });
+}

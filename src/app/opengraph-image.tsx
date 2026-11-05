@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Nova Baie — Sites web premium tourisme'
+export const alt = 'Nova Baie — Développement digital & solutions technologiques'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -42,7 +42,7 @@ export default async function Image() {
             lineHeight: 1.2,
           }}
         >
-          Sites web premium pour les professionnels du tourisme
+          Développement digital &amp; solutions technologiques
         </div>
         <div
           style={{
@@ -52,7 +52,7 @@ export default async function Image() {
             letterSpacing: '0.05em',
           }}
         >
-          nova-baie.com
+          Digital development · Technology solutions
         </div>
       </div>
     ),

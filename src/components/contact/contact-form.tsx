@@ -6,7 +6,7 @@ import { Link } from '@/lib/navigation'
 import { CheckCircle } from 'lucide-react'
 
 import { submitContact } from '@/lib/contact/submit'
-import { CONTACT_LIMITS } from '@/lib/contact/validation'
+import { CONTACT_LIMITS, PROJECT_TYPES } from '@/lib/contact/validation'
 
 const inputClass =
   'w-full rounded-xl border border-nova-navy/15 bg-white px-4 py-3 text-sm text-nova-navy placeholder:text-nova-text/40 focus:outline-none focus:ring-2 focus:ring-nova-blue/20 focus:border-nova-blue/40 transition-all duration-200'
@@ -19,7 +19,7 @@ export function ContactForm() {
   const [email, setEmail] = useState('')
   const [telephone, setTelephone] = useState('')
   const [structure, setStructure] = useState('')
-  const [typeProjet, setTypeProjet] = useState('')
+  const [typeProjet, setTypeProjet] = useState('other')
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [website, setWebsite] = useState('')
@@ -91,15 +91,10 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="contact-type" className="mb-1.5 block text-xs font-medium text-nova-navy">
-          {t('projectType')} <span className="text-nova-blue">*</span>
+          {t('projectType')}
         </label>
-        <select id="contact-type" name="typeProjet" required value={typeProjet} onChange={(e) => setTypeProjet(e.target.value)} className={inputClass}>
-          <option value="">{t('projectTypePlaceholder')}</option>
-          <option value="presence">{t('options.presence')}</option>
-          <option value="conversion">{t('options.conversion')}</option>
-          <option value="acquisition">{t('options.acquisition')}</option>
-          <option value="maintenance">{t('options.maintenance')}</option>
-          <option value="conseil">{t('options.conseil')}</option>
+        <select id="contact-type" name="typeProjet" value={typeProjet} onChange={(e) => setTypeProjet(e.target.value)} className={inputClass}>
+          {PROJECT_TYPES.map(type => <option key={type} value={type}>{t(`options.${type}`)}</option>)}
         </select>
       </div>
 

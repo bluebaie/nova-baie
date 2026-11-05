@@ -1,7 +1,13 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { NextRequest } from 'next/server';
-import middleware from '../src/middleware';
+import middleware, { config } from '../src/middleware';
+
+test('generated OG image and technical resources bypass locale middleware', () => {
+  const matcher = new RegExp(`^${config.matcher[0]}$`);
+  for (const path of ['/opengraph-image', '/api/contact', '/_next/image', '/robots.txt', '/sitemap.xml']) assert.equal(matcher.test(path), false, path);
+  assert.equal(matcher.test('/realisations'), true);
+});
 
 for (const path of ['', '/services', '/realisations', '/actualites', '/a-propos', '/contact', '/mentions-legales']) {
   test(`middleware normalizes /fr${path || '/'} without a loop`, () => {

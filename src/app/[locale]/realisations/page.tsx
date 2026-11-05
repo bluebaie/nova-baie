@@ -1,62 +1,23 @@
-import { localeAlternates } from '@/lib/seo';
-import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageHero } from '@/components/ui/page-hero';
 import { Container } from '@/components/ui/container';
 import { ProjectCard } from '@/components/shared/project-card';
-import { projects } from '@/lib/site-data';
+import { FinalCtaSection } from '@/components/home/final-cta-section';
+import { localizeProjects } from '@/lib/projects';
+import { pageMetadata } from '@/lib/page-metadata';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'realisations' });
-  const base = locale === 'fr' ? 'https://www.nova-baie.com' : 'https://www.nova-baie.com/en';
-  return {
-    title: t('metaTitle'),
-    description: t('metaDescription'),
-    alternates: localeAlternates(locale, '/realisations'),
-    openGraph: { title: t('metaTitle'), description: t('metaDescription'), url: `${base}/realisations` },
-  };
-}
-
-export default async function RealisationsPage({ params }: { params: Promise<{ locale: string }> }) {
+type Props = { params: Promise<{ locale: string }> };
+export async function generateMetadata({ params }: Props) { return pageMetadata((await params).locale, 'realisations', '/realisations'); }
+export default async function RealisationsPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-
   const t = await getTranslations('realisations');
-  const tWork = await getTranslations('work');
-  const translatedProjects = tWork.raw('projects') as Array<{
-    title: string;
-    category: string;
-    description: string;
-    tags: string[];
-    stats: string;
-  }>;
-
-  const mergedProjects = projects.map((p, i) => ({
-    ...p,
-    ...(translatedProjects[i] ?? {}),
-  }));
-
-  return (
-    <>
-      <PageHero
-        eyebrow={t('eyebrow')}
-        title={t('title')}
-        description={t('description')}
-      />
-      <section className="section-padding">
-        <Container>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {mergedProjects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
-        </Container>
-      </section>
-    </>
-  );
+  return <>
+    <PageHero eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
+    <section className="section-padding"><Container>
+      <h2 className="mb-8 text-2xl">{t('listTitle')}</h2>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{localizeProjects(locale).map(project => <ProjectCard key={project.id} project={project} />)}</div>
+    </Container></section>
+    <FinalCtaSection />
+  </>;
 }

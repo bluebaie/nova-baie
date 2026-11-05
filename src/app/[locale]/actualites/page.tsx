@@ -1,5 +1,5 @@
-import { localeAlternates } from '@/lib/seo';
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/page-metadata';
+import { getActualites } from '@/lib/actualites-data';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Container } from '@/components/ui/container';
 import { ActualitesGrid } from '@/components/actualites/actualites-grid';
@@ -8,16 +8,9 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+}) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'actualites' });
-  const base = locale === 'fr' ? 'https://www.nova-baie.com' : 'https://www.nova-baie.com/en';
-  return {
-    title: { absolute: t('metaTitle') },
-    description: t('metaDescription'),
-    alternates: localeAlternates(locale, '/actualites'),
-    openGraph: { title: t('metaTitle'), description: t('metaDescription'), url: `${base}/actualites` },
-  };
+  return pageMetadata(locale, 'actualites', '/actualites');
 }
 
 export default async function ActualitesPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -43,7 +36,7 @@ export default async function ActualitesPage({ params }: { params: Promise<{ loc
 
       <section className="bg-nova-sand py-12 md:py-20">
         <Container>
-          <ActualitesGrid />
+          <ActualitesGrid items={getActualites(locale)} />
         </Container>
       </section>
     </>

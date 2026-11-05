@@ -1,56 +1,21 @@
-import Image from 'next/image'
-import { ChevronDown } from 'lucide-react'
-import { getTranslations } from 'next-intl/server'
-import { Container } from '@/components/ui/container'
-import { Button } from '@/components/ui/button'
-import { HeroShowcase } from './hero-showcase'
+import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
+import { Container } from '@/components/ui/container';
+import { Button } from '@/components/ui/button';
 
 export async function HeroSection() {
-  const t = await getTranslations('hero')
-
-  return (
-    <section className="relative min-h-[92vh] overflow-hidden pt-32">
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero-nova-baie.jpg"
-          alt={t('imageAlt')}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-nova-navy/52" />
-        <div className="absolute inset-0 bg-gradient-to-r from-nova-navy/70 via-nova-navy/35 to-nova-navy/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_35%,rgba(220,231,247,0.14),transparent_28%)]" />
+  const t = await getTranslations('hero');
+  return <section className="relative overflow-hidden bg-nova-navy pb-16 pt-36 md:pb-24 md:pt-44">
+    <Image src="/images/hero-nova-baie.jpg" alt={t('imageAlt')} fill priority sizes="100vw" className="object-cover" />
+    <div className="absolute inset-0 bg-gradient-to-r from-nova-navy/90 via-nova-navy/75 to-nova-navy/40" />
+    <Container><div className="relative z-10 max-w-4xl">
+      <p className="text-sm uppercase tracking-[0.15em] text-white/90">{t('tagline')}</p>
+      <h1 className="mt-6 text-white">{t('title')}</h1>
+      <p className="mt-6 max-w-2xl leading-8 text-white/90">{t('description')}</p>
+      <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+        <Button href="/contact" variant="light">{t('cta1')}</Button>
+        <Button href="/services" variant="secondary">{t('cta2')}</Button>
       </div>
-
-      <Container>
-        <div className="relative z-10 grid min-h-[76vh] items-center gap-14 py-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
-          <div className="max-w-3xl text-white">
-            <p className="animate-fade-up text-sm uppercase tracking-[0.22em] text-white/65">
-              {t('tagline')}
-            </p>
-            <h1 className="mt-6 max-w-4xl animate-fade-up [animation-delay:150ms] leading-[1.02] text-white whitespace-pre-line">
-              {t('title')}
-            </h1>
-            <p className="mt-8 max-w-2xl animate-fade-up [animation-delay:300ms] text-lg leading-9 text-white/82">
-              {t('description')}
-            </p>
-            <div className="mt-10 flex flex-col gap-3 animate-fade-up [animation-delay:450ms] sm:flex-row sm:flex-wrap sm:gap-4">
-              <Button href="/contact">{t('cta1')}</Button>
-              <Button href="/services" variant="secondary">{t('cta2')}</Button>
-            </div>
-          </div>
-
-          <div className="relative hidden lg:block">
-            <HeroShowcase />
-          </div>
-        </div>
-      </Container>
-
-      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce max-md:hidden">
-        <ChevronDown className="h-6 w-6 text-white/60" />
-      </div>
-    </section>
-  )
+    </div></Container>
+  </section>;
 }

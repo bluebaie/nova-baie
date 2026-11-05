@@ -3,6 +3,10 @@
 Site Next.js App Router bilingue : français sans préfixe, anglais sous `/en`.
 Le LOT A consolide le socle existant ; aucune refonte graphique ni administration.
 
+Le LOT B organise la vitrine autour d'Accueil, Expertises (`/services`),
+Réalisations et Contact, avec contenus FR/EN et six projets. Voir
+[le rapport LOT B](docs/lot-b.md) pour les changements et les réserves avant publication.
+
 ## Prérequis et installation locale
 
 - Node.js **24.19.0** (`.nvmrc`), famille Node 24 LTS ; npm **11.17.0**.

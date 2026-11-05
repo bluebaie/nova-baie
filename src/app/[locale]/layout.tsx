@@ -41,12 +41,12 @@ export async function generateMetadata({
       template: '%s — Nova Baie',
     },
     description: t('metaDescription'),
-    keywords: [
-      'site web tourisme',
-      'création site conciergerie',
-      'site web gîte',
-      'agence web tourisme',
-      'site hébergement',
+    keywords: locale === 'en' ? ['tailored web development', 'business applications', 'business automation', 'API integration', 'applied artificial intelligence', 'Nova Baie', 'Bay of Somme'] : [
+      'développement web sur mesure',
+      'applications métier',
+      'automatisation entreprise',
+      'intégration API',
+      'intelligence artificielle appliquée',
       'Nova Baie',
       'Baie de Somme',
     ],
@@ -59,13 +59,13 @@ export async function generateMetadata({
       siteName: 'Nova Baie',
       title: t('metaTitle'),
       description: t('metaDescription'),
-      images: [{ url: '/images/og-image.jpg', width: 1200, height: 630, alt: 'Nova Baie' }],
+      images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Nova Baie' }],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('metaTitle'),
       description: t('metaDescription'),
-      images: ['/images/og-image.jpg'],
+      images: ['/opengraph-image'],
     },
     icons: {
       icon: '/favicon.ico',
@@ -100,7 +100,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
-        <SchemaOrg />
+        <SchemaOrg locale={locale} />
       </head>
       <body className={`${playfair.variable} ${inter.variable} bg-nova-sand text-nova-ink antialiased`}>
         <noscript>
@@ -118,7 +118,7 @@ export default async function LocaleLayout({
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MV4VJGBB');`,
           }}
         />
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={{ nav: messages.nav, header: messages.header, lang: messages.lang, contact: messages.contact, errors: messages.errors, actualites: messages.actualites }}>
           <Header />
           <main>{children}</main>
           <Footer />

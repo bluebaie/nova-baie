@@ -6,9 +6,11 @@ type Props = {
   eyebrow: string
   title: string
   description: string
+  actions?: boolean
+  expertisesLink?: boolean
 }
 
-export async function PageHero({ eyebrow, title, description }: Props) {
+export async function PageHero({ eyebrow, title, description, actions = true, expertisesLink = true }: Props) {
   const t = await getTranslations('common')
 
   return (
@@ -23,20 +25,20 @@ export async function PageHero({ eyebrow, title, description }: Props) {
           <h1 className="mt-6 max-w-4xl text-balance text-white">{title}</h1>
           <p className="mt-6 max-w-3xl leading-8 text-white/75">{description}</p>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
+          {actions && <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-nova-navy transition-all duration-200 hover:bg-white/90"
             >
               {t('talkProject')}
             </Link>
-            <Link
+            {expertisesLink && <Link
               href="/services"
               className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white/80 transition-all duration-200 hover:border-white hover:text-white"
             >
-              {t('seeOffers')}
-            </Link>
-          </div>
+              {t('seeExpertises')}
+            </Link>}
+          </div>}
         </div>
       </Container>
     </section>

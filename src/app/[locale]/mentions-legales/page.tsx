@@ -1,5 +1,4 @@
-import { localeAlternates } from '@/lib/seo';
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/page-metadata';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageHero } from '@/components/ui/page-hero';
 import { Container } from '@/components/ui/container';
@@ -8,14 +7,11 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+}) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'mentions' });
   return {
-    title: { absolute: t('metaTitle') },
-    description: t('metaDescription'),
+    ...await pageMetadata(locale, 'mentions', '/mentions-legales'),
     robots: { index: false, follow: false },
-    alternates: localeAlternates(locale, '/mentions-legales'),
   };
 }
 
@@ -32,13 +28,14 @@ export default async function MentionsLegalesPage({ params }: { params: Promise<
         eyebrow={t('eyebrow')}
         title={t('title')}
         description={t('description')}
+        actions={false}
       />
       <section className="py-12 md:py-16">
         <Container>
           <div className="mx-auto max-w-3xl">
             {sections.map((section) => (
-              <div key={section.title}>
-                <h3 className="mb-3 mt-10 font-semibold text-nova-navy">{section.title}</h3>
+              <div key={section.title} id={section === sections[3] ? 'confidentialite' : undefined} className="scroll-mt-28">
+                <h2 className="mb-3 mt-10 text-xl font-semibold text-nova-navy">{section.title}</h2>
                 <p className="text-sm leading-8 text-nova-text">{section.content}</p>
               </div>
             ))}
