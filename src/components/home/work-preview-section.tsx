@@ -7,9 +7,9 @@ import { ProjectCard } from '@/components/shared/project-card';
 
 export async function WorkPreviewSection() {
   const t = await getTranslations('work');
-  const projects = localizeProjects(await getLocale()).filter(project => featuredProjectIds.some(id => id === project.id));
-  return <section className="work-section surface-dark"><Container>
+  const projects = localizeProjects(await getLocale()).filter(project => featuredProjectIds.includes(project.id as typeof featuredProjectIds[number]));
+  return <section className="work-section work-section--immersive"><Container>
     <div className="section-intro" data-reveal><div><p className="eyebrow">{t('eyebrow')}</p><h2>{t('title')}</h2><p>{t('description')}</p></div><Link href="/realisations" className="text-link">{t('cta')}<ArrowUpRight aria-hidden="true" /></Link></div>
-    <div className="projects-grid projects-grid--home">{projects.map(project => <ProjectCard key={project.id} project={project} compact />)}</div>
+    <div className="projects-grid projects-grid--immersive projects-grid--home portfolio-scene" data-creative-scene>{projects.map((project, index) => <ProjectCard key={project.id} project={project} compact position={index + 1} />)}</div>
   </Container></section>;
 }

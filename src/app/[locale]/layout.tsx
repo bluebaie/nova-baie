@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import SchemaOrg from '@/components/seo/schema-org';
 import { MotionScene } from '@/components/ui/motion-scene';
+import { CreativeMotion } from '@/components/ui/creative-motion';
 import { routing } from '@/i18n/routing';
 import '@/app/globals.css';
 
@@ -126,6 +127,7 @@ export default async function LocaleLayout({
           <main id="main-content">{children}</main>
           <Footer />
           <MotionScene />
+          <CreativeMotion />
         </NextIntlClientProvider>
       </body>
     </html>

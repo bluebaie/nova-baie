@@ -14,7 +14,7 @@ export default async function ContactPage({ params }: Props) {
   const t = await getTranslations('contact');
   return <>
     <PageHero eyebrow={t('eyebrow')} title={t('title')} description={t('description')} actions={false} />
-    <section className="section-padding"><Container><div className="contact-layout">
+    <section className="contact-atelier section-padding"><Container><div className="contact-layout">
       <div className="contact-panel"><h2>{t('form.title')}</h2><p className="contact-panel-intro">{t('form.subtitle')}</p><ContactForm /><Link href="/mentions-legales#confidentialite" className="contact-privacy">{t('info.privacy')}</Link></div>
       <aside className="contact-aside"><p className="eyebrow">Nova Baie</p><h2>{t('info.title')}</h2>
         <a href={`mailto:${company.email}`} className="contact-detail"><Mail aria-hidden="true" /><span>{company.email}</span></a>

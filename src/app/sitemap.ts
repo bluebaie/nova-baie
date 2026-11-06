@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { publishedCaseStudies } from '@/lib/projects'
 
 const baseUrl = 'https://www.nova-baie.com'
 
@@ -24,5 +25,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: priority * 0.9,
   }))
 
-  return [...frRoutes, ...enRoutes]
+  const cases = publishedCaseStudies.flatMap(project => ([
+    { url: `${baseUrl}/realisations/${project.slug}`, changeFrequency: 'monthly' as const, priority: 0.72 },
+    { url: `${baseUrl}/en/realisations/${project.slug}`, changeFrequency: 'monthly' as const, priority: 0.65 },
+  ]))
+  return [...frRoutes, ...enRoutes, ...cases]
 }

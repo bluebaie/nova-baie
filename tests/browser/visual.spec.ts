@@ -9,7 +9,7 @@ test.beforeEach(async ({ context }) => {
 for (const prefix of ['', '/en']) for (const width of [390, 768, 1024, 1440]) {
   test(`art review ${prefix || 'fr'} ${width}`, async ({ page }) => {
     await page.setViewportSize({ width, height: width === 1440 ? 1000 : 844 });
-    for (const path of ['', '/services', '/realisations', '/contact']) {
+    for (const path of ['', '/services', '/realisations', '/contact', '/realisations/blue-baie-conciergerie', '/realisations/conciergerie-saint-jean']) {
       await page.goto(`${prefix}${path}` || '/');
       await page.evaluate(() => document.fonts.ready);
       for (const image of await page.locator('main img').all()) {
@@ -45,11 +45,12 @@ test('motion preferences can change; portfolio keyboard has hover equivalent', a
   await page.goto('/');
   await page.locator('[data-hero]').evaluate(el => (el as HTMLElement).style.setProperty('--hero-x', '6px'));
   await page.emulateMedia({ reducedMotion: 'reduce' });
+  expect(await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(true);
   await expect.poll(() => page.locator('[data-hero]').evaluate(el => (el as HTMLElement).style.getPropertyValue('--hero-x'))).toBe('');
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
   expect(await page.evaluate(() => document.getAnimations().filter(a => a.playState === 'running').length)).toBe(0);
   await page.goto('/realisations');
-  const link = page.locator('[data-project="blue-baie"] a');
+  const link = page.locator('[data-project="blue-baie"] [data-project-image-link]');
   await link.focus();
   await expect(link).toBeFocused();
   expect(await link.evaluate(el => getComputedStyle(el).outlineStyle)).not.toBe('none');

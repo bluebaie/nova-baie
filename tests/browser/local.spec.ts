@@ -65,6 +65,17 @@ for (const prefix of ['', '/en']) {
       await expect(page.locator('form button[type="submit"]')).toBeEnabled();
     }
   });
+  for (const slug of ['blue-baie-conciergerie', 'conciergerie-saint-jean']) test(`case study ${prefix || 'fr'} / ${slug} / metadata / links`, async ({ page }) => {
+    await page.goto(`${prefix}/realisations/${slug}`);
+    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://www.nova-baie.com${prefix}/realisations/${slug}`);
+    await expect(page.locator('link[hreflang="en"]')).toHaveAttribute('href', `https://www.nova-baie.com/en/realisations/${slug}`);
+    const clientLink = page.locator('.case-hero-actions a[href^="https://"]');
+    await expect(clientLink).toContainText(prefix ? 'Visit the website' : 'Visiter le site');
+    await expect(clientLink).toHaveAttribute('rel', 'noopener noreferrer');
+    const body = await page.locator('main').innerText();
+    expect(body).not.toMatch(/â‚¬|\b\d+\s*EUR\b|six projects|six projets/i);
+  });
 }
 
 test('mobile menu and language switch remain usable', async ({ page }) => {
@@ -139,7 +150,7 @@ test('private contact configuration stays out of client bundles', () => {
 });
 
 for (const prefix of ['', '/en']) {
-  test(`compact homepage and six truthful portfolio entries ${prefix || 'fr'}`, async ({ page }) => {
+  test(`compact homepage and truthful portfolio entries ${prefix || 'fr'}`, async ({ page }) => {
     const videos: string[] = [];
     page.on('request', request => { if (request.url().includes('.mp4')) videos.push(request.url()); });
     await page.goto(prefix || '/');
@@ -155,7 +166,8 @@ for (const prefix of ['', '/en']) {
     await expect(page.locator('[data-project]')).toHaveCount(6);
     await expect(page.locator('[data-project="csc"]')).toContainText(prefix ? 'Being finalised' : 'En finalisation');
     await expect(page.locator('[data-project="csc"] a')).toHaveCount(0);
-    await expect(page.locator('[data-project="saint-jean"] a')).toHaveAttribute('href', 'https://conciergeriesaintjean.fr/');
+    await expect(page.locator('[data-project="saint-jean"] [data-project-visit]')).toHaveAttribute('href', 'https://conciergeriesaintjean.fr/');
+    await expect(page.locator('[data-project="saint-jean"] [data-project-visit]')).toHaveAttribute('rel', 'noopener noreferrer');
     expect(videos).toHaveLength(0);
     await expect(page.locator('video')).toHaveCount(0);
     for (const image of await page.locator('[data-project] img').all()) {

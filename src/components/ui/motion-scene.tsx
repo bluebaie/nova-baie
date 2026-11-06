@@ -8,7 +8,7 @@ export function MotionScene() {
   const pathname = usePathname();
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const pointer = window.matchMedia('(min-width: 64rem) and (hover: hover) and (pointer: fine)');
+    const pointer = window.matchMedia('(min-width: 64rem)');
     const animations = new Set<Animation>();
     let observer: IntersectionObserver | undefined;
     let frame = 0;
@@ -19,11 +19,11 @@ export function MotionScene() {
       hero?.style.removeProperty('--hero-y');
     };
     const move = (event: PointerEvent) => {
-      if (!hero || reduced.matches || !pointer.matches || document.hidden) return;
+      if (!hero || reduced.matches || !pointer.matches || event.pointerType === 'touch' || document.hidden) return;
       cancelAnimationFrame(frame);
       const rect = hero.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width - .5) * 12;
-      const y = ((event.clientY - rect.top) / rect.height - .5) * 8;
+      const x = ((event.clientX - rect.left) / rect.width - .5) * 36;
+      const y = ((event.clientY - rect.top) / rect.height - .5) * 24;
       frame = requestAnimationFrame(() => {
         hero.style.setProperty('--hero-x', `${x.toFixed(1)}px`);
         hero.style.setProperty('--hero-y', `${y.toFixed(1)}px`);

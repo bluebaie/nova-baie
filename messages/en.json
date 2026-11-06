@@ -32,6 +32,9 @@
     "seeExpertises": "Explore our expertise",
     "seeRealisations": "View projects",
     "seeSite": "Visit website",
+    "discoverProject": "Discover the project",
+    "openWebsite": "Visit the website",
+    "openVideo": "Play the presentation video",
     "completed": "Completed",
     "finalizing": "Being finalised",
     "video": "View the {title} presentation video",
@@ -46,17 +49,26 @@
     "imageAlt": "Aerial view of the bay, turquoise water and sandbanks — Nova Baie"
   },
   "capabilities": {
-    "title": "From first impressions to everyday operations.",
+    "title": "The horizon becomes an interface.",
+    "sceneTitle": "Three currents, one direction.",
+    "sceneDescription": "Follow an idea towards the tools that bring it to life.",
+    "sceneHint": "Choose a current",
     "cta": "Explore the seven areas of expertise",
     "create": {
+      "label": "Create",
+      "mark": "FORM / 01",
       "title": "Create a distinctive identity",
       "description": "Art direction and interfaces that make your activity clear and recognisable."
     },
     "connect": {
+      "label": "Connect",
+      "mark": "FLOW / 02",
       "title": "Connect your tools",
       "description": "Applications, APIs and automation shaped around your organisation’s tasks and information flows."
     },
     "develop": {
+      "label": "Evolve",
+      "mark": "EVOLUTION / 03",
       "title": "Develop your presence",
       "description": "Websites and platforms supported over time, with attention to search visibility, performance and usability."
     }
@@ -64,13 +76,16 @@
   "work": {
     "eyebrow": "Projects",
     "title": "Public experiences. Business challenges.",
-    "description": "Three perspectives on Nova Baie’s work: an operational ecosystem, a premium identity and a multi-property journey.",
-    "cta": "Explore all six projects"
+    "description": "From public interfaces to business tools, every project starts with its own context.",
+    "cta": "Explore our projects"
   },
   "method": {
     "eyebrow": "Tailored development",
     "title": "Understand first. Build together.",
     "description": "A direct technical contact, explained decisions and an appropriate scope. A proposal follows a discussion and a review of your needs.",
+    "routeLabel": "A project's path",
+    "routeStart": "An idea",
+    "routeEnd": "A tool that evolves",
     "steps": {
       "exchange": {
         "title": "Conversation",
@@ -158,11 +173,11 @@
   },
   "realisations": {
     "eyebrow": "Projects",
-    "title": "Six projects. Different needs addressed.",
-    "description": "Public websites, business applications and manageable content. Each project describes Nova Baie’s scope and its current stage.",
-    "listTitle": "Nova Baie projects",
+    "title": "Digital experiences shaped around a need.",
+    "description": "Public websites, business tools and digital journeys take different forms to fit the people and operations they serve.",
+    "listTitle": "A selection of projects",
     "metaTitle": "Projects — Websites & business solutions",
-    "metaDescription": "Blue Baie, Conciergerie Saint-Jean, CycloSport Crotellois and three accommodation websites: explore Nova Baie’s web and business projects."
+    "metaDescription": "Explore Nova Baie’s public websites and business projects, from local hospitality to digital tools designed around day-to-day work."
   },
   "contact": {
     "eyebrow": "Contact",
@@ -294,6 +309,25 @@
     "explore": "Explore Nova Baie",
     "capabilities": "From purpose to solution",
     "discover": "Discover",
-    "photoCaption": "Original photography · Bay of Somme"
+    "photoCaption": "Original photography · Bay of Somme",
+    "imageActionDetail": "Open the Nova Baie case study for {title}",
+    "imageActionExternal": "Open the {title} website in a new tab",
+    "artLabel": "Project composition: {title}",
+    "projectProgress": "Project {current} — {title}",
+    "ecosystem": "Blue Baie ecosystem",
+    "caseStudy": "Case study",
+    "scope": "Our work",
+    "context": "Context",
+    "need": "The need",
+    "approach": "Nova Baie's response",
+    "artDirection": "Art direction",
+    "projectOutcome": "Verified outcome",
+    "backToWork": "Back to projects",
+    "nextProject": "Explore another project",
+    "selectedScope": "Project scope",
+    "projectArtwork": "Public project image",
+    "exploreExpertise": "Explore this expertise",
+    "journeyHint": "Project journey",
+    "journeyStage": "STAGE / {current}"
   }
 }

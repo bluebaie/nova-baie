@@ -6,10 +6,13 @@ import { localeAlternates } from '../src/lib/seo';
 
 test('sitemap retains commercial pages in both languages; excludes noindex and artificial dates', () => {
   const entries = sitemap();
-  assert.equal(entries.length, 12);
+  assert.equal(entries.length, 16);
   for (const prefix of ['', '/en']) for (const path of ['', '/services', '/realisations', '/actualites', '/a-propos', '/contact']) {
     assert.ok(entries.some(entry => entry.url === `https://www.nova-baie.com${prefix}${path}`));
   }
+  assert.ok(entries.some(entry => entry.url === 'https://www.nova-baie.com/realisations/blue-baie-conciergerie'));
+  assert.ok(entries.some(entry => entry.url === 'https://www.nova-baie.com/en/realisations/conciergerie-saint-jean'));
+  assert.ok(!entries.some(entry => entry.url.includes('cyclosport-crotellois')));
   assert.ok(entries.every(entry => !entry.lastModified && !entry.url.includes('mentions-legales')));
 });
 

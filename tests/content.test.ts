@@ -34,8 +34,14 @@ test('six stable, fully translated project identities; CSC remains unfinished', 
     }
   }
   assert.equal(projects.find(project => project.id === 'csc')?.status, 'finalizing');
-  assert.equal(projects.find(project => project.id === 'csc')?.url, undefined);
+  assert.equal(projects.find(project => project.id === 'csc')?.externalUrl, undefined);
+  assert.equal(projects.find(project => project.id === 'csc')?.detailStatus, 'draft');
   assert.ok(featuredProjectIds.every(id => projects.some(project => project.id === id)));
+  assert.ok(projects.every(project => project.slug && project.portfolioOrder && Array.isArray(project.technologyIds)));
+  assert.equal(new Set(projects.map(project => project.portfolioOrder)).size, projects.length);
+  assert.ok(projects.filter(project => project.homeVisible).every(project => project.homeOrder !== null));
+  assert.ok(projects.filter(project => project.detailStatus === 'published').every(project => project.copy.fr.caseStudy && project.copy.en.caseStudy));
+  assert.ok(projects.filter(project => project.externalUrl).every(project => project.externalUrl?.startsWith('https://') && project.externalUrlCheckedOn === '2026-11-06'));
   for (const id of ['blue-baie', 'saint-jean']) {
     const project = projects.find(project => project.id === id);
     assert.equal(project?.image, `/images/projects/${id}-public.webp`);
@@ -64,4 +70,5 @@ test('public copy and schema contain no legacy packages, prices or automatic com
     assert.doesNotMatch(JSON.stringify(schema), prohibited);
     assert.equal(schema['@graph'][0].inLanguage, locale === 'en' ? 'en-GB' : 'fr-FR');
   }
+  assert.doesNotMatch(`${JSON.stringify(fr)} ${JSON.stringify(en)}`, /(?:six|seven|eight|three|trois|sept|huit)\s+(?:projects|projets|websites|sites|realisations|réalisations)/i);
 });

@@ -32,6 +32,9 @@
     "seeExpertises": "Découvrir les expertises",
     "seeRealisations": "Voir les réalisations",
     "seeSite": "Visiter le site",
+    "discoverProject": "Découvrir la réalisation",
+    "openWebsite": "Visiter le site",
+    "openVideo": "Voir la présentation vidéo",
     "completed": "Réalisé",
     "finalizing": "En finalisation",
     "video": "Voir la présentation vidéo de {title}",
@@ -46,17 +49,26 @@
     "imageAlt": "Vue aérienne de la baie, entre eau turquoise et bancs de sable — Nova Baie"
   },
   "capabilities": {
-    "title": "Du premier regard au fonctionnement quotidien.",
+    "title": "L’horizon devient une interface.",
+    "sceneTitle": "Trois mouvements, un même cap.",
+    "sceneDescription": "Faites glisser le regard d’une idée vers les outils qui la font vivre.",
+    "sceneHint": "Choisir un mouvement",
     "cta": "Explorer les sept expertises",
     "create": {
+      "label": "Créer",
+      "mark": "FORME / 01",
       "title": "Créer une identité juste",
       "description": "Une direction artistique et des interfaces qui rendent votre activité lisible et reconnaissable."
     },
     "connect": {
+      "label": "Connecter",
+      "mark": "FLUX / 02",
       "title": "Relier vos outils",
       "description": "Des applications, API et automatisations adaptées aux tâches et aux échanges de votre organisation."
     },
     "develop": {
+      "label": "Faire évoluer",
+      "mark": "ÉVOLUTION / 03",
       "title": "Faire évoluer votre présence",
       "description": "Des sites et plateformes suivis dans le temps, avec attention au référencement, à la performance et aux usages."
     }
@@ -64,13 +76,16 @@
   "work": {
     "eyebrow": "Réalisations",
     "title": "Des projets publics. Des enjeux métier.",
-    "description": "Trois regards sur le travail de Nova Baie : écosystème opérationnel, identité premium et parcours multi-hébergements.",
-    "cta": "Découvrir les six réalisations"
+    "description": "Des interfaces publiques aux outils métier, chaque réalisation part d’un contexte particulier.",
+    "cta": "Découvrir nos réalisations"
   },
   "method": {
     "eyebrow": "Sur mesure",
     "title": "Comprendre d’abord. Construire avec vous.",
     "description": "Un interlocuteur technique direct, des choix expliqués et un périmètre adapté. La proposition se construit après échange et étude du besoin.",
+    "routeLabel": "Le chemin du projet",
+    "routeStart": "Une idée",
+    "routeEnd": "Un outil qui évolue",
     "steps": {
       "exchange": {
         "title": "Échange",
@@ -158,11 +173,11 @@
   },
   "realisations": {
     "eyebrow": "Réalisations",
-    "title": "Six projets, plusieurs façons de répondre à un besoin.",
-    "description": "Sites publics, applications métier et contenus administrables. Chaque réalisation présente le périmètre confié à Nova Baie et son état d’avancement.",
-    "listTitle": "Les projets Nova Baie",
+    "title": "Des expériences façonnées autour d’un besoin.",
+    "description": "Sites publics, outils métier et parcours numériques prennent des formes différentes selon les usages et les activités.",
+    "listTitle": "Une sélection de projets",
     "metaTitle": "Réalisations — Sites web & solutions métier",
-    "metaDescription": "Blue Baie, Conciergerie Saint-Jean, CycloSport Crotellois et trois sites d’hébergement : découvrez les projets web et métier de Nova Baie."
+    "metaDescription": "Découvrez les sites publics et projets métier de Nova Baie, de l’hébergement local aux outils numériques conçus autour des usages quotidiens."
   },
   "contact": {
     "eyebrow": "Contact",
@@ -294,6 +309,25 @@
     "explore": "Explorer Nova Baie",
     "capabilities": "Du sens à la solution",
     "discover": "Découvrir",
-    "photoCaption": "Photographie personnelle · Baie de Somme"
+    "photoCaption": "Photographie personnelle · Baie de Somme",
+    "imageActionDetail": "Ouvrir l’étude de cas Nova Baie : {title}",
+    "imageActionExternal": "Ouvrir le site de {title} dans un nouvel onglet",
+    "artLabel": "Composition de projet : {title}",
+    "projectProgress": "Projet {current} — {title}",
+    "ecosystem": "Écosystème Blue Baie",
+    "caseStudy": "Étude de cas",
+    "scope": "Intervention",
+    "context": "Contexte",
+    "need": "Le besoin",
+    "approach": "La réponse Nova Baie",
+    "artDirection": "Direction artistique",
+    "projectOutcome": "Résultat constaté",
+    "backToWork": "Retour aux réalisations",
+    "nextProject": "Explorer une autre réalisation",
+    "selectedScope": "Périmètre réalisé",
+    "projectArtwork": "Visuel public du projet",
+    "exploreExpertise": "Explorer cette expertise",
+    "journeyHint": "Parcours de conception",
+    "journeyStage": "ÉTAPE / {current}"
   }
 }
