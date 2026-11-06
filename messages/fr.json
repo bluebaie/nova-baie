@@ -326,6 +326,12 @@
     "nextProject": "Explorer une autre réalisation",
     "selectedScope": "Périmètre réalisé",
     "projectArtwork": "Visuel public du projet",
+    "desktopView": "Version ordinateur",
+    "mobileView": "Version mobile",
+    "interfaceStudy": "L’interface en situation",
+    "scopeDiagram": "Un périmètre métier relié",
+    "scopeDiagramNote": "Vue fonctionnelle simplifiée des sujets réalisés ; ce visuel ne représente pas l’architecture interne de la plateforme.",
+    "coastalDirection": "Le littoral comme matière éditoriale",
     "exploreExpertise": "Explorer cette expertise",
     "journeyHint": "Parcours de conception",
     "journeyStage": "ÉTAPE / {current}"

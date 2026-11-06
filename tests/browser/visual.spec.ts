@@ -18,7 +18,7 @@ for (const prefix of ['', '/en']) for (const width of [390, 768, 1024, 1440]) {
       }
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await page.evaluate(() => scrollTo(0, 0));
-      await page.screenshot({ path: `test-results/lot-c-${prefix ? 'en' : 'fr'}-${path.slice(1) || 'home'}-${width}.png`, fullPage: true, animations: 'disabled' });
+      await page.screenshot({ path: `test-results/lot-c3-${prefix ? 'en' : 'fr'}-${path.slice(1) || 'home'}-${width}.png`, fullPage: true, animations: 'disabled' });
       await page.addScriptTag({ path: resolvePackage.resolve('axe-core/axe.min.js') });
       const violations = await page.evaluate(async () => {
         const axe = (window as unknown as { axe: { run: (options: unknown) => Promise<{ violations: { id: string; nodes: { target: string[]; failureSummary: string }[] }[] }> } }).axe;

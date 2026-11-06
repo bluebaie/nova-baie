@@ -6,6 +6,8 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Container } from '@/components/ui/container';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/navigation';
+import { CaseStudyMedia } from '@/components/shared/case-study-media';
+import { CaseStudyScope } from '@/components/shared/case-study-scope';
 import { localizeCaseStudy, projects, publishedCaseStudies } from '@/lib/projects';
 import { localeAlternates } from '@/lib/seo';
 
@@ -42,6 +44,7 @@ export default async function ProjectCasePage({ params }: Props) {
   const c = await getTranslations('common');
   if (!project?.copy.caseStudy || project.detailStatus !== 'published') notFound();
   const detail = project.copy.caseStudy;
+  const isEcosystem = detail.visualVariant === 'ecosystem';
   const siblings = projects.filter(item => item.detailStatus === 'published' && item.id !== project.id);
   const graph = {
     '@context': 'https://schema.org', '@type': 'CreativeWork', name: project.title,
@@ -51,48 +54,70 @@ export default async function ProjectCasePage({ params }: Props) {
     url: `https://www.nova-baie.com${locale === 'en' ? '/en' : ''}/realisations/${project.slug}`
   };
   return <>
-    <article className={`case-study case-study--${project.id}`}>
-      <header className="case-hero surface-dark" data-case-hero>
+    <article className={`case-study case-study--${project.id}`} data-case-style={detail.visualVariant}>
+      <header className={`case-hero case-hero--${detail.visualVariant} surface-dark`} data-case-hero>
         <Container>
           <Link href="/realisations" className="case-back"><ArrowLeft aria-hidden="true" />{t('backToWork')}</Link>
-          <div className="case-hero-copy"><p className="eyebrow">{t('caseStudy')} / {project.copy.category}</p>
-            {project.logo && <Image className="case-client-logo" src={project.logo} alt={`${project.title} logo`} width={128} height={128} />}
-            <h1>{project.title}</h1><p className="case-lead">{detail.intro}</p>
-            <div className="case-hero-actions">{project.externalUrl && <a className="button button-primary" href={project.externalUrl} target="_blank" rel="noopener noreferrer">{c('openWebsite')}<ArrowUpRight aria-hidden="true" /></a>}
-              <span className="case-status"><i />{c(project.status)}</span></div>
+          <div className="case-hero-layout">
+            <div className="case-hero-copy">
+              <p className="eyebrow">{t('caseStudy')} / {project.copy.category}</p>
+              {project.logo && <Image className="case-client-logo" src={project.logo} alt={`${project.title} logo`} width={108} height={108} priority />}
+              <p className="case-location">{detail.location}</p>
+              <h1>{project.title}</h1>
+              <p className="case-activity">{detail.activity}</p>
+              <p className="case-lead">{detail.intro}</p>
+              <div className="case-hero-actions">
+                {project.externalUrl && <a className="button button-primary" href={project.externalUrl} target="_blank" rel="noopener noreferrer" data-case-visit>{c('openWebsite')}<ArrowUpRight aria-hidden="true" /></a>}
+                <span className="case-status"><i />{c(project.status)}</span>
+              </div>
+            </div>
+            {project.image && <figure className="case-hero-art" data-c2-art>
+              <div className="case-hero-image"><Image src={project.image} alt={project.copy.imageAlt ?? project.title} fill priority sizes="(min-width: 1024px) 56vw, 100vw" /></div>
+              {project.mobileImage && <div className="case-hero-mobile"><Image src={project.mobileImage} alt="" fill sizes="(min-width: 1024px) 15vw, 27vw" /></div>}
+              <svg viewBox="0 0 800 520" preserveAspectRatio="none" fill="none" aria-hidden="true"><path data-draw d="M12 454C191 263 291 481 429 276S630 93 789 148" /></svg>
+              <figcaption>{project.copy.category} / {detail.location}</figcaption>
+            </figure>}
           </div>
-          {project.image && <div className="case-hero-art" data-c2-art><Image src={project.image} alt={project.copy.imageAlt ?? project.title} fill priority sizes="(min-width: 1024px) 75vw, 100vw" /><svg viewBox="0 0 600 400" aria-hidden="true"><path d="M0 330C135 80 282 385 600 55" /></svg></div>}
-          <span className="case-hero-index" aria-hidden="true">N<span>/</span>B</span>
         </Container>
       </header>
 
       <section className="case-intro section-padding"><Container>
-        <p className="eyebrow">01 / {t('context')}</p><div className="case-intro-grid"><h2>{detail.context}</h2><div><h3>{t('need')}</h3><p>{detail.need}</p></div></div>
+        <p className="eyebrow">01 / {t('context')}</p>
+        <div className="case-intro-grid"><h2>{detail.context}</h2><div><h3>{t('need')}</h3><p>{detail.need}</p></div></div>
       </Container></section>
 
-      <section className="case-response surface-dark section-padding"><Container>
+      <section className={`case-response case-response--${detail.visualVariant} surface-dark section-padding`}><Container>
         <div className="case-response-heading"><p className="eyebrow">02 / {t('approach')}</p><h2>{detail.intervention}</h2></div>
-        <div className="case-response-bottom"><div><span className="case-caption">{t('artDirection')}</span><p>{detail.artDirection}</p></div>
-          <div className="case-scope"><span className="case-caption">{t('scope')}</span><ul>{detail.scope.map((item, index) => <li key={item}><span>0{index + 1}</span>{item}</li>)}</ul></div></div>
+        <div className="case-response-bottom">
+          <div><span className="case-caption">{t('artDirection')}</span><p>{detail.artDirection}</p></div>
+          <div className="case-scope"><span className="case-caption">{t('scope')}</span><ul>{detail.scope.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, '0')}</span>{item}</li>)}</ul></div>
+        </div>
       </Container></section>
 
-      <section className="case-gallery section-padding"><Container>
-        <div className="case-gallery-heading"><p className="eyebrow">03 / {t('projectArtwork')}</p><h2>{project.title}</h2></div>
-        <div className="case-gallery-stage">
-          {project.image && <div className="case-gallery-main"><Image src={project.image} alt={project.copy.imageAlt ?? project.title} fill sizes="(min-width: 1024px) 80vw, 100vw" /></div>}
-          {project.mobileImage && <div className="case-gallery-mobile"><Image src={project.mobileImage} alt="" fill sizes="(min-width: 1024px) 18vw, 34vw" /></div>}
-          <span className="case-gallery-note">{project.copy.category} / {project.status === 'completed' ? c('completed') : c('finalizing')}</span>
-        </div>
-        {detail.outcome && <div className="case-outcome"><span className="case-caption">{t('projectOutcome')}</span><p>{detail.outcome}</p></div>}
-      </Container></section>
+      {isEcosystem
+        ? <section className="case-scope-section section-padding"><Container><CaseStudyScope items={detail.scope} title={t('scopeDiagram')} caption={t('scopeDiagramNote')} /></Container></section>
+        : <section className="case-editorial-section section-padding"><Container>
+          <div className="case-editorial-plate"><div><p className="eyebrow">03 / {t('artDirection')}</p><h2>{t('coastalDirection')}</h2></div><p>{detail.artDirection}</p>
+            <svg viewBox="0 0 600 230" fill="none" aria-hidden="true"><path data-draw d="M5 194C113 58 215 222 319 113S477 31 596 65" /></svg>
+          </div>
+        </Container></section>}
+
+      {project.image && <section className="case-gallery section-padding"><Container>
+        <div className="case-gallery-heading"><p className="eyebrow">{isEcosystem ? '03' : '04'} / {t('projectArtwork')}</p><h2>{t('interfaceStudy')}</h2></div>
+        <CaseStudyMedia image={project.image} mobileImage={project.mobileImage} title={project.title} desktopLabel={t('desktopView')} mobileLabel={t('mobileView')} alt={project.copy.imageAlt ?? project.title} />
+      </Container></section>}
 
       {detail.blueBaieConnection && <section className="case-ecosystem surface-dark section-padding"><Container>
         <div className="ecosystem-layout"><div><p className="eyebrow">{t('ecosystem')}</p><h2>{detail.blueBaieConnection}</h2></div>
-          <a href="https://www.bluebaie.fr/" target="_blank" rel="noopener noreferrer" className="ecosystem-link"><span>Blue Baie Conciergerie</span><span>Baie de Somme / Côte d’Opale</span><ArrowUpRight aria-hidden="true" /></a></div>
+          <div className="ecosystem-links">
+            <a href="https://www.bluebaie.fr/" target="_blank" rel="noopener noreferrer" className="ecosystem-link"><span>Blue Baie Conciergerie</span><span>{locale === 'en' ? 'Bay of Somme' : 'Baie de Somme'}</span><ArrowUpRight aria-hidden="true" /></a>
+            <a href="https://conciergeriesaintjean.fr/" target="_blank" rel="noopener noreferrer" className="ecosystem-link"><span>Conciergerie Saint-Jean</span><span>{locale === 'en' ? 'Le Touquet · Opal Coast' : 'Le Touquet · Côte d’Opale'}</span><ArrowUpRight aria-hidden="true" /></a>
+          </div>
+        </div>
       </Container></section>}
     </article>
     <section className="case-next section-padding"><Container><div className="case-next-heading"><p className="eyebrow">{t('nextProject')}</p><h2>{locale === 'en' ? 'Another horizon.' : 'Un autre horizon.'}</h2></div>
-      <div className="case-next-links">{siblings.map((item, index) => <Link key={item.id} href={`/realisations/${item.slug}`}><span>0{index + 1}</span><span>{item.title[locale === 'en' ? 'en' : 'fr']}</span><ArrowRight aria-hidden="true" /></Link>)}</div>
+      <div className="case-next-links">{siblings.map(item => <Link key={item.id} href={`/realisations/${item.slug}`}><span aria-hidden="true">↗</span><span>{item.title[locale === 'en' ? 'en' : 'fr']}</span><ArrowRight aria-hidden="true" /></Link>)}</div>
       <div className="case-contact"><p>{locale === 'en' ? 'Have a project with its own horizon?' : 'Un projet avec son propre horizon ?'}</p><Button href="/contact">{c('talkProject')}</Button></div>
     </Container></section>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />

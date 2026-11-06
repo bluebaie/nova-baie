@@ -326,6 +326,12 @@
     "nextProject": "Explore another project",
     "selectedScope": "Project scope",
     "projectArtwork": "Public project image",
+    "desktopView": "Desktop view",
+    "mobileView": "Mobile view",
+    "interfaceStudy": "The interface in use",
+    "scopeDiagram": "A connected business scope",
+    "scopeDiagramNote": "A simplified view of the delivered areas; this graphic does not represent the platform’s internal architecture.",
+    "coastalDirection": "The coast as editorial material",
     "exploreExpertise": "Explore this expertise",
     "journeyHint": "Project journey",
     "journeyStage": "STAGE / {current}"

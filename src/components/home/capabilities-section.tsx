@@ -16,7 +16,7 @@ export async function CapabilitiesSection() {
   }));
 
   return <section className="capabilities-scene surface-dark" id="creative-capabilities" aria-labelledby="capabilities-title" data-creative-scene>
-    <svg className="capabilities-topo" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+    <svg className="capabilities-topo" viewBox="0 0 1440 180" preserveAspectRatio="none" fill="none" aria-hidden="true">
       <path d="M-80 135C175 15 305 180 550 78S945 5 1110 78s280 115 440 5" />
       <path d="M-60 155C190 35 330 195 565 97s390-67 555 0 270 100 430 0" />
     </svg>
@@ -27,6 +27,6 @@ export async function CapabilitiesSection() {
       </div>
       <CapabilityStudio panels={panels} hint={t('sceneHint')} />
     </Container>
-    <svg className="scene-crossing" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 94C255 5 380 132 690 70S1160 18 1440 64" /></svg>
+    <svg className="scene-crossing" viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M0 94C255 5 380 132 690 70S1160 18 1440 64" /></svg>
   </section>;
 }

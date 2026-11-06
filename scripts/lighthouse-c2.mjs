@@ -7,7 +7,7 @@ const chromeLauncher = require('chrome-launcher');
 const origin = process.argv[2] ?? 'http://localhost:3147';
 const pages = process.argv[3] ? process.argv[3].split(',') : ['/', '/services', '/realisations', '/contact'];
 const formFactors = process.argv[4] ? process.argv[4].split(',') : ['mobile', 'desktop'];
-const outputDirectory = 'test-results/lighthouse-c2';
+const outputDirectory = process.env.LIGHTHOUSE_OUTPUT_DIR ?? 'test-results/lighthouse-c2';
 await mkdir(outputDirectory, { recursive: true });
 const summary = [];
 

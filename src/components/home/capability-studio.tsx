@@ -16,7 +16,6 @@ function CurrentArtwork({ current }: { current: CapabilityPanel['id'] }) {
         <path data-draw d="M84 380C213 357 258 166 417 133c116-24 200 32 259 114" stroke="white" strokeOpacity=".58" />
         <path data-draw d="M113 410C248 378 296 242 425 197c90-31 165-6 226 38" stroke="white" strokeOpacity=".26" />
         <circle cx="390" cy="237" r="164" stroke={`url(#ink-${current})`} strokeOpacity=".45" />
-        <text x="312" y="280" fill="#f6f5ef" fontSize="104" fontFamily="serif" fontStyle="italic">N</text>
         <circle cx="565" cy="150" r="4" fill="#ddc59d" />
       </>}
       {current === 'connect' && <>

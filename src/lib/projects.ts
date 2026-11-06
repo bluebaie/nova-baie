@@ -9,6 +9,9 @@ export type ProjectCopy = {
   tags: string[];
   imageAlt?: string;
   caseStudy?: {
+    visualVariant: 'ecosystem' | 'editorial';
+    activity: string;
+    location: string;
     metaTitle: string;
     metaDescription: string;
     intro: string;
@@ -63,6 +66,9 @@ export const projects: readonly Project[] = [
         description: 'Un site public et un écosystème métier avancé : réservations, intégrations, automatisations et administration. Les parcours visiteurs et le fonctionnement opérationnel se répondent, sans exposer les données internes.',
         tags: ['Site public', 'Outils métier', 'Automatisation'], imageAlt: 'Page publique de Blue Baie Conciergerie',
         caseStudy: {
+          visualVariant: 'ecosystem',
+          activity: 'Conciergerie de location saisonnière et accompagnement des propriétaires.',
+          location: 'Baie de Somme',
           metaTitle: 'Blue Baie Conciergerie — site et outils métier | Nova Baie',
           metaDescription: 'Étude de cas du site public et des outils métier réalisés par Nova Baie pour Blue Baie Conciergerie en Baie de Somme.',
           intro: 'Une présence publique reliée aux gestes quotidiens d’une conciergerie.',
@@ -79,6 +85,9 @@ export const projects: readonly Project[] = [
         description: 'A public website and a business ecosystem spanning bookings, integrations, automation and administration. Visitor journeys connect with operational needs without exposing internal data.',
         tags: ['Public website', 'Business tools', 'Automation'], imageAlt: 'Public website of Blue Baie Conciergerie',
         caseStudy: {
+          visualVariant: 'ecosystem',
+          activity: 'Holiday rental concierge services and support for property owners.',
+          location: 'Bay of Somme',
           metaTitle: 'Blue Baie Conciergerie — website and business tools | Nova Baie',
           metaDescription: 'A case study of the public website and business tools built by Nova Baie for Blue Baie Conciergerie in the Bay of Somme.',
           intro: 'A public presence connected to the daily work of a property concierge.',
@@ -106,6 +115,9 @@ export const projects: readonly Project[] = [
         description: 'Un site premium terminé, avec une direction artistique soignée et un back-office métier. La présentation publique valorise l’identité de la conciergerie ; les interfaces et données privées restent confidentielles.',
         tags: ['Direction artistique', 'Site public', 'Back-office'], imageAlt: 'Page publique de Conciergerie Saint-Jean',
         caseStudy: {
+          visualVariant: 'editorial',
+          activity: 'Conciergerie dédiée aux propriétaires et aux séjours sur la Côte d’Opale.',
+          location: 'Le Touquet–Paris-Plage · Côte d’Opale',
           metaTitle: 'Conciergerie Saint-Jean — identité et site métier | Nova Baie',
           metaDescription: 'Découvrez le site premium et l’application métier développés par Nova Baie pour Conciergerie Saint-Jean.',
           intro: 'Une identité de conciergerie traduite en expérience publique et outil de travail.',
@@ -113,8 +125,7 @@ export const projects: readonly Project[] = [
           need: 'Donner à l’activité une présence web distincte et haut de gamme, tout en soutenant son fonctionnement quotidien avec un back-office métier.',
           intervention: 'Nova Baie a réalisé le site public et un back-office avancé. Cette étude montre uniquement des éléments visibles publiquement ; les écrans d’administration restent confidentiels.',
           artDirection: 'Une composition éditoriale, une typographie élégante et les paysages du littoral posent une identité premium, tout en gardant un parcours de contact clair.',
-          scope: ['Direction artistique', 'Site public', 'Back-office métier'],
-          blueBaieConnection: 'Conciergerie Saint-Jean et Blue Baie Conciergerie sont présentées comme des entités du même écosystème, sur deux territoires complémentaires.'
+          scope: ['Direction artistique', 'Site public', 'Back-office métier']
         }
       },
       en: {
@@ -122,6 +133,9 @@ export const projects: readonly Project[] = [
         description: 'A completed premium website with considered art direction and a business back office. The public experience expresses the concierge identity while private interfaces and data remain confidential.',
         tags: ['Art direction', 'Public website', 'Back office'], imageAlt: 'Public website of Conciergerie Saint-Jean',
         caseStudy: {
+          visualVariant: 'editorial',
+          activity: 'Concierge services for property owners and stays along the Opal Coast.',
+          location: 'Le Touquet–Paris-Plage · Opal Coast',
           metaTitle: 'Conciergerie Saint-Jean — identity and business website | Nova Baie',
           metaDescription: 'Explore the premium website and business application built by Nova Baie for Conciergerie Saint-Jean.',
           intro: 'A concierge identity translated into a public experience and a working tool.',
@@ -129,8 +143,7 @@ export const projects: readonly Project[] = [
           need: 'Create a distinctive, premium web presence while supporting daily operations with a business back office.',
           intervention: 'Nova Baie delivered the public website and an advanced back office. This case study shows only public material; administration screens remain private.',
           artDirection: 'An editorial composition, elegant typography and coastal photography establish a premium identity with a clear contact journey.',
-          scope: ['Art direction', 'Public website', 'Business back office'],
-          blueBaieConnection: 'Conciergerie Saint-Jean and Blue Baie Conciergerie are presented as entities in the same ecosystem, serving complementary territories.'
+          scope: ['Art direction', 'Public website', 'Business back office']
         }
       }
     }
