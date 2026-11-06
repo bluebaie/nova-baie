@@ -9,6 +9,7 @@ import { Link } from '@/lib/navigation';
 import { CaseStudyMedia } from '@/components/shared/case-study-media';
 import { CaseStudyScope } from '@/components/shared/case-study-scope';
 import { SaintJeanCase } from '@/components/shared/saint-jean-case';
+import { BlueBaieCase } from '@/components/shared/blue-baie-case';
 import { localizeCaseStudy, projects, publishedCaseStudies } from '@/lib/projects';
 import { localeAlternates } from '@/lib/seo';
 
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project?.copy.caseStudy) return { robots: { index: false, follow: false } };
   const path = `/realisations/${project.slug}`;
   const canonical = localeAlternates(locale, path);
-  const shareImage = project.id === 'saint-jean' ? '/media/projects/conciergerie-saint-jean/brand/og-saint-jean.jpg' : project.image;
+  const shareImage = project.id === 'saint-jean' ? '/media/projects/conciergerie-saint-jean/brand/og-saint-jean.jpg' : project.id === 'blue-baie' ? '/media/projects/blue-baie/images/og/blue-baie-og.jpg' : project.image;
   return {
     title: { absolute: project.copy.caseStudy.metaTitle },
     description: project.copy.caseStudy.metaDescription,
@@ -57,6 +58,10 @@ export default async function ProjectCasePage({ params }: Props) {
   };
   if (project.id === 'saint-jean') return <>
     <SaintJeanCase locale={locale} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
+  </>;
+  if (project.id === 'blue-baie') return <>
+    <BlueBaieCase locale={locale} gallery={project.gallery} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
   </>;
   return <>

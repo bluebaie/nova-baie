@@ -7,51 +7,70 @@ test.beforeEach(async ({ context }) => {
   await context.route('**/*', route => new URL(route.request().url()).origin === testOrigin ? route.continue() : route.abort());
 });
 
-for (const [slug, mediaName, style] of [
-  ['blue-baie-conciergerie', 'blue-baie', 'ecosystem'],
+for (const [slug, style] of [
+  ['blue-baie-conciergerie', 'ecosystem'],
 ] as const) {
-  test(`C3 ${slug}: authentic brand media, variant, controls, keyboard and responsive`, async ({ page }) => {
+  test(`C5 ${slug}: authentic gallery, brand links, keyboard dialog and responsive`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto(`/realisations/${slug}`);
     await expect(page.locator(`[data-case-style="${style}"]`)).toBeVisible();
     await expect(page.locator('h1')).toContainText(slug === 'blue-baie-conciergerie' ? 'Blue Baie' : 'Saint-Jean');
 
-    const clientVisit = page.locator('[data-case-visit]');
+    const clientVisit = page.locator('.bb-visit');
     await expect(clientVisit).toHaveAttribute('target', '_blank');
     await expect(clientVisit).toHaveAttribute('rel', 'noopener noreferrer');
 
-    const heroImage = page.locator('[data-case-hero] .case-hero-image img');
+    const heroImage = page.locator('.bb-hero-screen img');
     await expect.poll(() => heroImage.evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
-    await expect(heroImage).toHaveAttribute('src', new RegExp(`${mediaName}-public`));
+    await expect(heroImage).toHaveAttribute('src', /home-desktop/);
 
-    const mediaViewer = page.locator('[data-case-media]');
-    await mediaViewer.scrollIntoViewIfNeeded();
-    await expect(mediaViewer.locator('[data-active-view="desktop"] img')).toBeVisible();
-    await expect.poll(() => mediaViewer.locator('[data-active-view="desktop"] img').evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    const gallery = page.locator('.bb-gallery');
+    await gallery.scrollIntoViewIfNeeded();
+    await expect(gallery.locator('.bb-gallery-item')).toHaveCount(8);
+    await expect.poll(() => gallery.locator('.bb-gallery-item img').first().evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    const galleryItem = gallery.locator('button').first();
+    await galleryItem.focus();
+    await expect(galleryItem).toBeFocused();
+    await galleryItem.press('Enter');
+    await expect(page.locator('.bb-lightbox[open]')).toBeVisible();
+    await expect(page.locator('.bb-lightbox img')).toHaveAttribute('src', /home-desktop/);
+    await page.locator('.bb-lightbox-close').click();
+    await expect(page.locator('.bb-lightbox[open]')).toHaveCount(0);
+    await page.evaluate(async () => {
+      for (const image of Array.from(document.images)) image.loading = 'eager';
+      await Promise.all(Array.from(document.images).map(image => image.decode().catch(() => undefined)));
+    });
+    await expect.poll(() => page.locator('.bb-photo img').evaluateAll(images => images.filter(image => (image as HTMLImageElement).naturalWidth > 0).length)).toBe(5);
+    await page.locator('.bb-photo-grid').screenshot({ path: 'test-results/lot-c5-blue-baie-photography.png' });
+    await page.locator('.bb-finale').scrollIntoViewIfNeeded();
+    await expect(page.locator('.bb-finale h2')).toHaveCSS('color', 'rgb(255, 255, 255)');
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
     await page.evaluate(() => scrollTo(0, 0));
-    await page.screenshot({ path: `test-results/lot-c3-case-${mediaName}-desktop.png`, fullPage: true, animations: 'disabled' });
-    const mobileToggle = mediaViewer.locator('[data-media-view="mobile"]');
-    await mobileToggle.focus();
-    await expect(mobileToggle).toBeFocused();
-    await mobileToggle.click();
-    await expect(mediaViewer.locator('[data-active-view="mobile"] img')).toHaveAttribute('src', new RegExp(`${mediaName}-mobile`));
-    await expect(mediaViewer.locator('[data-media-view="mobile"]')).toHaveAttribute('aria-pressed', 'true');
-    await mediaViewer.screenshot({ path: `test-results/lot-c3-case-${mediaName}-viewer-mobile.png` });
+    await page.screenshot({ path: 'test-results/lot-c5-blue-baie-desktop.png', fullPage: true, animations: 'disabled' });
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(`/realisations/${slug}`);
     await expect(page.locator('h1')).toBeVisible();
-    await expect(page.locator('[data-case-hero] .case-hero-image img')).toBeVisible();
+    await expect(page.locator('.bb-hero-screen img')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: `test-results/lot-c3-case-${mediaName}-mobile.png`, fullPage: true, animations: 'disabled' });
+    await page.screenshot({ path: 'test-results/lot-c5-blue-baie-mobile.png', fullPage: true, animations: 'disabled' });
 
     if (style === 'ecosystem') {
-      const scopeMap = page.locator('[data-scope-diagram] .case-scope-map');
-      await scopeMap.scrollIntoViewIfNeeded();
-      await expect(scopeMap.locator('.case-scope-core img')).toHaveAttribute('src', /logo-blue-baie/);
+      await expect(page.locator('.bb-system-map')).toContainText('Site public');
     }
   });
 }
+
+test('C5 Blue Baie English route has localized metadata, gallery and no horizontal overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/en/realisations/blue-baie-conciergerie');
+  await expect(page.locator('h1')).toContainText('Blue Baie');
+  await expect(page.locator('h2').first()).toContainText('concierge');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/en\/realisations\/blue-baie-conciergerie$/);
+  await expect(page.locator('link[hreflang="fr"]')).toHaveAttribute('href', /\/realisations\/blue-baie-conciergerie$/);
+  await expect(page.locator('.bb-gallery-item')).toHaveCount(8);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
 
 test('C3 keeps interactive capabilities and reduced-motion compatibility', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });

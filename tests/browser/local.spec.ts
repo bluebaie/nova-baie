@@ -71,8 +71,8 @@ for (const prefix of ['', '/en']) {
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://www.nova-baie.com${prefix}/realisations/${slug}`);
     await expect(page.locator('link[hreflang="en"]')).toHaveAttribute('href', `https://www.nova-baie.com/en/realisations/${slug}`);
-    const clientLink = slug === 'conciergerie-saint-jean' ? page.locator('.sj-visit') : page.locator('.case-hero-actions a[href^="https://"]');
-    await expect(clientLink).toContainText(slug === 'conciergerie-saint-jean' ? (prefix ? 'Visit the client website' : 'Visiter le site client') : (prefix ? 'Visit the website' : 'Visiter le site'));
+    const clientLink = slug === 'conciergerie-saint-jean' ? page.locator('.sj-visit') : slug === 'blue-baie-conciergerie' ? page.locator('.bb-visit') : page.locator('.case-hero-actions a[href^="https://"]');
+    await expect(clientLink).toContainText(slug === 'conciergerie-saint-jean' ? (prefix ? 'Visit the client website' : 'Visiter le site client') : slug === 'blue-baie-conciergerie' ? (prefix ? 'Visit bluebaie.fr' : 'Visiter bluebaie.fr') : (prefix ? 'Visit the website' : 'Visiter le site'));
     await expect(clientLink).toHaveAttribute('rel', 'noopener noreferrer');
     const body = await page.locator('main').innerText();
     expect(body).not.toMatch(/â‚¬|\b\d+\s*EUR\b|six projects|six projets/i);
