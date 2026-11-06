@@ -7,6 +7,7 @@ import Script from 'next/script';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import SchemaOrg from '@/components/seo/schema-org';
+import { MotionScene } from '@/components/ui/motion-scene';
 import { routing } from '@/i18n/routing';
 import '@/app/globals.css';
 
@@ -96,6 +97,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const messages = await getMessages();
+  const visual = await getTranslations('visual');
 
   return (
     <html lang={locale}>
@@ -118,10 +120,12 @@ export default async function LocaleLayout({
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MV4VJGBB');`,
           }}
         />
-        <NextIntlClientProvider messages={{ nav: messages.nav, header: messages.header, lang: messages.lang, contact: messages.contact, errors: messages.errors, actualites: messages.actualites }}>
+        <NextIntlClientProvider messages={{ nav: messages.nav, header: messages.header, lang: messages.lang, contact: messages.contact, errors: messages.errors, actualites: messages.actualites, visual: messages.visual }}>
+          <a href="#main-content" className="skip-link">{visual('skip')}</a>
           <Header />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
+          <MotionScene />
         </NextIntlClientProvider>
       </body>
     </html>

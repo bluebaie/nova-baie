@@ -1,23 +1,23 @@
 import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import type { LocalizedProject } from '@/lib/projects';
 import { ProjectVideo } from './project-video';
 
 export async function ProjectCard({ project, compact = false }: { project: LocalizedProject; compact?: boolean }) {
   const t = await getTranslations('common');
-  return <article id={project.id} data-project={project.id} className="card-premium flex h-full flex-col overflow-hidden">
-    {project.image && <div className="relative aspect-video bg-nova-navy">
-      <Image src={project.image} alt={project.imageAlt ?? project.title} fill sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 380px" className="object-cover object-top" />
-    </div>}
-    <div className="flex flex-1 flex-col p-6">
-      <p className="text-xs font-medium uppercase tracking-wider text-nova-blue">{t(project.status)}</p>
-      <p className="mt-3 text-xs uppercase tracking-wider text-nova-text">{project.category}</p>
-      <h3 className="mt-2 text-xl">{project.title}</h3>
-      <p className="mt-3 flex-1 text-sm leading-7">{compact ? project.summary : project.description}</p>
-      {!compact && <ul className="mt-4 flex flex-wrap gap-2" aria-label={project.title}>
-        {project.tags.map(tag => <li key={tag} className="rounded-full bg-nova-horizon px-3 py-1 text-xs text-nova-navy">{tag}</li>)}
-      </ul>}
-      {project.url && <a href={project.url} target="_blank" rel="noopener noreferrer" className="mt-5 border-t border-nova-navy/10 pt-4 text-sm font-medium text-nova-blue">{t('seeSite')} →</a>}
+  const business = ['blue-baie', 'saint-jean'].includes(project.id);
+  return <article id={project.id} data-project={project.id} className={`project-card ${business ? 'project-card--business' : ''} ${!project.image ? 'project-card--text' : ''}`} data-reveal>
+    {project.image ? <div className="project-media">
+      <div className="project-window" aria-hidden="true"><i /><i /><i /><span>{project.url ? new URL(project.url).hostname.replace('www.', '') : project.title}</span></div>
+      <picture>{project.mobileImage && <source media="(max-width: 639px)" srcSet={project.mobileImage} />}<Image src={project.image} alt={project.imageAlt ?? t('capture', { title: project.title })} fill sizes={compact ? '(min-width: 1024px) 60vw, (min-width: 768px) 50vw, 100vw' : '(min-width: 1024px) 50vw, 100vw'} /></picture>
+      <div className="project-image-overlay" aria-hidden="true"><span><ArrowUpRight /></span></div>
+    </div> : <div className="project-monogram" aria-hidden="true">03.</div>}
+    <div className="project-copy">
+      <div className="project-meta"><p>{project.category}</p><p className="project-status">{t(project.status)}</p></div>
+      <h3>{project.title}</h3><p>{compact ? project.summary : project.description}</p>
+      {!compact && <ul className="project-tags" aria-label={project.title}>{project.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>}
+      {project.url && <a href={project.url} target="_blank" rel="noopener noreferrer" className="project-link"><span>{t('seeSite')}</span><ArrowUpRight aria-hidden="true" /></a>}
       {!compact && project.video && project.image && <ProjectVideo src={project.video} poster={project.image} label={t('video', { title: project.title })} />}
     </div>
   </article>;

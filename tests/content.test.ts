@@ -36,7 +36,13 @@ test('six stable, fully translated project identities; CSC remains unfinished', 
   assert.equal(projects.find(project => project.id === 'csc')?.status, 'finalizing');
   assert.equal(projects.find(project => project.id === 'csc')?.url, undefined);
   assert.ok(featuredProjectIds.every(id => projects.some(project => project.id === id)));
-  for (const id of ['blue-baie', 'saint-jean', 'csc']) assert.equal(projects.find(project => project.id === id)?.image, undefined);
+  for (const id of ['blue-baie', 'saint-jean']) {
+    const project = projects.find(project => project.id === id);
+    assert.equal(project?.image, `/images/projects/${id}-public.webp`);
+    assert.equal(project?.mobileImage, `/images/projects/${id}-mobile.webp`);
+    assert.ok(existsSync(`public${project?.mobileImage}`));
+  }
+  assert.equal(projects.find(project => project.id === 'csc')?.image, undefined);
 });
 
 test('historical publications retain dates and existing images with translated copy', () => {

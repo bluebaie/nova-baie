@@ -6,6 +6,7 @@ export type Project = {
   status: 'completed' | 'finalizing';
   url?: string;
   image?: string;
+  mobileImage?: string;
   video?: string;
   copy: Record<Locale, ProjectCopy>;
 };
@@ -15,6 +16,7 @@ export type Project = {
 export const projects: readonly Project[] = [
   {
     id: 'blue-baie', title: 'Blue Baie Conciergerie', status: 'completed', url: 'https://www.bluebaie.fr/',
+    image: '/images/projects/blue-baie-public.webp', mobileImage: '/images/projects/blue-baie-mobile.webp',
     copy: {
       fr: { category: 'Site public & écosystème métier', summary: 'Relier la présentation de l’activité aux outils qui la font fonctionner.', description: 'Un site public et un écosystème métier avancé : réservations, intégrations, automatisations et administration. Le projet associe parcours visiteurs et fonctionnement opérationnel, sans exposer les données internes.', tags: ['Plateforme métier', 'Intégrations', 'Automatisation'] },
       en: { category: 'Public website & business ecosystem', summary: 'Connecting the public-facing business with the tools behind its operations.', description: 'A public website and an advanced business ecosystem spanning bookings, integrations, automation and administration. The project connects visitor journeys with day-to-day operations without exposing internal data.', tags: ['Business platform', 'Integrations', 'Automation'] },
@@ -22,6 +24,7 @@ export const projects: readonly Project[] = [
   },
   {
     id: 'saint-jean', title: 'Conciergerie Saint-Jean', status: 'completed', url: 'https://conciergeriesaintjean.fr/',
+    image: '/images/projects/saint-jean-public.webp', mobileImage: '/images/projects/saint-jean-mobile.webp',
     copy: {
       fr: { category: 'Direction artistique & application métier', summary: 'Faire cohabiter une identité haut de gamme et un back-office métier.', description: 'Un site premium terminé, avec une direction artistique haut de gamme et un back-office métier. La présentation publique valorise l’identité de la conciergerie ; les interfaces et données privées restent confidentielles.', tags: ['Direction artistique', 'Site premium', 'Back-office'] },
       en: { category: 'Art direction & business application', summary: 'Bringing a premium identity and a business back office together.', description: 'A completed premium website combining refined art direction with a business back office. The public experience expresses the concierge brand while private interfaces and data remain confidential.', tags: ['Art direction', 'Premium website', 'Back office'] },

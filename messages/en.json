@@ -34,11 +34,12 @@
     "seeSite": "Visit website",
     "completed": "Completed",
     "finalizing": "Being finalised",
-    "video": "View the {title} presentation video"
+    "video": "View the {title} presentation video",
+    "capture": "Screenshot of the {title} public website"
   },
   "hero": {
     "tagline": "Digital development & technology solutions agency",
-    "title": "Remarkable digital experiences.",
+    "title": "<em>Remarkable</em> digital experiences.",
     "description": "Technology designed to move your business forward. Identity, websites, business applications, automation and AI: a project shaped around how you work.",
     "cta1": "Let’s talk about your project",
     "cta2": "Explore our expertise",
@@ -283,5 +284,16 @@
     "description": "Please try again. If the problem persists, contact us directly.",
     "retry": "Try again",
     "home": "Back to home"
+  },
+  "visual": {
+    "menu": "Menu",
+    "close": "Close",
+    "skip": "Skip to content",
+    "location": "Bay of Somme · France",
+    "disciplines": "Art direction · Development · Connections",
+    "explore": "Explore Nova Baie",
+    "capabilities": "From purpose to solution",
+    "discover": "Discover",
+    "photoCaption": "Original photography · Bay of Somme"
   }
 }

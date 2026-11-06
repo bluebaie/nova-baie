@@ -1,62 +1,21 @@
-import { getTranslations } from 'next-intl/server'
-import Image from 'next/image'
-import { Link } from '@/lib/navigation'
-import { Container } from '@/components/ui/container'
-import { SocialLinks } from '@/components/ui/social-links'
-import { company } from '@/lib/site-data'
+import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
+import { Link } from '@/lib/navigation';
+import { Container } from '@/components/ui/container';
+import { SocialLinks } from '@/components/ui/social-links';
 
 export async function Footer() {
-  const t = await getTranslations('footer')
-
-  const footerLinks = [
-    { href: '/services' as const, label: t('links.services') },
-    { href: '/realisations' as const, label: t('links.realisations') },
-    { href: '/a-propos' as const, label: t('links.about') },
-    { href: '/actualites' as const, label: t('links.actualites') },
-    { href: '/contact' as const, label: t('links.contact') },
-    { href: '/mentions-legales' as const, label: t('links.mentions') },
-    { href: '/mentions-legales#confidentialite' as const, label: t('links.privacy') },
-  ]
-
-  return (
-    <footer className="mt-20 border-t border-nova-navy/10 bg-white">
-      <Container>
-        <div className="grid gap-12 py-14 md:grid-cols-[1.3fr_0.7fr]">
-          <div>
-            <div className="flex items-center gap-2.5">
-              <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full bg-nova-navy">
-                <Image
-                  src="/logo-nova-baie.jpg"
-                  alt="Nova Baie"
-                  fill
-                  sizes="(max-width: 768px) 32px, 36px"
-                  className="object-contain"
-                />
-              </div>
-              <span className="text-base font-semibold text-nova-navy">{company.name}</span>
-            </div>
-            <p className="mt-4 max-w-xl">{t('description')}</p>
-            <p className="mt-6 text-sm text-nova-text">{t('descriptor')}</p>
-            <div className="mt-6">
-              <SocialLinks variant="footer" />
-            </div>
-          </div>
-
-          <nav aria-label={t('linksTitle')}>
-            <h2 className="text-sm font-semibold text-nova-navy">{t('linksTitle')}</h2>
-            <div className="mt-3 grid gap-3">
-              {footerLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="text-sm text-nova-text hover:text-nova-navy">
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </nav>
-        </div>
-        <div className="border-t border-nova-navy/10 py-4 text-center text-xs text-nova-text/50">
-          {t('copyright', { year: new Date().getFullYear() })}
-        </div>
-      </Container>
-    </footer>
-  )
+  const t = await getTranslations('footer');
+  const visual = await getTranslations('visual');
+  const links = [{ href: '/services', label: 'services' }, { href: '/realisations', label: 'realisations' }, { href: '/contact', label: 'contact' }, { href: '/a-propos', label: 'about' }, { href: '/actualites', label: 'actualites' }, { href: '/mentions-legales', label: 'mentions' }, { href: '/mentions-legales#confidentialite', label: 'privacy' }];
+  return <footer className="site-footer surface-dark"><Container>
+    <div className="footer-top">
+      <div><Link href="/" className="brand"><Image src="/logo-nova-baie.jpg" alt="Nova Baie" width={48} height={48} /><span className="brand-name" aria-hidden="true">Nova <em>Baie</em></span></Link>
+        <p className="footer-description">{t('description')}</p><p className="footer-descriptor">{t('descriptor')}</p><div className="mt-6"><SocialLinks variant="footer" /></div>
+      </div>
+      <nav className="footer-nav" aria-label={t('linksTitle')}><h2>{t('linksTitle')}</h2><div className="footer-links">{links.map(link => <Link key={link.label} href={link.href}>{t(`links.${link.label}`)}</Link>)}</div></nav>
+    </div>
+    <div className="footer-wordmark" aria-hidden="true">Nova Baie<span style={{ color: 'var(--gold)' }}>.</span></div>
+    <div className="footer-bottom"><span>{t('copyright', { year: new Date().getFullYear() })}</span><span>{visual('location')}</span></div>
+  </Container></footer>;
 }

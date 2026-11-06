@@ -1,33 +1,9 @@
-import { Link } from "@/lib/navigation";
-import { cn } from "@/lib/utils";
+import { ArrowUpRight } from 'lucide-react';
+import { Link } from '@/lib/navigation';
+import { cn } from '@/lib/utils';
 
-type ButtonProps = {
-  href: string;
-  children: React.ReactNode;
-  variant?: "primary" | "secondary" | "light";
-  className?: string;
-};
-
-export function Button({
-  href,
-  children,
-  variant = "primary",
-  className
-}: ButtonProps) {
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-all duration-200",
-        variant === "primary" &&
-          "bg-nova-navy text-white hover:bg-nova-blue",
-        variant === "secondary" &&
-          "border border-white/70 text-white backdrop-blur hover:border-white hover:bg-white/10",
-        variant === "light" && "bg-white text-nova-navy hover:bg-nova-horizon",
-        className
-      )}
-    >
-      {children}
-    </Link>
-  );
+export function Button({ href, children, variant = 'primary', className }: {
+  href: string; children: React.ReactNode; variant?: 'primary' | 'secondary' | 'light' | 'dark'; className?: string;
+}) {
+  return <Link href={href} className={cn('button', `button-${variant}`, className)}><span>{children}</span><ArrowUpRight aria-hidden="true" /></Link>;
 }

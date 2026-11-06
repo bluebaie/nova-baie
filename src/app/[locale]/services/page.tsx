@@ -1,28 +1,30 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { PenTool, Globe2, PanelsTopLeft, Workflow, Sparkles, Search, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import { PageHero } from '@/components/ui/page-hero';
 import { Container } from '@/components/ui/container';
 import { FinalCtaSection } from '@/components/home/final-cta-section';
 import { expertiseIds } from '@/lib/expertises';
+import { Link } from '@/lib/navigation';
 import { pageMetadata } from '@/lib/page-metadata';
 
+const icons = { identity: PenTool, web: Globe2, business: PanelsTopLeft, automation: Workflow, ai: Sparkles, seo: Search, maintenance: ShieldCheck };
 type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) { return pageMetadata((await params).locale, 'services', '/services'); }
 export default async function ServicesPage({ params }: Props) {
   setRequestLocale((await params).locale);
   const t = await getTranslations('services');
   const expertise = await getTranslations('expertises');
+  const common = await getTranslations('common');
   return <>
     <PageHero eyebrow={t('eyebrow')} title={t('title')} description={t('description')} expertisesLink={false} />
-    <section className="section-padding bg-white"><Container>
-      <div className="grid gap-6 md:grid-cols-2">
-        {expertiseIds.map(id => <article id={id} key={id} className="card-premium p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl">{expertise(`${id}.title`)}</h2>
-          <p className="mt-4 text-sm font-medium leading-7 text-nova-navy">{expertise(`${id}.problem`)}</p>
-          <p className="mt-3 text-sm leading-7">{expertise(`${id}.benefit`)}</p>
-        </article>)}
-      </div>
-      <div className="mt-10 max-w-3xl"><h2 className="text-2xl">{t('approachTitle')}</h2><p className="mt-4">{t('approachDescription')}</p></div>
-    </Container></section>
-    <FinalCtaSection />
+    <section className="section-padding"><Container><div className="expertise-layout">
+      <nav className="expertise-index" aria-label={t('eyebrow')}>{expertiseIds.map((id, index) => <a key={id} href={`#${id}`}><span aria-hidden="true">0{index + 1}</span>{expertise(`${id}.title`)}</a>)}</nav>
+      <div>{expertiseIds.map(id => { const Icon = icons[id]; return <article key={id} id={id} className="expertise-row" data-reveal>
+        <div className="expertise-row-top"><Icon className="expertise-icon" aria-hidden="true" /><h2>{expertise(`${id}.title`)}</h2></div>
+        <p className="expertise-problem">{expertise(`${id}.problem`)}</p><p>{expertise(`${id}.benefit`)}</p>
+        <Link href="/contact" className="text-link">{common('talkProject')}<ArrowUpRight aria-hidden="true" /></Link>
+      </article>; })}
+      <div className="expertise-approach" data-reveal><h2>{t('approachTitle')}</h2><p>{t('approachDescription')}</p></div></div>
+    </div></Container></section><FinalCtaSection />
   </>;
 }

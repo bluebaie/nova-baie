@@ -14,9 +14,9 @@ export default async function RealisationsPage({ params }: Props) {
   const t = await getTranslations('realisations');
   return <>
     <PageHero eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
-    <section className="section-padding"><Container>
-      <h2 className="mb-8 text-2xl">{t('listTitle')}</h2>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{localizeProjects(locale).map(project => <ProjectCard key={project.id} project={project} />)}</div>
+    <section className="portfolio-section surface-dark"><Container>
+      <h2>{t('listTitle')}</h2>
+      <div className="projects-grid">{localizeProjects(locale).map(project => <ProjectCard key={project.id} project={project} />)}</div>
     </Container></section>
     <FinalCtaSection />
   </>;

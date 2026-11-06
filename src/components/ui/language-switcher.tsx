@@ -26,7 +26,7 @@ export function LanguageSwitcher() {
       type="button"
       onClick={handleSwitch}
       disabled={isPending}
-      className="flex h-8 items-center rounded-full border border-nova-navy/15 px-3 text-xs font-medium text-nova-navy/60 transition-all duration-200 hover:border-nova-navy/30 hover:text-nova-navy disabled:opacity-50"
+      className="language-switcher flex h-8 items-center rounded-full border border-nova-navy/15 px-3 text-xs font-medium text-nova-navy/60 transition-all duration-200 hover:border-nova-navy/30 hover:text-nova-navy disabled:opacity-50"
       aria-label={t('switchTo')}
     >
       {nextLocale === 'en' ? t('en') : t('fr')}

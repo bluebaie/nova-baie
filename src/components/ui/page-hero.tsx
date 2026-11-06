@@ -1,46 +1,22 @@
-import { getTranslations } from 'next-intl/server'
-import { Link } from '@/lib/navigation'
-import { Container } from './container'
+import { getTranslations } from 'next-intl/server';
+import { Container } from './container';
+import { Button } from './button';
+import { HorizonMark } from './horizon-mark';
 
-type Props = {
-  eyebrow: string
-  title: string
-  description: string
-  actions?: boolean
-  expertisesLink?: boolean
-}
-
-export async function PageHero({ eyebrow, title, description, actions = true, expertisesLink = true }: Props) {
-  const t = await getTranslations('common')
-
-  return (
-    <section className="relative overflow-hidden bg-nova-navy pb-16 pt-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(46,123,198,0.15),transparent_50%)]" />
-
-      <Container>
-        <div className="relative z-10 max-w-4xl">
-          <span className="inline-flex rounded-full border border-white/20 bg-white/[0.08] px-4 py-1.5 text-xs uppercase tracking-widest text-white/70">
-            {eyebrow}
-          </span>
-          <h1 className="mt-6 max-w-4xl text-balance text-white">{title}</h1>
-          <p className="mt-6 max-w-3xl leading-8 text-white/75">{description}</p>
-
-          {actions && <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-nova-navy transition-all duration-200 hover:bg-white/90"
-            >
-              {t('talkProject')}
-            </Link>
-            {expertisesLink && <Link
-              href="/services"
-              className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white/80 transition-all duration-200 hover:border-white hover:text-white"
-            >
-              {t('seeExpertises')}
-            </Link>}
-          </div>}
-        </div>
-      </Container>
-    </section>
-  )
+export async function PageHero({ eyebrow, title, description, actions = true, expertisesLink = true }: {
+  eyebrow: string; title: string; description: string; actions?: boolean; expertisesLink?: boolean;
+}) {
+  const t = await getTranslations('common');
+  return <section className="page-hero surface-dark">
+    <div className="page-hero-ornament"><HorizonMark /></div>
+    <Container>
+      <p className="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p className="page-hero-description">{description}</p>
+      {actions && <div className="hero-actions">
+        <Button href="/contact">{t('talkProject')}</Button>
+        {expertisesLink && <Button href="/services" variant="secondary">{t('seeExpertises')}</Button>}
+      </div>}
+    </Container>
+  </section>;
 }

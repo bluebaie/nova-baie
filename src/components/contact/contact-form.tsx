@@ -9,7 +9,7 @@ import { submitContact } from '@/lib/contact/submit'
 import { CONTACT_LIMITS, PROJECT_TYPES } from '@/lib/contact/validation'
 
 const inputClass =
-  'w-full rounded-xl border border-nova-navy/15 bg-white px-4 py-3 text-sm text-nova-navy placeholder:text-nova-text/40 focus:outline-none focus:ring-2 focus:ring-nova-blue/20 focus:border-nova-blue/40 transition-all duration-200'
+  'form-control'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
@@ -46,7 +46,7 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div ref={statusRef} tabIndex={-1} role="status" aria-live="polite" className="py-8 text-center">
+      <div ref={statusRef} tabIndex={-1} role="status" aria-live="polite" className="form-success">
         <CheckCircle className="mx-auto h-10 w-10 text-green-500" />
         <h3 className="mt-4 font-semibold text-nova-navy">{t('successTitle')}</h3>
         <p className="mt-2 text-sm text-nova-text">{t('successDescription', { email })}</p>
@@ -65,13 +65,13 @@ export function ContactForm() {
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="contact-nom" className="mb-1.5 block text-xs font-medium text-nova-navy">
+          <label htmlFor="contact-nom" className="form-label">
             {t('name')} <span className="text-nova-blue">*</span>
           </label>
           <input id="contact-nom" name="nom" autoComplete="name" maxLength={CONTACT_LIMITS.nom} type="text" required value={nom} onChange={(e) => setNom(e.target.value)} placeholder={t('namePlaceholder')} className={inputClass} />
         </div>
         <div>
-          <label htmlFor="contact-email" className="mb-1.5 block text-xs font-medium text-nova-navy">
+          <label htmlFor="contact-email" className="form-label">
             {t('email')} <span className="text-nova-blue">*</span>
           </label>
           <input id="contact-email" name="email" autoComplete="email" maxLength={CONTACT_LIMITS.email} type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t('emailPlaceholder')} className={inputClass} />
@@ -80,17 +80,17 @@ export function ContactForm() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="contact-telephone" className="mb-1.5 block text-xs font-medium text-nova-navy">{t('phone')}</label>
+          <label htmlFor="contact-telephone" className="form-label">{t('phone')}</label>
           <input id="contact-telephone" name="telephone" autoComplete="tel" maxLength={CONTACT_LIMITS.telephone} type="tel" value={telephone} onChange={(e) => setTelephone(e.target.value)} placeholder={t('phonePlaceholder')} className={inputClass} />
         </div>
         <div>
-          <label htmlFor="contact-structure" className="mb-1.5 block text-xs font-medium text-nova-navy">{t('structure')}</label>
+          <label htmlFor="contact-structure" className="form-label">{t('structure')}</label>
           <input id="contact-structure" name="structure" autoComplete="organization" maxLength={CONTACT_LIMITS.structure} type="text" value={structure} onChange={(e) => setStructure(e.target.value)} placeholder={t('structurePlaceholder')} className={inputClass} />
         </div>
       </div>
 
       <div>
-        <label htmlFor="contact-type" className="mb-1.5 block text-xs font-medium text-nova-navy">
+        <label htmlFor="contact-type" className="form-label">
           {t('projectType')}
         </label>
         <select id="contact-type" name="typeProjet" value={typeProjet} onChange={(e) => setTypeProjet(e.target.value)} className={inputClass}>
@@ -99,7 +99,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-message" className="mb-1.5 block text-xs font-medium text-nova-navy">
+        <label htmlFor="contact-message" className="form-label">
           {t('message')} <span className="text-nova-blue">*</span>
         </label>
         <textarea id="contact-message" name="message" maxLength={CONTACT_LIMITS.message} required value={message} onChange={(e) => setMessage(e.target.value)} placeholder={t('messagePlaceholder')} className={`${inputClass} min-h-[120px] resize-y`} />
@@ -108,7 +108,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="mt-2 w-full cursor-pointer rounded-full bg-nova-navy py-3.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-nova-blue disabled:cursor-not-allowed disabled:opacity-70"
+        className="button button-dark form-submit disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === 'loading' ? (
           <span className="flex items-center justify-center gap-2">

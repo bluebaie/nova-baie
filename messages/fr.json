@@ -34,11 +34,12 @@
     "seeSite": "Visiter le site",
     "completed": "Réalisé",
     "finalizing": "En finalisation",
-    "video": "Voir la présentation vidéo de {title}"
+    "video": "Voir la présentation vidéo de {title}",
+    "capture": "Capture du site public {title}"
   },
   "hero": {
     "tagline": "Agence de développement digital & solutions technologiques",
-    "title": "Des expériences digitales remarquables.",
+    "title": "Des expériences digitales <em>remarquables.</em>",
     "description": "Des technologies conçues pour faire avancer votre activité. Identité, sites web, applications métier, automatisations et IA : un projet pensé à partir de vos usages.",
     "cta1": "Parlons de votre projet",
     "cta2": "Découvrir les expertises",
@@ -283,5 +284,16 @@
     "description": "Veuillez réessayer. Si le problème persiste, contactez-nous directement.",
     "retry": "Réessayer",
     "home": "Retour à l’accueil"
+  },
+  "visual": {
+    "menu": "Menu",
+    "close": "Fermer",
+    "skip": "Aller au contenu",
+    "location": "Baie de Somme · France",
+    "disciplines": "Direction artistique · Développement · Connexions",
+    "explore": "Explorer Nova Baie",
+    "capabilities": "Du sens à la solution",
+    "discover": "Découvrir",
+    "photoCaption": "Photographie personnelle · Baie de Somme"
   }
 }
