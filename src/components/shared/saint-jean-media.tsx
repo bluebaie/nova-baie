@@ -14,13 +14,13 @@ export function SaintJeanGallery({ items, openLabel, closeLabel, previousLabel, 
   const move = (direction: number) => setActive(current => current === null ? 0 : (current + direction + items.length) % items.length);
   return <>
     <div className="sj-gallery-grid">{items.map((item, index) => <figure key={item.src} className={`sj-gallery-item sj-gallery-item--${item.shape}`}>
-      <button type="button" aria-label={`${openLabel}: ${item.label}`} onClick={() => show(index)}><Image src={item.src} alt={item.alt} fill sizes={item.shape === 'wide' ? '(min-width: 900px) 76vw, 100vw' : '(min-width: 900px) 42vw, 100vw'} /><span className="sj-gallery-zoom" aria-hidden="true">+</span></button>
+      <button type="button" aria-label={`${openLabel}: ${item.label}`} onClick={() => show(index)}><Image src={item.src} alt={item.alt} fill quality={90} sizes={item.shape === 'wide' ? '(min-width: 900px) 76vw, 100vw' : item.shape === 'phone' ? '(min-width: 900px) 24vw, 48vw' : '(min-width: 900px) 42vw, 100vw'} /><span className="sj-gallery-zoom" aria-hidden="true">+</span></button>
       <figcaption><span>{String(index + 1).padStart(2, '0')}</span>{item.label}</figcaption>
     </figure>)}</div>
     <dialog ref={dialog} className="sj-lightbox" aria-label={openLabel} onClick={event => { if (event.target === dialog.current) close(); }} onClose={() => setActive(null)}>
       <button className="sj-lightbox-close" type="button" aria-label={closeLabel} onClick={close}><X aria-hidden="true" /></button>
       <button className="sj-lightbox-prev" type="button" aria-label={previousLabel} onClick={() => move(-1)}><ArrowLeft aria-hidden="true" /></button>
-      {active !== null && <figure><Image src={items[active].src} alt={items[active].alt} width={1917} height={1036} sizes="90vw" priority /><figcaption>{items[active].label} · {String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</figcaption></figure>}
+      {active !== null && <figure><Image src={items[active].src} alt={items[active].alt} width={items[active].shape === 'phone' ? 1220 : 1917} height={items[active].shape === 'phone' ? 2712 : items[active].src.endsWith('home-desktop.jpg') ? 1017 : 1036} quality={95} sizes="90vw" priority /><figcaption>{items[active].label} · {String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</figcaption></figure>}
       <button className="sj-lightbox-next" type="button" aria-label={nextLabel} onClick={() => move(1)}><ArrowRight aria-hidden="true" /></button>
     </dialog>
   </>;

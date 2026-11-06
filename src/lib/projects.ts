@@ -116,7 +116,7 @@ export const projects: readonly Project[] = [
       '/media/projects/conciergerie-saint-jean/screens/contact.jpg',
       '/media/projects/conciergerie-saint-jean/screens/detail-design.jpg'
     ], video: '/media/projects/conciergerie-saint-jean/presentation-silent.mp4', videoPoster: '/media/projects/conciergerie-saint-jean/poster.jpg',
-    logo: '/media/projects/conciergerie-saint-jean/brand/logo-conciergerie-saint-jean-or.png', categoryId: 'business-ecosystem',
+    logo: '/media/projects/conciergerie-saint-jean/brand/logo-conciergerie-saint-jean-champagne.png', categoryId: 'business-ecosystem',
     expertiseIds: ['identity', 'web', 'business'], technologyIds: [],
     copy: {
       fr: {
