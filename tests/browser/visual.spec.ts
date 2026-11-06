@@ -2,8 +2,9 @@ import { test, expect } from '@playwright/test';
 import { createRequire } from 'node:module';
 
 const resolvePackage = createRequire(`${process.cwd()}/package.json`);
+const testOrigin = `http://localhost:${process.env.PLAYWRIGHT_PORT ?? '3146'}`;
 test.beforeEach(async ({ context }) => {
-  await context.route('**/*', route => new URL(route.request().url()).origin === 'http://localhost:3146' ? route.continue() : route.abort());
+  await context.route('**/*', route => new URL(route.request().url()).origin === testOrigin ? route.continue() : route.abort());
 });
 
 for (const prefix of ['', '/en']) for (const width of [390, 768, 1024, 1440]) {
@@ -31,9 +32,9 @@ for (const prefix of ['', '/en']) for (const width of [390, 768, 1024, 1440]) {
 
 test('hero readable without JavaScript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
-  await context.route('**/*', route => new URL(route.request().url()).origin === 'http://localhost:3146' ? route.continue() : route.abort());
+  await context.route('**/*', route => new URL(route.request().url()).origin === testOrigin ? route.continue() : route.abort());
   const page = await context.newPage();
-  await page.goto('http://localhost:3146/');
+  await page.goto(`${testOrigin}/`);
   await expect(page.locator('h1')).toBeVisible();
   await expect(page.locator('main section').first().getByRole('link').first()).toBeVisible();
   await expect.poll(() => page.locator('main section').first().locator('img').evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);

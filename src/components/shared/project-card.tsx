@@ -29,7 +29,7 @@ export async function ProjectCard({ project, compact = false, position }: { proj
     <div className="project-card-art-wrap">
       {project.image && (hasDetail ? <Link href={internalHref} className="project-art-link" aria-label={actionLabel} data-project-image-link>{Art}</Link>
         : project.externalUrl ? <a href={project.externalUrl} target="_blank" rel="noopener noreferrer" className="project-art-link" aria-label={actionLabel} data-project-image-link>{Art}</a> : Art)}
-      {!compact && project.video && project.image && <ProjectVideo src={project.video} poster={project.image} label={t('video', { title: project.title })} />}
+      {!compact && project.video && project.image && <ProjectVideo src={project.video} poster={project.videoPoster ?? project.image} label={t('video', { title: project.title })} />}
     </div>
     <div className="project-copy">
       <div className="project-meta"><p>{project.category}</p><p className="project-status">{t(project.status)}</p></div>

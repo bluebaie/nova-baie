@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
+const testOrigin = `http://localhost:${process.env.PLAYWRIGHT_PORT ?? '3146'}`;
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 test.beforeEach(async ({ context }) => {
   // Browser tests must never execute GTM, analytics or visit client/Make websites.
-  await context.route('**/*', route => new URL(route.request().url()).origin === 'http://localhost:3146' ? route.continue() : route.abort());
+  await context.route('**/*', route => new URL(route.request().url()).origin === testOrigin ? route.continue() : route.abort());
 });
 
 for (const prefix of ['', '/en']) {
@@ -33,7 +34,7 @@ for (const prefix of ['', '/en']) {
       expect(JSON.stringify(schema)).not.toMatch(/priceRange|€|sites web premium pour les professionnels du tourisme/i);
       const links = await page.locator('a[href^="/"]').evaluateAll(anchors => [...new Set(anchors.map(anchor => anchor.getAttribute('href')!))]);
       for (const href of links) {
-        const local = new URL(href, 'http://localhost:3146');
+        const local = new URL(href, testOrigin);
         const linked = await page.request.get(local.pathname);
         expect(linked.status(), href).toBe(200);
         if (local.hash) expect(await linked.text(), href).toContain(`id="${local.hash.slice(1)}"`);
@@ -70,8 +71,8 @@ for (const prefix of ['', '/en']) {
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://www.nova-baie.com${prefix}/realisations/${slug}`);
     await expect(page.locator('link[hreflang="en"]')).toHaveAttribute('href', `https://www.nova-baie.com/en/realisations/${slug}`);
-    const clientLink = page.locator('.case-hero-actions a[href^="https://"]');
-    await expect(clientLink).toContainText(prefix ? 'Visit the website' : 'Visiter le site');
+    const clientLink = slug === 'conciergerie-saint-jean' ? page.locator('.sj-visit') : page.locator('.case-hero-actions a[href^="https://"]');
+    await expect(clientLink).toContainText(slug === 'conciergerie-saint-jean' ? (prefix ? 'Visit the client website' : 'Visiter le site client') : (prefix ? 'Visit the website' : 'Visiter le site'));
     await expect(clientLink).toHaveAttribute('rel', 'noopener noreferrer');
     const body = await page.locator('main').innerText();
     expect(body).not.toMatch(/â‚¬|\b\d+\s*EUR\b|six projects|six projets/i);
@@ -108,7 +109,7 @@ test('URL normalization, robots, sitemap and safe unconfigured API', async ({ re
   for (const path of ['', '/services', '/realisations', '/actualites', '/a-propos', '/contact', '/mentions-legales']) {
     const response = await request.get(`/fr${path}`, { maxRedirects: 0, headers: { 'accept-language': 'en' } });
     expect([307, 308]).toContain(response.status());
-    expect(new URL(response.headers().location, 'http://localhost:3146').pathname).toBe(path || '/');
+    expect(new URL(response.headers().location, testOrigin).pathname).toBe(path || '/');
   }
   for (const path of ['/en/contact/', '/realisations/']) {
     const response = await request.get(path, { maxRedirects: 0 });
@@ -120,7 +121,7 @@ test('URL normalization, robots, sitemap and safe unconfigured API', async ({ re
   const sitemap = await request.get('/sitemap.xml');
   expect(sitemap.status()).toBe(200);
   expect(await sitemap.text()).not.toMatch(/lastmod|mentions-legales/);
-  const contact = await request.post('/api/contact', { headers: { origin: 'http://localhost:3146' }, data: { nom: 'Local', email: 'test@example.invalid', telephone: '', structure: '', typeProjet: 'website', message: 'Local only' } });
+  const contact = await request.post('/api/contact', { headers: { origin: testOrigin }, data: { nom: 'Local', email: 'test@example.invalid', telephone: '', structure: '', typeProjet: 'website', message: 'Local only' } });
   expect(contact.status()).toBe(503);
   expect((await request.get('/api/contact')).status()).toBe(405);
   const home = await request.get('/');

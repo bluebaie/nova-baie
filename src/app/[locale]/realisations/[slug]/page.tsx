@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/navigation';
 import { CaseStudyMedia } from '@/components/shared/case-study-media';
 import { CaseStudyScope } from '@/components/shared/case-study-scope';
+import { SaintJeanCase } from '@/components/shared/saint-jean-case';
 import { localizeCaseStudy, projects, publishedCaseStudies } from '@/lib/projects';
 import { localeAlternates } from '@/lib/seo';
 
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project?.copy.caseStudy) return { robots: { index: false, follow: false } };
   const path = `/realisations/${project.slug}`;
   const canonical = localeAlternates(locale, path);
+  const shareImage = project.id === 'saint-jean' ? '/media/projects/conciergerie-saint-jean/brand/og-saint-jean.jpg' : project.image;
   return {
     title: { absolute: project.copy.caseStudy.metaTitle },
     description: project.copy.caseStudy.metaDescription,
@@ -30,9 +32,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'article', siteName: 'Nova Baie', title: project.copy.caseStudy.metaTitle,
       description: project.copy.caseStudy.metaDescription, url: canonical.canonical,
       locale: locale === 'en' ? 'en_GB' : 'fr_FR',
-      images: project.image ? [{ url: project.image, alt: project.copy.imageAlt ?? project.title }] : []
+      images: shareImage ? [{ url: shareImage, alt: project.copy.imageAlt ?? project.title }] : []
     },
-    twitter: { card: 'summary_large_image', title: project.copy.caseStudy.metaTitle, description: project.copy.caseStudy.metaDescription, images: project.image ? [project.image] : [] },
+    twitter: { card: 'summary_large_image', title: project.copy.caseStudy.metaTitle, description: project.copy.caseStudy.metaDescription, images: shareImage ? [shareImage] : [] },
   };
 }
 
@@ -53,6 +55,10 @@ export default async function ProjectCasePage({ params }: Props) {
     creator: { '@type': 'Organization', name: 'Nova Baie', url: 'https://www.nova-baie.com' },
     url: `https://www.nova-baie.com${locale === 'en' ? '/en' : ''}/realisations/${project.slug}`
   };
+  if (project.id === 'saint-jean') return <>
+    <SaintJeanCase locale={locale} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
+  </>;
   return <>
     <article className={`case-study case-study--${project.id}`} data-case-style={detail.visualVariant}>
       <header className={`case-hero case-hero--${detail.visualVariant} surface-dark`} data-case-hero>

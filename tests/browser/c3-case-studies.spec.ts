@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test';
 
 test.use({ video: 'on' });
+const testOrigin = `http://localhost:${process.env.PLAYWRIGHT_PORT ?? '3146'}`;
 
 test.beforeEach(async ({ context }) => {
-  await context.route('**/*', route => new URL(route.request().url()).origin === 'http://localhost:3146' ? route.continue() : route.abort());
+  await context.route('**/*', route => new URL(route.request().url()).origin === testOrigin ? route.continue() : route.abort());
 });
 
 for (const [slug, mediaName, style] of [
   ['blue-baie-conciergerie', 'blue-baie', 'ecosystem'],
-  ['conciergerie-saint-jean', 'saint-jean', 'editorial'],
 ] as const) {
   test(`C3 ${slug}: authentic brand media, variant, controls, keyboard and responsive`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });

@@ -41,6 +41,7 @@ export type Project = {
   mobileImage?: string;
   gallery: string[];
   video?: string;
+  videoPoster?: string;
   logo?: string;
   categoryId: string;
   expertiseIds: string[];
@@ -106,8 +107,16 @@ export const projects: readonly Project[] = [
     portfolioVisible: true, homeVisible: true, homeOrder: 2, portfolioOrder: 2,
     title: { fr: 'Conciergerie Saint-Jean', en: 'Conciergerie Saint-Jean' },
     externalUrl: 'https://conciergeriesaintjean.fr/', externalUrlCheckedOn: '2026-11-06',
-    image: '/images/projects/saint-jean-public.webp', mobileImage: '/images/projects/saint-jean-mobile.webp',
-    gallery: ['/images/projects/saint-jean-public.webp'], categoryId: 'business-ecosystem',
+    image: '/media/projects/conciergerie-saint-jean/screens/home-desktop.jpg', mobileImage: '/media/projects/conciergerie-saint-jean/screens/home-mobile1.jpg',
+    gallery: [
+      '/media/projects/conciergerie-saint-jean/screens/home-desktop.jpg',
+      '/media/projects/conciergerie-saint-jean/screens/services.jpg',
+      '/media/projects/conciergerie-saint-jean/screens/owners.jpg',
+      '/media/projects/conciergerie-saint-jean/screens/logement.jpg',
+      '/media/projects/conciergerie-saint-jean/screens/contact.jpg',
+      '/media/projects/conciergerie-saint-jean/screens/detail-design.jpg'
+    ], video: '/media/projects/conciergerie-saint-jean/presentation-silent.mp4', videoPoster: '/media/projects/conciergerie-saint-jean/poster.jpg',
+    logo: '/media/projects/conciergerie-saint-jean/brand/logo-conciergerie-saint-jean-or.png', categoryId: 'business-ecosystem',
     expertiseIds: ['identity', 'web', 'business'], technologyIds: [],
     copy: {
       fr: {
@@ -118,8 +127,8 @@ export const projects: readonly Project[] = [
           visualVariant: 'editorial',
           activity: 'Conciergerie dédiée aux propriétaires et aux séjours sur la Côte d’Opale.',
           location: 'Le Touquet–Paris-Plage · Côte d’Opale',
-          metaTitle: 'Conciergerie Saint-Jean — identité et site métier | Nova Baie',
-          metaDescription: 'Découvrez le site premium et l’application métier développés par Nova Baie pour Conciergerie Saint-Jean.',
+          metaTitle: 'Site internet de conciergerie sur la Côte d’Opale | Nova Baie',
+          metaDescription: 'Étude de cas : direction artistique, site internet responsive et back-office métier conçus par Nova Baie pour Conciergerie Saint-Jean.',
           intro: 'Une identité de conciergerie traduite en expérience publique et outil de travail.',
           context: 'Conciergerie Saint-Jean accompagne les propriétaires au Touquet et sur la Côte d’Opale. Elle est présentée par Blue Baie comme l’entité du groupe dédiée à ce territoire.',
           need: 'Donner à l’activité une présence web distincte et haut de gamme, tout en soutenant son fonctionnement quotidien avec un back-office métier.',
@@ -136,8 +145,8 @@ export const projects: readonly Project[] = [
           visualVariant: 'editorial',
           activity: 'Concierge services for property owners and stays along the Opal Coast.',
           location: 'Le Touquet–Paris-Plage · Opal Coast',
-          metaTitle: 'Conciergerie Saint-Jean — identity and business website | Nova Baie',
-          metaDescription: 'Explore the premium website and business application built by Nova Baie for Conciergerie Saint-Jean.',
+          metaTitle: 'Concierge website on the Opal Coast | Nova Baie',
+          metaDescription: 'Case study: digital art direction, responsive website and business back office created by Nova Baie for Conciergerie Saint-Jean.',
           intro: 'A concierge identity translated into a public experience and a working tool.',
           context: 'Conciergerie Saint-Jean supports property owners in Le Touquet and along the Opal Coast. Blue Baie presents it as the group entity focused on that area.',
           need: 'Create a distinctive, premium web presence while supporting daily operations with a business back office.',

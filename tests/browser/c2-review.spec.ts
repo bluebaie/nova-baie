@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test';
 
 test.use({ video: 'on' });
+const testOrigin = `http://localhost:${process.env.PLAYWRIGHT_PORT ?? '3146'}`;
 
 test.describe('C2 motion review recordings', () => {
   test.beforeEach(async ({ context }) => {
     // Never visit external project sites, analytics or the real contact endpoint.
-    await context.route('**/*', route => new URL(route.request().url()).origin === 'http://localhost:3146' ? route.continue() : route.abort());
+    await context.route('**/*', route => new URL(route.request().url()).origin === testOrigin ? route.continue() : route.abort());
   });
 
   test('desktop journey: hero response, capability scene, work and case study', async ({ page }) => {

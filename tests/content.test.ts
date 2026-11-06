@@ -44,8 +44,14 @@ test('six stable, fully translated project identities; CSC remains unfinished', 
   assert.ok(projects.filter(project => project.externalUrl).every(project => project.externalUrl?.startsWith('https://') && project.externalUrlCheckedOn === '2026-11-06'));
   for (const id of ['blue-baie', 'saint-jean']) {
     const project = projects.find(project => project.id === id);
-    assert.equal(project?.image, `/images/projects/${id}-public.webp`);
-    assert.equal(project?.mobileImage, `/images/projects/${id}-mobile.webp`);
+    if (id === 'blue-baie') {
+      assert.equal(project?.image, `/images/projects/${id}-public.webp`);
+      assert.equal(project?.mobileImage, `/images/projects/${id}-mobile.webp`);
+    } else {
+      assert.equal(project?.image, '/media/projects/conciergerie-saint-jean/screens/home-desktop.jpg');
+      assert.equal(project?.mobileImage, '/media/projects/conciergerie-saint-jean/screens/home-mobile1.jpg');
+      assert.equal(project?.videoPoster, '/media/projects/conciergerie-saint-jean/poster.jpg');
+    }
     assert.ok(existsSync(`public${project?.mobileImage}`));
   }
   assert.equal(projects.find(project => project.id === 'csc')?.image, undefined);
