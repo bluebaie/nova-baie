@@ -36,6 +36,65 @@ export function CreativeMotion() {
               scrollTrigger: { trigger: image.closest('[data-c2-art]') ?? image, start: 'top bottom', end: 'bottom top', scrub: 0.7 }
             });
           });
+
+          // Blue Baie's case-study motion follows one current: coast, interface, platform, horizon.
+          // It is scoped to this article, uses native scrolling, and never hides essential content.
+          const blueBaie = document.querySelector<HTMLElement>('.bb-case');
+          if (blueBaie) {
+            gsap.utils.toArray<SVGPathElement>('[data-bb-seam] path', blueBaie).forEach(path => {
+              const length = path.getTotalLength();
+              gsap.fromTo(path, { strokeDasharray: length, strokeDashoffset: length }, {
+                strokeDasharray: length,
+                strokeDashoffset: 0,
+                ease: 'none',
+                immediateRender: false,
+                scrollTrigger: { trigger: path.closest('[data-bb-seam]') ?? path, start: 'top 92%', end: 'bottom 18%', scrub: 0.55, invalidateOnRefresh: true }
+              });
+            });
+
+            gsap.utils.toArray<HTMLElement>('[data-bb-depth="coast"]', blueBaie).forEach(layer => {
+              gsap.fromTo(layer, { yPercent: 3, scale: 1.015 }, {
+                yPercent: -3,
+                scale: 1,
+                ease: 'none',
+                immediateRender: false,
+                scrollTrigger: { trigger: layer, start: 'top bottom', end: 'bottom top', scrub: 0.8, invalidateOnRefresh: true }
+              });
+            });
+
+            const adminShell = blueBaie.querySelector<HTMLElement>('.bb-admin-shell');
+            if (adminShell) {
+              gsap.fromTo(adminShell, { y: 28, scale: 0.985 }, {
+                y: 0,
+                scale: 1,
+                ease: 'none',
+                immediateRender: false,
+                scrollTrigger: { trigger: adminShell, start: 'top 92%', end: 'top 42%', scrub: 0.6, invalidateOnRefresh: true }
+              });
+            }
+
+            gsap.utils.toArray<SVGPathElement>('.bb-system-map .bb-flow-confirmed', blueBaie).forEach(path => {
+              const length = path.getTotalLength();
+              gsap.fromTo(path, { strokeDasharray: length, strokeDashoffset: length }, {
+                strokeDasharray: length,
+                strokeDashoffset: 0,
+                ease: 'none',
+                immediateRender: false,
+                scrollTrigger: { trigger: path.closest('.bb-ecosystem') ?? path, start: 'top 80%', end: 'center 48%', scrub: 0.65, invalidateOnRefresh: true }
+              });
+            });
+
+            const finaleGlow = blueBaie.querySelector<HTMLElement>('.bb-finale-glow');
+            if (finaleGlow) {
+              gsap.fromTo(finaleGlow, { scale: 0.88, opacity: 0.62 }, {
+                scale: 1.06,
+                opacity: 1,
+                ease: 'none',
+                immediateRender: false,
+                scrollTrigger: { trigger: finaleGlow.closest('.bb-finale') ?? finaleGlow, start: 'top bottom', end: 'center 55%', scrub: 0.7, invalidateOnRefresh: true }
+              });
+            }
+          }
         });
       }, document.querySelector('main') ?? document.body);
       cleanup = () => context.revert();
