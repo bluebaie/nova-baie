@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 
-type Item = { src: string; alt: string; label: string; kind: 'screen' | 'photo' };
+type Item = { src: string; alt: string; label: string; description?: string; kind: 'screen' | 'photo' };
 
 export function BlueBaieGallery({ items, label, closeLabel }: { items: Item[]; label: string; closeLabel: string }) {
   const [active, setActive] = useState<Item | null>(null);
@@ -24,7 +24,7 @@ export function BlueBaieGallery({ items, label, closeLabel }: { items: Item[]; l
       </button>)}
     </div>
     <dialog ref={dialog} className="bb-lightbox" aria-label={active?.label ?? label} onClose={() => setActive(null)} onClick={(event) => { if (event.target === dialog.current) setActive(null); }}>
-      {active && <div className="bb-lightbox-content"><button type="button" className="bb-lightbox-close" onClick={() => setActive(null)} aria-label={closeLabel}><X aria-hidden="true" /></button><Image src={active.src} alt={active.alt} fill sizes="95vw" quality={92} priority /><p>{active.label}</p></div>}
+      {active && <div className="bb-lightbox-content"><button type="button" className="bb-lightbox-close" onClick={() => setActive(null)} aria-label={closeLabel}><X aria-hidden="true" /></button><Image src={active.src} alt={active.alt} fill sizes="95vw" quality={92} priority /><div className="bb-lightbox-caption"><p>{active.label}</p>{active.description && <p>{active.description}</p>}</div></div>}
     </dialog>
   </>;
 }

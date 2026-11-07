@@ -7,6 +7,8 @@ import { projects, localizeProjects, featuredProjectIds } from '../src/lib/proje
 import { expertiseIds, processIds } from '../src/lib/expertises';
 import { getActualites } from '../src/lib/actualites-data';
 import { buildStructuredData } from '../src/lib/structured-data';
+import { blueBaieCaseMedia, getPublishedCaseMedia } from '../src/lib/project-case-media';
+import { blueBaieCaseContent } from '../src/lib/blue-baie-case-content';
 
 function keys(value: unknown, prefix = ''): string[] {
   if (!value || typeof value !== 'object') return [prefix];
@@ -69,6 +71,27 @@ test('historical publications retain dates and existing images with translated c
   assert.deepEqual(french.map(({ id, date, images }) => ({ id, date, images })), english.map(({ id, date, images }) => ({ id, date, images })));
   assert.ok(english.every(item => item.title && item.body && !item.body.includes('Nous concevons')));
   for (const item of french) for (const image of item.images) assert.ok(existsSync(`public${image}`));
+});
+
+test('Blue Baie case media is localized, ordered and excludes private or unverified operations media', () => {
+  assert.equal(new Set(blueBaieCaseMedia.map(item => item.id)).size, blueBaieCaseMedia.length);
+  for (const item of blueBaieCaseMedia) {
+    assert.equal(item.projectId, 'blue-baie');
+    assert.ok(item.title.fr && item.title.en && item.description.fr && item.description.en && item.alt.fr && item.alt.en);
+    if (item.placement === 'operations-evidence' && item.status !== 'published') assert.equal(item.src, undefined);
+    if (item.src) assert.ok(existsSync(`public${item.src}`), `missing media: ${item.src}`);
+  }
+  const publicGallery = getPublishedCaseMedia(blueBaieCaseMedia, 'public-gallery');
+  assert.deepEqual(publicGallery.map(item => item.order), [...publicGallery].map(item => item.order).sort((a, b) => a - b));
+  assert.ok(publicGallery.length >= 6);
+  assert.ok(publicGallery.every(item => item.src && item.status === 'published'));
+  assert.ok(!publicGallery.some(item => /keycafe|capture d'écran|220943/i.test(item.src ?? '')));
+  assert.ok(blueBaieCaseMedia.some(item => item.kind === 'operations-dashboard' && item.status === 'privacy-review' && !item.src));
+  assert.ok(blueBaieCaseMedia.some(item => item.kind === 'ai-workflow' && item.status === 'needs-verification' && !item.src));
+  for (const locale of ['fr', 'en'] as const) {
+    const copy = blueBaieCaseContent[locale];
+    assert.match(`${copy.platformTitle} ${copy.platformIntro} ${copy.automationTitle} ${copy.automationBody}`, /plateforme|automatis|platform|automat/i);
+  }
 });
 
 test('public copy and schema contain no legacy packages, prices or automatic commitments', () => {

@@ -16,6 +16,31 @@ for (const [slug, style] of [
     await expect(page.locator(`[data-case-style="${style}"]`)).toBeVisible();
     await expect(page.locator('h1')).toContainText(slug === 'blue-baie-conciergerie' ? 'Blue Baie' : 'Saint-Jean');
 
+    const demo = page.locator('.bb-admin-demo');
+    await demo.scrollIntoViewIfNeeded();
+    await expect(demo.getByText('Interface de démonstration — données fictives').first()).toBeVisible();
+    await demo.locator('.bb-admin-content').evaluate(el => Promise.all(el.getAnimations().map(animation => animation.finished.catch(() => undefined))));
+    await demo.locator('.bb-admin-shell').screenshot({ path: 'test-results/lot-c5-1-admin-demo-desktop.png' });
+    await expect(demo.getByRole('tab')).toHaveCount(8);
+    await demo.getByRole('tab', { name: /Réservations/ }).focus();
+    await page.keyboard.press('Enter');
+    await expect(demo.getByRole('tabpanel')).toContainText('La Dune Claire');
+    await expect(demo.getByRole('tabpanel')).toContainText('Planning des séjours');
+    const panels = ['Vue d’ensemble', 'Réservations', 'Logements', 'Fiche logement', 'Facturation', 'Contenus', 'Visibilité & SEO', 'Intégrations & IA'];
+    for (const [index, title] of panels.entries()) {
+      const tab = demo.getByRole('tab').nth(index);
+      await tab.click();
+      await expect(demo.getByRole('tabpanel').getByRole('heading', { level: 3 })).toHaveText(title);
+      await expect(demo.getByText('Interface de démonstration — données fictives').last()).toBeVisible();
+    }
+    await demo.getByRole('tab', { name: /Intégrations & IA/ }).click();
+    await expect(demo.getByRole('tabpanel')).toContainText('Beds24');
+    await expect(demo.getByRole('tabpanel')).toContainText('Keycafe');
+    await expect(demo.getByRole('tabpanel')).toContainText('Périmètre à qualifier');
+    await expect(demo.getByRole('tabpanel')).toContainText('Interface de démonstration — données fictives');
+    await demo.locator('.bb-admin-content').evaluate(el => Promise.all(el.getAnimations().map(animation => animation.finished.catch(() => undefined))));
+    await demo.locator('.bb-admin-shell').screenshot({ path: 'test-results/lot-c5-1-admin-integrations-desktop.png' });
+
     const clientVisit = page.locator('.bb-visit');
     await expect(clientVisit).toHaveAttribute('target', '_blank');
     await expect(clientVisit).toHaveAttribute('rel', 'noopener noreferrer');
@@ -50,6 +75,10 @@ for (const [slug, style] of [
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(`/realisations/${slug}`);
+    await page.locator('.bb-admin-demo').scrollIntoViewIfNeeded();
+    await expect.poll(() => page.locator('.bb-demo-kpis').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
+    await page.locator('.bb-admin-content').evaluate(el => Promise.all(el.getAnimations().map(animation => animation.finished.catch(() => undefined))));
+    await page.locator('.bb-admin-demo .bb-admin-shell').screenshot({ path: 'test-results/lot-c5-1-admin-demo-mobile.png' });
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('.bb-hero-screen img')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -69,6 +98,11 @@ test('C5 Blue Baie English route has localized metadata, gallery and no horizont
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/en\/realisations\/blue-baie-conciergerie$/);
   await expect(page.locator('link[hreflang="fr"]')).toHaveAttribute('href', /\/realisations\/blue-baie-conciergerie$/);
   await expect(page.locator('.bb-gallery-item')).toHaveCount(8);
+  const demo = page.locator('.bb-admin-demo');
+  await demo.scrollIntoViewIfNeeded();
+  await expect(demo.getByText('Demonstration interface — fictional data').first()).toBeVisible();
+  await demo.getByRole('tab', { name: /Integrations & AI/ }).click();
+  await expect(demo.getByRole('tabpanel')).toContainText('Future direction');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 

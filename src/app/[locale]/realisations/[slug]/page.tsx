@@ -61,7 +61,7 @@ export default async function ProjectCasePage({ params }: Props) {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
   </>;
   if (project.id === 'blue-baie') return <>
-    <BlueBaieCase locale={locale} gallery={project.gallery} />
+    <BlueBaieCase locale={locale} media={project.caseMedia ?? []} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
   </>;
   return <>

@@ -1,3 +1,5 @@
+import { blueBaieCaseMedia, getPublishedCaseMedia, type ProjectCaseMedia } from './project-case-media';
+
 export type Locale = 'fr' | 'en';
 export type ProjectStatus = 'completed' | 'finalizing';
 export type ProjectDetailStatus = 'published' | 'draft';
@@ -40,6 +42,7 @@ export type Project = {
   image?: string;
   mobileImage?: string;
   gallery: string[];
+  caseMedia?: readonly ProjectCaseMedia[];
   video?: string;
   videoPoster?: string;
   logo?: string;
@@ -59,12 +62,13 @@ export const projects: readonly Project[] = [
     title: { fr: 'Blue Baie Conciergerie', en: 'Blue Baie Conciergerie' },
     externalUrl: 'https://www.bluebaie.fr/', externalUrlCheckedOn: '2026-11-06',
     image: '/media/projects/blue-baie/screens/home-desktop.png', mobileImage: '/media/projects/blue-baie/screens/home-mobile1.jpg',
-    gallery: ['/media/projects/blue-baie/screens/home-desktop.png', '/media/projects/blue-baie/screens/home-mobile1.jpg', '/media/projects/blue-baie/screens/services.png', '/media/projects/blue-baie/screens/logements.png', '/media/projects/blue-baie/screens/logement-detail.png', '/media/projects/blue-baie/screens/secteurs.png', '/media/projects/blue-baie/screens/contact.png', '/media/projects/blue-baie/screens/mobile2.jpg'], logo: '/media/projects/blue-baie/images/logo/logo-bluebaie.png', categoryId: 'business-ecosystem',
+    gallery: getPublishedCaseMedia(blueBaieCaseMedia, 'public-gallery').map(item => item.src), caseMedia: blueBaieCaseMedia,
+    logo: '/media/projects/blue-baie/images/logo/logo-bluebaie.png', categoryId: 'business-ecosystem',
     expertiseIds: ['web', 'business', 'automation'], technologyIds: [],
     copy: {
       fr: {
-        category: 'Site public & écosystème métier', summary: 'Relier la présence publique aux outils qui font fonctionner l’activité.',
-        description: 'Un site public et un écosystème métier avancé : réservations, intégrations, automatisations et administration. Les parcours visiteurs et le fonctionnement opérationnel se répondent, sans exposer les données internes.',
+        category: 'Plateforme métier · site public · automatisations', summary: 'Un site public prolongé par une plateforme métier et des automatisations.',
+        description: 'Au-delà du site public, le projet comprend une application métier, un espace d’administration, un planning opérationnel et un périmètre d’intégrations et d’automatisations. Les détails privés et les connexions internes ne sont pas exposés.',
         tags: ['Site public', 'Outils métier', 'Automatisation'], imageAlt: 'Page publique de Blue Baie Conciergerie',
         caseStudy: {
           visualVariant: 'ecosystem',
@@ -82,8 +86,8 @@ export const projects: readonly Project[] = [
         }
       },
       en: {
-        category: 'Public website & business ecosystem', summary: 'Connecting the public presence with the tools behind daily operations.',
-        description: 'A public website and a business ecosystem spanning bookings, integrations, automation and administration. Visitor journeys connect with operational needs without exposing internal data.',
+        category: 'Business platform · public website · automation', summary: 'A public website extended by business tools and automation.',
+        description: 'Beyond the public website, the project includes a business application, an administration area, operational scheduling and a scope covering integrations and automation. Private details and internal connections are not exposed.',
         tags: ['Public website', 'Business tools', 'Automation'], imageAlt: 'Public website of Blue Baie Conciergerie',
         caseStudy: {
           visualVariant: 'ecosystem',
