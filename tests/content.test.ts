@@ -48,7 +48,7 @@ test('six stable, fully translated project identities; CSC remains unfinished', 
     const project = projects.find(project => project.id === id);
     if (id === 'blue-baie') {
       assert.equal(project?.image, '/media/projects/blue-baie/screens/home-desktop.png');
-      assert.equal(project?.mobileImage, '/media/projects/blue-baie/screens/home-mobile1.jpg');
+      assert.equal(project?.mobileImage, '/media/projects/blue-baie/screens/derived/home-mobile-clean.webp');
       assert.equal(project?.logo, '/media/projects/blue-baie/images/logo/logo-bluebaie.png');
       assert.ok(project?.gallery.length >= 6);
       assert.ok(project?.copy.fr.caseStudy?.metaTitle.includes('Baie de Somme'));

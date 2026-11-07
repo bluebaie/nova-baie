@@ -61,7 +61,7 @@ export const projects: readonly Project[] = [
     portfolioVisible: true, homeVisible: true, homeOrder: 1, portfolioOrder: 1,
     title: { fr: 'Blue Baie Conciergerie', en: 'Blue Baie Conciergerie' },
     externalUrl: 'https://www.bluebaie.fr/', externalUrlCheckedOn: '2026-11-06',
-    image: '/media/projects/blue-baie/screens/home-desktop.png', mobileImage: '/media/projects/blue-baie/screens/home-mobile1.jpg',
+    image: '/media/projects/blue-baie/screens/home-desktop.png', mobileImage: '/media/projects/blue-baie/screens/derived/home-mobile-clean.webp',
     gallery: getPublishedCaseMedia(blueBaieCaseMedia, 'public-gallery').map(item => item.src), caseMedia: blueBaieCaseMedia,
     logo: '/media/projects/blue-baie/images/logo/logo-bluebaie.png', categoryId: 'business-ecosystem',
     expertiseIds: ['web', 'business', 'automation'], technologyIds: [],

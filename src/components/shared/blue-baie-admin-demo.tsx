@@ -40,7 +40,7 @@ export function BlueBaieAdminDemo({ locale }: { locale: string }) {
   const [active, setActive] = useState(0);
   const english = lang === 'en';
 
-  return <section className="bb-admin-demo section-padding" aria-labelledby="bb-admin-title">
+  return <section id="bb-admin-section" className="bb-admin-demo section-padding" aria-labelledby="bb-admin-title">
     <div className="container">
       <header className="bb-admin-heading"><p className="bb-eyebrow">{t.eyebrow}</p><h2 id="bb-admin-title">{t.title}</h2><p>{t.intro}</p></header>
       <div className="bb-admin-shell">

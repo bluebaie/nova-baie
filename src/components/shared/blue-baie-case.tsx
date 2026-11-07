@@ -38,7 +38,7 @@ export function BlueBaieCase({ locale, media }: { locale: string; media: readonl
           <div className="bb-hero-art" data-c2-art>
             <div className="bb-hero-coast"><Image src={`${root}/images/baie-saint-valery-hero.jpg`} alt="Vue de la Baie de Somme près de Saint-Valery" fill sizes="(min-width: 1024px) 52vw, 100vw" priority quality={88}/></div>
             <div className="bb-hero-screen"><Image src={`${root}/screens/home-desktop.png`} alt="Capture du site public Blue Baie sur ordinateur" fill sizes="(min-width: 1024px) 45vw, 90vw" priority fetchPriority="high" quality={90}/></div>
-            <div className="bb-hero-phone"><Image src={`${root}/screens/home-mobile1.jpg`} alt="Capture mobile du site Blue Baie" fill sizes="(min-width: 1024px) 12vw, 28vw" quality={90}/></div>
+            <div className="bb-hero-phone"><Image src={`${root}/screens/derived/home-mobile-clean.webp`} alt="Capture mobile du site Blue Baie, sans interface système" fill sizes="(min-width: 1024px) 12vw, 28vw" quality={90}/></div>
             <svg viewBox="0 0 800 500" fill="none" aria-hidden="true"><path data-draw d="M4 370C160 190 260 450 408 246S625 104 798 148"/><path data-draw d="M18 407C177 227 276 487 425 283S641 141 800 185"/></svg>
             <span className="bb-coordinate">50°11′ N · 1°38′ E</span>
           </div>
@@ -56,9 +56,9 @@ export function BlueBaieCase({ locale, media }: { locale: string; media: readonl
       <div className="bb-platform-heading"><div><p className="bb-eyebrow">{text.platformEyebrow}</p><h2>{text.platformTitle}</h2></div><p>{text.platformIntro}</p></div>
       <div className="bb-platform-rows">{platformRows.map((row, index) => <article className="bb-platform-row" key={row.title}>
         <span className="bb-platform-index">{String(index + 1).padStart(2, '0')}</span>
-        <div><p className="bb-platform-evidence">{row.evidence}</p><h3>{row.title}</h3></div>
+        <div className="bb-platform-title"><p className="bb-platform-evidence">{row.evidence}</p><h3>{row.title}</h3></div>
         <p className="bb-platform-description">{row.body}</p>
-        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="22"/><path d={index === 0 ? 'M18 34h28M32 18v28' : index === 1 ? 'M18 32h28M32 18l14 14-14 14' : index === 2 ? 'M20 20h24v24H20zM25 27h14M25 33h14M25 39h8' : 'M15 42c12-24 22-24 34-20M39 16l10 6-8 8'} /></svg>
+        <svg className="bb-platform-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="22"/><path d={index === 0 ? 'M18 34h28M32 18v28' : index === 1 ? 'M18 32h28M32 18l14 14-14 14' : index === 2 ? 'M20 20h24v24H20zM25 27h14M25 33h14M25 39h8' : 'M15 42c12-24 22-24 34-20M39 16l10 6-8 8'} /></svg>
       </article>)}</div>
       <p className="bb-platform-privacy">{text.privateMediaNote}</p>
     </Container></section>
