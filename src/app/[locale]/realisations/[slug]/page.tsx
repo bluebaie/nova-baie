@@ -1,3 +1,4 @@
+import { RefugeMarmotteCase } from '@/components/shared/refuge-marmotte-case';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -56,6 +57,10 @@ export default async function ProjectCasePage({ params }: Props) {
     creator: { '@type': 'Organization', name: 'Nova Baie', url: 'https://www.nova-baie.com' },
     url: `https://www.nova-baie.com${locale === 'en' ? '/en' : ''}/realisations/${project.slug}`
   };
+  if (project.id === 'refuge-marmotte') return <>
+    <RefugeMarmotteCase locale={locale} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
+  </>;
   if (project.id === 'saint-jean') return <>
     <SaintJeanCase locale={locale} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />

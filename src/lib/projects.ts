@@ -194,14 +194,22 @@ export const projects: readonly Project[] = [
     }
   },
   {
-    id: 'refuge-marmotte', slug: 'le-refuge-de-la-marmotte', status: 'completed', detailStatus: 'draft',
+    id: 'refuge-marmotte', slug: 'le-refuge-de-la-marmotte', status: 'completed', detailStatus: 'published',
     portfolioVisible: true, homeVisible: false, homeOrder: null, portfolioOrder: 6,
     title: { fr: 'Le Refuge de la Marmotte', en: 'Le Refuge de la Marmotte' }, externalUrl: 'https://www.ski-saintefoy.com/',
-    externalUrlCheckedOn: '2026-11-06', image: '/images/project-ski-saintefoy.jpg', gallery: ['/images/project-ski-saintefoy.jpg'], video: '/videos/sainte-foy-demo.mp4',
+    externalUrlCheckedOn: '2026-11-09', image: '/media/projects/le-refuge-de-la-marmotte/optimized/home.webp', gallery: ['/media/projects/le-refuge-de-la-marmotte/optimized/home.webp', '/media/projects/le-refuge-de-la-marmotte/optimized/gallery.webp', '/media/projects/le-refuge-de-la-marmotte/optimized/contact.webp'],
     categoryId: 'hospitality', expertiseIds: ['identity', 'web'], technologyIds: [],
     copy: {
-      fr: { category: 'Site d’hébergement en montagne', summary: 'Présenter un hébergement et préparer le séjour.', description: 'Un site consacré à un hébergement à Sainte-Foy-Tarentaise : galerie, présentation du confort, localisation et accès à la réservation.', tags: ['Hébergement', 'Galerie', 'Site web'], imageAlt: 'Capture du site Le Refuge de la Marmotte, réalisé par Nova Baie' },
-      en: { category: 'Mountain accommodation website', summary: 'Presenting a property and helping visitors plan their stay.', description: 'A website for accommodation in Sainte-Foy-Tarentaise, with a gallery, amenities, location and access to booking.', tags: ['Accommodation', 'Gallery', 'Website'], imageAlt: 'Screenshot of the Le Refuge de la Marmotte website by Nova Baie' }
+      fr: { category: 'Site sur mesure · hébergement alpin', summary: 'De l’immensité des Alpes à l’intimité d’un refuge.', description: 'Direction artistique et création d’un site internet pour un appartement duplex à Sainte-Foy-Tarentaise : photographies, informations de séjour et parcours vers la réservation.', tags: ['Direction artistique', 'Hébergement', 'Site sur mesure'], imageAlt: 'Capture authentique de l’accueil du site Le Refuge de la Marmotte', caseStudy: {
+        visualVariant: 'editorial', activity: 'Appartement duplex pour quatre voyageurs.', location: 'Sainte-Foy-Tarentaise · Alpes françaises',
+        metaTitle: 'Site internet d’hébergement à Sainte-Foy-Tarentaise | Nova Baie', metaDescription: 'Le Refuge de la Marmotte : création de site internet, web design et direction artistique pour un appartement à Sainte-Foy-Tarentaise. Étude de cas Nova Baie.',
+        intro: 'De l’immensité des Alpes à l’intimité d’un refuge.', context: 'Un appartement duplex pour quatre voyageurs à Sainte-Foy-Tarentaise.', need: 'Faire découvrir l’appartement et rendre les informations de séjour accessibles.', intervention: 'Conception et développement du site, direction artistique digitale et organisation du parcours visiteur.', artDirection: 'Photographies de montagne, intérieurs boisés, contrastes noirs et blancs et panneaux clairs arrondis.', scope: ['Direction artistique', 'Création de site internet sur mesure', 'Conception éditoriale', 'Parcours de découverte, contact et réservation externe']
+      } },
+      en: { category: 'Bespoke website · alpine accommodation', summary: 'From the vastness of the Alps to the intimacy of a refuge.', description: 'Art direction and a bespoke website for a duplex apartment in Sainte-Foy-Tarentaise, with photography, stay information and a route to booking.', tags: ['Art direction', 'Accommodation', 'Bespoke website'], imageAlt: 'Authentic homepage capture of Le Refuge de la Marmotte', caseStudy: {
+        visualVariant: 'editorial', activity: 'Duplex apartment for four guests.', location: 'Sainte-Foy-Tarentaise · French Alps',
+        metaTitle: 'Accommodation website in Sainte-Foy-Tarentaise | Nova Baie', metaDescription: 'Le Refuge de la Marmotte: bespoke website design, development and art direction for an apartment in Sainte-Foy-Tarentaise. A Nova Baie case study.',
+        intro: 'From the vastness of the Alps to the intimacy of a refuge.', context: 'A duplex apartment for four guests in Sainte-Foy-Tarentaise.', need: 'Introduce the apartment and make stay information easy to find.', intervention: 'Website design and development, digital art direction and visitor journey design.', artDirection: 'Mountain photography, wood interiors, black-and-white contrasts and light rounded panels.', scope: ['Art direction', 'Bespoke website development', 'Editorial design', 'Discovery, contact and external booking journey']
+      } }
     }
   }
 ];

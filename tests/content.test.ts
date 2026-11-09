@@ -43,7 +43,7 @@ test('six stable, fully translated project identities; CSC remains unfinished', 
   assert.equal(new Set(projects.map(project => project.portfolioOrder)).size, projects.length);
   assert.ok(projects.filter(project => project.homeVisible).every(project => project.homeOrder !== null));
   assert.ok(projects.filter(project => project.detailStatus === 'published').every(project => project.copy.fr.caseStudy && project.copy.en.caseStudy));
-  assert.ok(projects.filter(project => project.externalUrl).every(project => project.externalUrl?.startsWith('https://') && project.externalUrlCheckedOn === '2026-11-06'));
+  assert.ok(projects.filter(project => project.externalUrl).every(project => project.externalUrl?.startsWith('https://') && /^\d{4}-\d{2}-\d{2}$/.test(project.externalUrlCheckedOn ?? '')));
   for (const id of ['blue-baie', 'saint-jean']) {
     const project = projects.find(project => project.id === id);
     if (id === 'blue-baie') {
