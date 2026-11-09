@@ -1,4 +1,5 @@
 import { RefugeMarmotteCase } from '@/components/shared/refuge-marmotte-case';
+import { CyclosportCase } from '@/components/shared/cyclosport-case';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project?.copy.caseStudy) return { robots: { index: false, follow: false } };
   const path = `/realisations/${project.slug}`;
   const canonical = localeAlternates(locale, path);
-  const shareImage = project.id === 'saint-jean' ? '/media/projects/conciergerie-saint-jean/brand/og-saint-jean.jpg' : project.id === 'blue-baie' ? '/media/projects/blue-baie/images/og/blue-baie-og.jpg' : project.image;
+  const shareImage = project.id === 'csc' ? '/media/projects/csc/optimized/og-cyclosport-crotellois.jpg' : project.id === 'saint-jean' ? '/media/projects/conciergerie-saint-jean/brand/og-saint-jean.jpg' : project.id === 'blue-baie' ? '/media/projects/blue-baie/images/og/blue-baie-og.jpg' : project.image;
   return {
     title: { absolute: project.copy.caseStudy.metaTitle },
     description: project.copy.caseStudy.metaDescription,
@@ -57,6 +58,27 @@ export default async function ProjectCasePage({ params }: Props) {
     creator: { '@type': 'Organization', name: 'Nova Baie', url: 'https://www.nova-baie.com' },
     url: `https://www.nova-baie.com${locale === 'en' ? '/en' : ''}/realisations/${project.slug}`
   };
+  if (project.id === 'csc') {
+    const home = `https://www.nova-baie.com${locale === 'en' ? '/en' : ''}`;
+    const { '@context': _context, ...work } = graph;
+    void _context;
+    const cscGraph = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        { ...work, image: 'https://www.nova-baie.com/media/projects/csc/optimized/og-cyclosport-crotellois.jpg', keywords: detail.scope.join(', '),
+          about: { '@type': 'SportsOrganization', name: 'CycloSport Crotellois', sport: locale === 'en' ? 'Cycling' : 'Cyclisme', url: project.externalUrl, address: { '@type': 'PostalAddress', addressLocality: 'Le Crotoy', addressRegion: 'Hauts-de-France', addressCountry: 'FR' } } },
+        { '@type': 'BreadcrumbList', itemListElement: [
+          { '@type': 'ListItem', position: 1, name: locale === 'en' ? 'Home' : 'Accueil', item: home },
+          { '@type': 'ListItem', position: 2, name: locale === 'en' ? 'Projects' : 'Réalisations', item: `${home}/realisations` },
+          { '@type': 'ListItem', position: 3, name: project.title, item: graph.url }
+        ] }
+      ]
+    };
+    return <>
+      <CyclosportCase locale={locale} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(cscGraph).replace(/</g, '\\u003c') }} />
+    </>;
+  }
   if (project.id === 'refuge-marmotte') return <>
     <RefugeMarmotteCase locale={locale} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />

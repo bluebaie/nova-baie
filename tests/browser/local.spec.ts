@@ -156,7 +156,8 @@ for (const prefix of ['', '/en']) {
     page.on('request', request => { if (request.url().includes('.mp4')) videos.push(request.url()); });
     await page.goto(prefix || '/');
     await expect(page.locator('main > section')).toHaveCount(6);
-    await expect(page.locator('[data-project]')).toHaveCount(3);
+    await expect(page.locator('[data-project]')).toHaveCount(4);
+    await expect(page.locator('[data-project]').first()).toHaveAttribute('data-project', 'csc');
     for (const image of await page.locator('[data-project] img').all()) {
       await image.scrollIntoViewIfNeeded();
       await expect.poll(() => image.evaluate(element => (element as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
@@ -165,8 +166,8 @@ for (const prefix of ['', '/en']) {
     await page.screenshot({ path: `test-results/lot-b-home-${prefix ? 'en' : 'fr'}-desktop.png`, fullPage: true });
     await page.goto(`${prefix}/realisations`);
     await expect(page.locator('[data-project]')).toHaveCount(6);
-    await expect(page.locator('[data-project="csc"]')).toContainText(prefix ? 'Being finalised' : 'En finalisation');
-    await expect(page.locator('[data-project="csc"] a')).toHaveCount(0);
+    await expect(page.locator('[data-project]').first()).toHaveAttribute('data-project', 'csc');
+    await expect(page.locator('[data-project="csc"] [data-project-visit]')).toHaveAttribute('href', 'https://www.cyclosportcrotellois.fr/');
     await expect(page.locator('[data-project="saint-jean"] [data-project-visit]')).toHaveAttribute('href', 'https://conciergeriesaintjean.fr/');
     await expect(page.locator('[data-project="saint-jean"] [data-project-visit]')).toHaveAttribute('rel', 'noopener noreferrer');
     expect(videos).toHaveLength(0);

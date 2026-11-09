@@ -1387,3 +1387,19 @@ body {
   .case-editorial-plate>p { max-width: 34ch; }
   .case-editorial-plate svg { width: 90%; opacity: .5; }
 }
+
+/* LOT C.9 — CycloSport Crotellois flagship card: full-width feature at the top of the home selection and portfolio. */
+.projects-grid .project-card--flagship:first-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: clamp(1.5rem,4vw,4rem); align-items: center; padding-bottom: 2rem; }
+.projects-grid .project-card--flagship:first-child .project-copy h3 { font-size: clamp(2rem,3.6vw,3.6rem); }
+.projects-grid--home .project-card--flagship:first-child + .project-card { grid-column: span 7; padding-top: 0; }
+.projects-grid--home .project-card--flagship:first-child + .project-card + .project-card:not(:last-child) { grid-column: span 5; padding-top: 7rem; }
+@media (max-width: 63.99rem) {
+  .projects-grid .project-card--flagship:first-child { grid-template-columns: minmax(0,1fr); gap: 0; }
+  .projects-grid--home .project-card--flagship:first-child + .project-card,
+  .projects-grid--home .project-card--flagship:first-child + .project-card + .project-card:not(:last-child) { grid-column: span 6; padding-top: 0; }
+}
+@media (max-width: 47.99rem) {
+  .projects-grid .project-card--flagship:first-child,
+  .projects-grid--home .project-card--flagship:first-child + .project-card,
+  .projects-grid--home .project-card--flagship:first-child + .project-card + .project-card:not(:last-child) { grid-column: 1; display: block; padding-top: 0; }
+}

@@ -35,15 +35,13 @@ test('six stable, fully translated project identities; CSC remains unfinished', 
       if (project.video) assert.ok(existsSync(`public${project.video}`));
     }
   }
-  assert.equal(projects.find(project => project.id === 'csc')?.status, 'finalizing');
-  assert.equal(projects.find(project => project.id === 'csc')?.externalUrl, undefined);
-  assert.equal(projects.find(project => project.id === 'csc')?.detailStatus, 'draft');
   assert.ok(featuredProjectIds.every(id => projects.some(project => project.id === id)));
   assert.ok(projects.every(project => project.slug && project.portfolioOrder && Array.isArray(project.technologyIds)));
   assert.equal(new Set(projects.map(project => project.portfolioOrder)).size, projects.length);
   assert.ok(projects.filter(project => project.homeVisible).every(project => project.homeOrder !== null));
   assert.ok(projects.filter(project => project.detailStatus === 'published').every(project => project.copy.fr.caseStudy && project.copy.en.caseStudy));
-  assert.ok(projects.filter(project => project.externalUrl).every(project => project.externalUrl?.startsWith('https://') && /^\d{4}-\d{2}-\d{2}$/.test(project.externalUrlCheckedOn ?? '')));
+  // The CSC official domain is checked during the global pre-publication review, so it carries no check date yet.
+  assert.ok(projects.filter(project => project.externalUrl).every(project => project.externalUrl?.startsWith('https://') && (project.id === 'csc' || /^\d{4}-\d{2}-\d{2}$/.test(project.externalUrlCheckedOn ?? ''))));
   for (const id of ['blue-baie', 'saint-jean']) {
     const project = projects.find(project => project.id === id);
     if (id === 'blue-baie') {
@@ -61,7 +59,28 @@ test('six stable, fully translated project identities; CSC remains unfinished', 
     }
     assert.ok(existsSync(`public${project?.mobileImage}`));
   }
-  assert.equal(projects.find(project => project.id === 'csc')?.image, undefined);
+});
+
+test('CycloSport Crotellois is the published flagship, first in portfolio and home, with its official domain', () => {
+  const project = projects.find(item => item.id === 'csc');
+  assert.equal(project?.slug, 'cyclosport-crotellois');
+  assert.equal(project?.status, 'completed');
+  assert.equal(project?.detailStatus, 'published');
+  assert.equal(project?.flagship, true);
+  assert.equal(project?.externalUrl, 'https://www.cyclosportcrotellois.fr/');
+  assert.ok(!JSON.stringify(project).includes('vercel.app'));
+  assert.deepEqual(localizeProjects('fr').map(item => item.id), ['csc', 'blue-baie', 'saint-jean', 'bout-du-monde', 'gites-en-baie', 'refuge-marmotte']);
+  assert.equal(featuredProjectIds[0], 'csc');
+  for (const src of [project?.image, project?.logo, ...(project?.gallery ?? [])]) assert.ok(src && existsSync(`public${src}`), src);
+  for (const locale of ['fr', 'en'] as const) {
+    const copy = project?.copy[locale];
+    assert.ok(copy?.caseStudy?.metaTitle && copy.caseStudy.metaTitle.length <= 70, copy?.caseStudy?.metaTitle);
+    assert.ok(copy?.caseStudy?.metaDescription && copy.caseStudy.metaDescription.length <= 170);
+    assert.ok(!/bientôt|en construction|finalisation|coming soon|under construction/i.test(JSON.stringify(copy)));
+  }
+  for (const name of ['admin-news.webp', 'admin-members.webp', 'admin-partners.webp', 'admin-media.webp', 'peloton.webp', 'cyclocross.webp', 'og-cyclosport-crotellois.jpg']) {
+    assert.ok(existsSync(`public/media/projects/csc/optimized/${name}`), name);
+  }
 });
 
 test('historical publications retain dates and existing images with translated copy', () => {

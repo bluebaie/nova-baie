@@ -33,6 +33,8 @@ export type Project = {
   status: ProjectStatus;
   detailStatus: ProjectDetailStatus;
   portfolioVisible: boolean;
+  /** Flagship project: displayed as a full-width feature at the top of the home selection. */
+  flagship?: boolean;
   homeVisible: boolean;
   homeOrder: number | null;
   portfolioOrder: number;
@@ -57,8 +59,66 @@ export type Project = {
 // Technology names are intentionally empty until a verified public scope exists.
 export const projects: readonly Project[] = [
   {
-    id: 'blue-baie', slug: 'blue-baie-conciergerie', status: 'completed', detailStatus: 'published',
+    // Flagship case study. The official domain is the permanent link; its DNS
+    // and HTTPS are checked during Nova Baie's global pre-publication review,
+    // so no verification date is recorded here until that check succeeds.
+    id: 'csc', slug: 'cyclosport-crotellois', status: 'completed', detailStatus: 'published', flagship: true,
     portfolioVisible: true, homeVisible: true, homeOrder: 1, portfolioOrder: 1,
+    title: { fr: 'CycloSport Crotellois', en: 'CycloSport Crotellois' },
+    externalUrl: 'https://www.cyclosportcrotellois.fr/',
+    image: '/media/projects/csc/optimized/home-hero.webp',
+    gallery: [
+      '/media/projects/csc/optimized/home-hero.webp',
+      '/media/projects/csc/optimized/home-practices.webp',
+      '/media/projects/csc/optimized/club-terrains.webp',
+      '/media/projects/csc/optimized/hors-bitume.webp',
+      '/media/projects/csc/optimized/actualites.webp',
+      '/media/projects/csc/optimized/contact.webp'
+    ],
+    logo: '/media/projects/csc/identite-csc/logo-maillot-csc.webp', categoryId: 'association',
+    expertiseIds: ['identity', 'web', 'business'], technologyIds: [],
+    copy: {
+      fr: {
+        category: 'Plateforme associative · site public · back-office', summary: 'Un écosystème digital pour un club cycliste en Baie de Somme.',
+        description: 'Direction artistique, site public et back-office sur mesure pour le club cycliste du Crotoy : actualités, événements, inscriptions, partenaires, médias, messages, rôles et permissions.',
+        tags: ['Plateforme associative', 'Back-office sur mesure', 'Next.js · Supabase'], imageAlt: 'Accueil du site du CycloSport Crotellois : deux cyclistes du club et le titre « Rouler ensemble, entre terre et mer »',
+        caseStudy: {
+          visualVariant: 'ecosystem',
+          activity: 'Club cycliste : route, gravel, VTT, cyclo-cross et beach race.',
+          location: 'Le Crotoy · Baie de Somme',
+          metaTitle: 'Site et plateforme pour club cycliste en Baie de Somme | Nova Baie',
+          metaDescription: 'Étude de cas CycloSport Crotellois : site internet d’un club cycliste au Crotoy et back-office sur mesure (Next.js, Supabase) pour actualités, événements et inscriptions.',
+          intro: 'Une identité en mouvement, un site public et un moteur métier pour la vie du club.',
+          context: 'Le CycloSport Crotellois est un club cycliste du Crotoy, en Baie de Somme. Ses membres roulent sur route et hors bitume : gravel, VTT, cyclo-cross et beach race.',
+          need: 'Réunir dans un même environnement la communication du club, ses contenus et ses fonctions associatives, et permettre au bureau de les gérer lui-même.',
+          intervention: 'Nova Baie a conçu la direction artistique web, développé le site public et un back-office sur mesure : actualités, nouveaux membres, événements, inscriptions, partenaires, médias, messages, utilisateurs, rôles et journal d’activité.',
+          artDirection: 'Noir, orange et typographie condensée prolongent le maillot du club. Le concept « Baie en mouvement » relie la photographie sportive, les tracés graphiques et le territoire.',
+          scope: ['Direction artistique web', 'Site public', 'Back-office sur mesure', 'Événements et inscriptions', 'Rôles et permissions']
+        }
+      },
+      en: {
+        category: 'Club platform · public website · back office', summary: 'A digital ecosystem for a cycling club in the Bay of Somme.',
+        description: 'Web art direction, a public website and a bespoke back office for the Le Crotoy cycling club: news, events, registrations, partners, media, messages, roles and permissions.',
+        tags: ['Club platform', 'Bespoke back office', 'Next.js · Supabase'], imageAlt: 'CycloSport Crotellois homepage: two club riders and the headline “Rouler ensemble, entre terre et mer”',
+        caseStudy: {
+          visualVariant: 'ecosystem',
+          activity: 'Cycling club: road, gravel, mountain biking, cyclo-cross and beach racing.',
+          location: 'Le Crotoy · Bay of Somme',
+          metaTitle: 'Cycling club website and platform in the Bay of Somme | Nova Baie',
+          metaDescription: 'CycloSport Crotellois case study: a cycling club website in Le Crotoy and a bespoke back office (Next.js, Supabase) for news, events and registrations.',
+          intro: 'An identity in motion, a public website and a business engine for club life.',
+          context: 'CycloSport Crotellois is a cycling club based in Le Crotoy, in the Bay of Somme. Its members ride on the road and off it: gravel, mountain biking, cyclo-cross and beach racing.',
+          need: 'Bring the club’s communication, content and association tools into one environment, and let the committee manage them independently.',
+          intervention: 'Nova Baie designed the web art direction and built the public website and a bespoke back office: news, new members, events, registrations, partners, media, messages, users, roles and an activity log.',
+          artDirection: 'Black, orange and condensed typography extend the club jersey. The “Baie en mouvement” concept connects sports photography, graphic routes and the local landscape.',
+          scope: ['Web art direction', 'Public website', 'Bespoke back office', 'Events and registrations', 'Roles and permissions']
+        }
+      }
+    }
+  },
+  {
+    id: 'blue-baie', slug: 'blue-baie-conciergerie', status: 'completed', detailStatus: 'published',
+    portfolioVisible: true, homeVisible: true, homeOrder: 2, portfolioOrder: 2,
     title: { fr: 'Blue Baie Conciergerie', en: 'Blue Baie Conciergerie' },
     externalUrl: 'https://www.bluebaie.fr/', externalUrlCheckedOn: '2026-11-06',
     image: '/media/projects/blue-baie/screens/home-desktop.png', mobileImage: '/media/projects/blue-baie/screens/derived/home-mobile-clean.webp',
@@ -108,7 +168,7 @@ export const projects: readonly Project[] = [
   },
   {
     id: 'saint-jean', slug: 'conciergerie-saint-jean', status: 'completed', detailStatus: 'published',
-    portfolioVisible: true, homeVisible: true, homeOrder: 2, portfolioOrder: 2,
+    portfolioVisible: true, homeVisible: true, homeOrder: 3, portfolioOrder: 3,
     title: { fr: 'Conciergerie Saint-Jean', en: 'Conciergerie Saint-Jean' },
     externalUrl: 'https://conciergeriesaintjean.fr/', externalUrlCheckedOn: '2026-11-06',
     image: '/media/projects/conciergerie-saint-jean/screens/home-desktop.jpg', mobileImage: '/media/projects/conciergerie-saint-jean/screens/home-mobile1.jpg',
@@ -162,16 +222,6 @@ export const projects: readonly Project[] = [
     }
   },
   {
-    id: 'csc', slug: 'cyclosport-crotellois', status: 'finalizing', detailStatus: 'draft',
-    portfolioVisible: true, homeVisible: false, homeOrder: null, portfolioOrder: 3,
-    title: { fr: 'CycloSport Crotellois', en: 'CycloSport Crotellois' }, categoryId: 'association',
-    expertiseIds: ['web', 'business'], technologyIds: [], gallery: [],
-    copy: {
-      fr: { category: 'Association sportive & contenus administrables', summary: 'Structurer la vie du club autour des événements et de l’information.', description: 'Un site sportif moderne avec gestion d’événements, d’actualités et de contenus administrables. La plateforme est en cours de finalisation.', tags: ['Association', 'Événements', 'Administration'] },
-      en: { category: 'Sports association & manageable content', summary: 'Organising club life around events and information.', description: 'A modern sports website with event, news and content management. The platform is being finalised.', tags: ['Association', 'Events', 'Administration'] }
-    }
-  },
-  {
     id: 'bout-du-monde', slug: 'le-bout-du-monde', status: 'completed', detailStatus: 'draft',
     portfolioVisible: true, homeVisible: false, homeOrder: null, portfolioOrder: 4,
     title: { fr: 'Le Bout du Monde', en: 'Le Bout du Monde' }, externalUrl: 'https://www.le-bout-du-monde.org/',
@@ -184,7 +234,7 @@ export const projects: readonly Project[] = [
   },
   {
     id: 'gites-en-baie', slug: 'gites-en-baie', status: 'completed', detailStatus: 'draft',
-    portfolioVisible: true, homeVisible: true, homeOrder: 3, portfolioOrder: 5,
+    portfolioVisible: true, homeVisible: true, homeOrder: 4, portfolioOrder: 5,
     title: { fr: 'Gîtes en Baie', en: 'Gîtes en Baie' }, externalUrl: 'https://www.gite-baie.com/',
     externalUrlCheckedOn: '2026-11-06', image: '/images/project-gites-en-baie.jpg', gallery: ['/images/project-gites-en-baie.jpg'], video: '/videos/gites-en-baie-demo.mp4',
     categoryId: 'hospitality', expertiseIds: ['identity', 'web'], technologyIds: [],

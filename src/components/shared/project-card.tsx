@@ -25,7 +25,7 @@ export async function ProjectCard({ project, compact = false, position }: { proj
     <span className="project-visit-label">{t('openWebsite')}</span><span className="project-visit-domain">{new URL(project.externalUrl).hostname.replace(/^www\./, '')}</span><ArrowUpRight aria-hidden="true" />
   </a> : null;
 
-  return <article id={project.id} data-project={project.id} className={`project-card project-card--immersive ${project.homeVisible ? 'project-card--feature' : ''} ${!project.image ? 'project-card--text' : ''}`} data-reveal>
+  return <article id={project.id} data-project={project.id} className={`project-card project-card--immersive ${project.homeVisible ? 'project-card--feature' : ''} ${project.flagship ? 'project-card--flagship' : ''} ${!project.image ? 'project-card--text' : ''}`} data-reveal>
     <div className="project-card-art-wrap">
       {project.image && (hasDetail ? <Link href={internalHref} className="project-art-link" aria-label={actionLabel} data-project-image-link>{Art}</Link>
         : project.externalUrl ? <a href={project.externalUrl} target="_blank" rel="noopener noreferrer" className="project-art-link" aria-label={actionLabel} data-project-image-link>{Art}</a> : Art)}
