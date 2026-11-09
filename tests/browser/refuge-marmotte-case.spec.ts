@@ -56,6 +56,9 @@ test('Refuge: responsive scenes, authentic gallery, SEO, navigation and accessib
   await expect(page.getByRole('heading', { name: 'A window onto the stay.' })).toBeVisible();
   await page.screenshot({ path: 'test-results/refuge-en.png', fullPage: true, animations: 'disabled' });
   await page.setViewportSize({ width: 390, height: 844 });
+  await gallery.scrollIntoViewIfNeeded();
+  await expect.poll(() => gallery.locator('button img').evaluate(node => (node as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await page.evaluate(() => scrollTo(0, 0));
   await page.screenshot({ path: 'test-results/refuge-en-mobile.png', fullPage: true, animations: 'disabled' });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.goto('/realisations');
