@@ -10,7 +10,10 @@ export async function POST(request: Request) {
   const origins = (process.env.CONTACT_ALLOWED_ORIGINS ?? '').split(',').map(value => value.trim()).filter(Boolean);
   let limiter;
   try {
-    limiter = createRedisLimiter(process.env.CONTACT_REDIS_REST_URL ?? '', process.env.CONTACT_REDIS_REST_TOKEN ?? '', process.env.CONTACT_RATE_LIMIT_SECRET ?? '');
+    // Upstash for Redis (Vercel Marketplace, prefix CONTACT_) exposes CONTACT_KV_REST_API_*.
+    const url = process.env.CONTACT_REDIS_REST_URL || process.env.CONTACT_KV_REST_API_URL || '';
+    const token = process.env.CONTACT_REDIS_REST_TOKEN || process.env.CONTACT_KV_REST_API_TOKEN || '';
+    limiter = createRedisLimiter(url, token, process.env.CONTACT_RATE_LIMIT_SECRET ?? '');
   } catch {
     limiter = async () => { throw new Error('Contact unavailable'); };
   }
