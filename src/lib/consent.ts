@@ -3,6 +3,8 @@
 // after an explicit opt-in, so no Google request is made before or without consent.
 
 export const GTM_ID = 'GTM-MV4VJGBB';
+/** GA4 property configured in the GTM container (Google tag). */
+export const GA4_ID = 'G-J6GHY673DS';
 export const CONSENT_KEY = 'nova-consent';
 export const CONSENT_VERSION = 1;
 /** A choice is remembered for six months, then asked again (CNIL recommendation). */
@@ -84,5 +86,6 @@ export function trackLead(projectType: string, language: string) {
   if (!hasAnalyticsConsent()) return;
   const win = window as DataLayerWindow;
   if (!win.__novaGtmLoaded) return;
-  gtagFunction(win)('event', 'generate_lead', { form_id: 'contact', project_type: projectType, language });
+  // send_to is required: the GTM-deployed Google tag ignores gtag events without an explicit destination (verified in Chrome).
+  gtagFunction(win)('event', 'generate_lead', { send_to: GA4_ID, form_id: 'contact', project_type: projectType, language });
 }
