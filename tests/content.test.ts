@@ -9,6 +9,7 @@ import { getActualites } from '../src/lib/actualites-data';
 import { buildStructuredData } from '../src/lib/structured-data';
 import { blueBaieCaseMedia, getPublishedCaseMedia } from '../src/lib/project-case-media';
 import { blueBaieCaseContent } from '../src/lib/blue-baie-case-content';
+import { boutDuMondeCaseContent } from '../src/lib/bout-du-monde-case-content';
 
 function keys(value: unknown, prefix = ''): string[] {
   if (!value || typeof value !== 'object') return [prefix];
@@ -81,6 +82,37 @@ test('CycloSport Crotellois is the published flagship, first in portfolio and ho
   for (const name of ['admin-news.webp', 'admin-members.webp', 'admin-partners.webp', 'admin-media.webp', 'peloton.webp', 'cyclocross.webp', 'og-cyclosport-crotellois.jpg']) {
     assert.ok(existsSync(`public/media/projects/csc/optimized/${name}`), name);
   }
+});
+
+test('Le Bout du Monde has a published bilingual case study and its supplied media exists', () => {
+  const project = projects.find(item => item.id === 'bout-du-monde');
+  assert.equal(project?.detailStatus, 'published');
+  assert.equal(project?.image, '/media/projects/le-bout-du-monde/realisation-le-bout-du-monde.jpg');
+  assert.equal(project?.externalUrl, 'https://www.le-bout-du-monde.org/');
+  assert.ok(project?.copy.fr.caseStudy && project.copy.en.caseStudy);
+  for (const locale of ['fr', 'en'] as const) {
+    const copy = boutDuMondeCaseContent[locale];
+    assert.equal(copy.screens.length, 3);
+    assert.equal(copy.cottages.length, 3);
+    for (const media of [...copy.screens, ...copy.cottages]) assert.ok(existsSync(`public${decodeURIComponent(media.src)}`), media.src);
+    assert.ok(copy.galleryTitle && copy.cottagesTitle && copy.finalTitle);
+  }
+  assert.ok(project?.copy.fr.caseStudy?.metaTitle.includes('Baie de Somme'));
+  assert.ok(project?.copy.en.caseStudy?.metaTitle.includes('Bay of Somme'));
+  assert.equal(project?.mobileImage, undefined, 'no fabricated mobile screenshot should be implied');
+});
+
+test('Gîtes en Baie has a published bilingual case study using only supplied authentic captures', () => {
+  const project = projects.find(item => item.id === 'gites-en-baie');
+  assert.equal(project?.detailStatus, 'published');
+  assert.equal(project?.externalUrl, 'https://www.gite-baie.com/');
+  assert.ok(project?.copy.fr.caseStudy && project.copy.en.caseStudy);
+  assert.equal(project?.gallery.length, 3);
+  assert.equal(project?.mobileImage, undefined, 'no supplied mobile capture should be implied');
+  assert.equal(project?.video, undefined, 'no project video was supplied');
+  for (const media of project?.gallery ?? []) assert.ok(existsSync(`public${media}`), media);
+  assert.ok(project?.copy.fr.caseStudy?.metaTitle.includes('Baie de Somme'));
+  assert.ok(project?.copy.en.caseStudy?.metaTitle.includes('Bay of Somme'));
 });
 
 test('historical publications retain dates and existing images with translated copy', () => {

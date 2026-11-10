@@ -3,6 +3,7 @@ import { getActualites } from '@/lib/actualites-data';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Container } from '@/components/ui/container';
 import { ActualitesGrid } from '@/components/actualites/actualites-grid';
+import { Breadcrumbs } from '@/components/seo/json-ld';
 
 export async function generateMetadata({
   params,
@@ -21,6 +22,7 @@ export default async function ActualitesPage({ params }: { params: Promise<{ loc
 
   return (
     <>
+      <Breadcrumbs locale={locale} trail={[{ name: t('eyebrow'), path: '/actualites' }]} />
       <section className="relative overflow-hidden bg-nova-navy pb-12 pt-32 md:pb-16">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(46,123,198,0.2),transparent_50%)]" />
         <Container>

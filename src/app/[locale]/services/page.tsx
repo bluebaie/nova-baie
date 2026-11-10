@@ -6,16 +6,21 @@ import { FinalCtaSection } from '@/components/home/final-cta-section';
 import { expertiseIds } from '@/lib/expertises';
 import { Link } from '@/lib/navigation';
 import { pageMetadata } from '@/lib/page-metadata';
+import { ServicesFaq } from '@/components/shared/services-faq';
+import { Breadcrumbs, JsonLd, siteUrl } from '@/components/seo/json-ld';
 
 const icons = { identity: PenTool, web: Globe2, business: PanelsTopLeft, automation: Workflow, ai: Sparkles, seo: Search, maintenance: ShieldCheck };
 type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) { return pageMetadata((await params).locale, 'services', '/services'); }
 export default async function ServicesPage({ params }: Props) {
-  setRequestLocale((await params).locale);
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations('services');
   const expertise = await getTranslations('expertises');
   const common = await getTranslations('common');
   return <>
+    <Breadcrumbs locale={locale} trail={[{ name: t('eyebrow'), path: '/services' }]} />
+    <JsonLd data={{ '@context': 'https://schema.org', '@type': 'ItemList', name: t('eyebrow'), itemListElement: expertiseIds.map((id, index) => ({ '@type': 'ListItem', position: index + 1, item: { '@type': 'Service', name: expertise(`${id}.title`), description: expertise(`${id}.benefit`), url: siteUrl(locale, `/services#${id}`), provider: { '@id': 'https://www.nova-baie.com/#organization' }, areaServed: { '@type': 'Country', name: 'France' } } })) }} />
     <PageHero eyebrow={t('eyebrow')} title={t('title')} description={t('description')} expertisesLink={false} />
     <section className="expertise-atelier section-padding"><Container><div className="expertise-layout">
       <nav className="expertise-index" aria-label={t('eyebrow')}>{expertiseIds.map((id, index) => <a key={id} href={`#${id}`}><span aria-hidden="true">0{index + 1}</span>{expertise(`${id}.title`)}</a>)}</nav>
@@ -25,6 +30,6 @@ export default async function ServicesPage({ params }: Props) {
         <Link href="/contact" className="text-link">{common('talkProject')}<ArrowUpRight aria-hidden="true" /></Link>
       </article>; })}
       <div className="expertise-approach" data-reveal><h2>{t('approachTitle')}</h2><p>{t('approachDescription')}</p></div></div>
-    </div></Container></section><FinalCtaSection />
+    </div></Container></section><ServicesFaq /><FinalCtaSection />
   </>;
 }

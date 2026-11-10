@@ -29,7 +29,7 @@ export function CreativeMotion() {
               scrollTrigger: { trigger: path.closest('[data-creative-scene], [data-case-hero], .portfolio-scene') ?? path, start: 'top 86%', end: 'bottom 20%', scrub: 0.65 }
             });
           });
-          gsap.utils.toArray<HTMLElement>('[data-c2-art] .project-art-main img, [data-c2-art] .case-hero-art img').forEach(image => {
+          gsap.utils.toArray<HTMLElement>('[data-c2-art] .project-art-main img, [data-c2-art] .case-hero-art img, .bdm-hero-stack img, [data-bdm-parallax] img, [data-geb-depth] img').forEach(image => {
             gsap.fromTo(image, { yPercent: 7, scale: 1.06 }, {
               yPercent: -5, scale: 1,
               ease: 'none',

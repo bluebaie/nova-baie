@@ -6,12 +6,16 @@ import { localeAlternates } from '../src/lib/seo';
 
 test('sitemap retains commercial pages in both languages; excludes noindex and artificial dates', () => {
   const entries = sitemap();
-  assert.equal(entries.length, 20);
+  assert.equal(entries.length, 24);
   for (const prefix of ['', '/en']) for (const path of ['', '/services', '/realisations', '/actualites', '/a-propos', '/contact']) {
     assert.ok(entries.some(entry => entry.url === `https://www.nova-baie.com${prefix}${path}`));
   }
   assert.ok(entries.some(entry => entry.url === 'https://www.nova-baie.com/realisations/blue-baie-conciergerie'));
   assert.ok(entries.some(entry => entry.url === 'https://www.nova-baie.com/en/realisations/conciergerie-saint-jean'));
+  assert.ok(entries.some(entry => entry.url === 'https://www.nova-baie.com/realisations/le-bout-du-monde'));
+  assert.ok(entries.some(entry => entry.url === 'https://www.nova-baie.com/en/realisations/le-bout-du-monde'));
+  assert.ok(entries.some(entry => entry.url === 'https://www.nova-baie.com/realisations/gites-en-baie'));
+  assert.ok(entries.some(entry => entry.url === 'https://www.nova-baie.com/en/realisations/gites-en-baie'));
   for (const prefix of ['', '/en']) assert.ok(entries.some(entry => entry.url === `https://www.nova-baie.com${prefix}/realisations/cyclosport-crotellois`));
   assert.ok(!entries.some(entry => entry.url.includes('vercel.app')));
   for (const prefix of ['', '/en']) assert.ok(entries.some(entry => entry.url === `https://www.nova-baie.com${prefix}/realisations/le-refuge-de-la-marmotte`));

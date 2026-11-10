@@ -29,7 +29,10 @@ for (const prefix of ['', '/en']) {
       expect(body).not.toMatch(/€|\b\d+\s*EUR\b|Site Essentiel|Site Signature|Site Performance|24h|48h|3 mois|3 months|3 niveaux|3 levels/);
       const headings = await page.locator('main').evaluate(main => [...main.querySelectorAll('h1,h2,h3,h4')].map(heading => Number(heading.tagName[1])));
       expect(headings.every((level, index) => index === 0 || level <= headings[index - 1] + 1)).toBe(true);
-      const schema = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent() ?? '{}');
+      // The site-wide schema comes first; pages may add breadcrumbs and page-specific data after it.
+      const schema = JSON.parse(await page.locator('script[type="application/ld+json"]').first().textContent() ?? '{}');
+      const allSchemas = (await page.locator('script[type="application/ld+json"]').allTextContents()).join(' ');
+      expect(allSchemas).not.toMatch(/priceRange|€/);
       expect(schema['@graph'][0].inLanguage).toBe(prefix ? 'en-GB' : 'fr-FR');
       expect(JSON.stringify(schema)).not.toMatch(/priceRange|€|sites web premium pour les professionnels du tourisme/i);
       const links = await page.locator('a[href^="/"]').evaluateAll(anchors => [...new Set(anchors.map(anchor => anchor.getAttribute('href')!))]);
@@ -155,7 +158,7 @@ for (const prefix of ['', '/en']) {
     const videos: string[] = [];
     page.on('request', request => { if (request.url().includes('.mp4')) videos.push(request.url()); });
     await page.goto(prefix || '/');
-    await expect(page.locator('main > section')).toHaveCount(6);
+    await expect(page.locator('main > section')).toHaveCount(7);
     await expect(page.locator('[data-project]')).toHaveCount(4);
     await expect(page.locator('[data-project]').first()).toHaveAttribute('data-project', 'csc');
     for (const image of await page.locator('[data-project] img').all()) {
@@ -178,7 +181,7 @@ for (const prefix of ['', '/en']) {
     }
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: `test-results/lot-b-projects-${prefix ? 'en' : 'fr'}.png`, fullPage: true });
-    await page.locator('[data-project="bout-du-monde"] button').click();
+    await page.locator('[data-project="saint-jean"] button').click();
     const video = page.locator('video');
     await expect(video).toHaveAttribute('preload', 'none');
     await expect(video).not.toHaveAttribute('autoplay');

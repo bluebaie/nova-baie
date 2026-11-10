@@ -13,7 +13,7 @@ export async function ProjectCard({ project, compact = false, position }: { proj
   const actionLabel = hasDetail ? visual('imageActionDetail', { title: project.title }) : visual('imageActionExternal', { title: project.title });
   const Art = <div className={`project-art ${project.mobileImage ? 'project-art--duo' : ''}`} data-c2-art>
     {project.image && <div className="project-art-main">
-      <Image src={project.image} alt={project.imageAlt ?? t('capture', { title: project.title })} fill priority={compact && position === 1} quality={project.id === 'saint-jean' || project.id === 'blue-baie' ? 90 : undefined} sizes="(min-width: 1024px) 44vw, (min-width: 640px) 88vw, 100vw" />
+      <Image src={project.image} alt={project.imageAlt ?? t('capture', { title: project.title })} fill priority={compact && position === 1} quality={project.id === 'saint-jean' || project.id === 'blue-baie' || project.id === 'csc' ? 90 : undefined} sizes="(min-width: 1024px) 44vw, (min-width: 640px) 88vw, 100vw" />
     </div>}
     {project.mobileImage && <div className="project-art-mobile"><Image src={project.mobileImage} alt="" fill quality={project.id === 'saint-jean' || project.id === 'blue-baie' ? 90 : undefined} sizes="(min-width: 1024px) 15vw, 32vw" /></div>}
     {!project.image && <div className="project-art-unavailable"><svg viewBox="0 0 600 400" fill="none" aria-hidden="true"><path d="M-20 280C112 146 220 346 337 216S500 72 630 133"/><path d="M-25 324C116 190 233 390 354 260S512 116 635 177"/><circle cx="355" cy="217" r="112" /></svg></div>}

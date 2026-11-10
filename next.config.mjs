@@ -17,7 +17,8 @@ const nextConfig = {
       {
         source: '/(.*)\\.(jpg|jpeg|png|webp|avif|svg|ico)',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          // Public files are not fingerprinted: cache for a week and revalidate, so replaced media are picked up.
+          { key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' },
         ],
       },
     ];

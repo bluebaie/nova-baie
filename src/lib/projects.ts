@@ -66,7 +66,8 @@ export const projects: readonly Project[] = [
     portfolioVisible: true, homeVisible: true, homeOrder: 1, portfolioOrder: 1,
     title: { fr: 'CycloSport Crotellois', en: 'CycloSport Crotellois' },
     externalUrl: 'https://www.cyclosportcrotellois.fr/',
-    image: '/media/projects/csc/optimized/home-hero.webp',
+    // Card visual: graphic composition of the club website and back office (scripts/lot-final-csc-card.mjs).
+    image: '/media/projects/csc/optimized/card-csc.webp',
     gallery: [
       '/media/projects/csc/optimized/home-hero.webp',
       '/media/projects/csc/optimized/home-practices.webp',
@@ -81,7 +82,7 @@ export const projects: readonly Project[] = [
       fr: {
         category: 'Plateforme associative · site public · back-office', summary: 'Un écosystème digital pour un club cycliste en Baie de Somme.',
         description: 'Direction artistique, site public et back-office sur mesure pour le club cycliste du Crotoy : actualités, événements, inscriptions, partenaires, médias, messages, rôles et permissions.',
-        tags: ['Plateforme associative', 'Back-office sur mesure', 'Next.js · Supabase'], imageAlt: 'Accueil du site du CycloSport Crotellois : deux cyclistes du club et le titre « Rouler ensemble, entre terre et mer »',
+        tags: ['Plateforme associative', 'Back-office sur mesure', 'Next.js · Supabase'], imageAlt: 'Composition du projet CycloSport Crotellois : pages Actualités et Contact du site du club et module Actualités du back-office, sur l’identité noir et orange',
         caseStudy: {
           visualVariant: 'ecosystem',
           activity: 'Club cycliste : route, gravel, VTT, cyclo-cross et beach race.',
@@ -99,7 +100,7 @@ export const projects: readonly Project[] = [
       en: {
         category: 'Club platform · public website · back office', summary: 'A digital ecosystem for a cycling club in the Bay of Somme.',
         description: 'Web art direction, a public website and a bespoke back office for the Le Crotoy cycling club: news, events, registrations, partners, media, messages, roles and permissions.',
-        tags: ['Club platform', 'Bespoke back office', 'Next.js · Supabase'], imageAlt: 'CycloSport Crotellois homepage: two club riders and the headline “Rouler ensemble, entre terre et mer”',
+        tags: ['Club platform', 'Bespoke back office', 'Next.js · Supabase'], imageAlt: 'CycloSport Crotellois project composition: the club website News and Contact pages and the back-office News module, in the black and orange identity',
         caseStudy: {
           visualVariant: 'ecosystem',
           activity: 'Cycling club: road, gravel, mountain biking, cyclo-cross and beach racing.',
@@ -222,28 +223,81 @@ export const projects: readonly Project[] = [
     }
   },
   {
-    id: 'bout-du-monde', slug: 'le-bout-du-monde', status: 'completed', detailStatus: 'draft',
+    id: 'bout-du-monde', slug: 'le-bout-du-monde', status: 'completed', detailStatus: 'published',
     portfolioVisible: true, homeVisible: false, homeOrder: null, portfolioOrder: 4,
     title: { fr: 'Le Bout du Monde', en: 'Le Bout du Monde' }, externalUrl: 'https://www.le-bout-du-monde.org/',
-    externalUrlCheckedOn: '2026-11-06', image: '/images/realisation-le-bout-du-monde.jpg', gallery: ['/images/realisation-le-bout-du-monde.jpg'], video: '/videos/le-bout-du-monde-demo.mp4',
+    externalUrlCheckedOn: '2026-11-06', image: '/media/projects/le-bout-du-monde/realisation-le-bout-du-monde.jpg', gallery: ['/media/projects/le-bout-du-monde/realisation-le-bout-du-monde.jpg', '/media/projects/le-bout-du-monde/preview-le-bout-du-monde.jpg', '/media/projects/le-bout-du-monde/CAPTURE.png'],
     categoryId: 'hospitality', expertiseIds: ['identity', 'web'], technologyIds: [],
     copy: {
-      fr: { category: 'Site touristique', summary: 'Présenter deux gîtes avec une identité cohérente.', description: 'Un site de présentation pour deux gîtes en Baie de Somme, mettant en valeur leur cadre et leur identité.', tags: ['Site web', 'Hébergement', 'Identité'], imageAlt: 'Capture du site Le Bout du Monde, réalisé par Nova Baie' },
-      en: { category: 'Tourism website', summary: 'Presenting two cottages with a consistent identity.', description: 'A presentation website for two holiday cottages in the Bay of Somme, highlighting their setting and identity.', tags: ['Website', 'Accommodation', 'Identity'], imageAlt: 'Screenshot of the Le Bout du Monde website by Nova Baie' }
+      fr: {
+        category: 'Site vitrine · gîtes & séjour nature', summary: 'Deux hébergements, une même invitation à ralentir.',
+        description: 'Direction artistique et création d’un site vitrine pour deux gîtes en Baie de Somme, avec une expérience de découverte pensée autour du lieu, des matières et de l’atmosphère.', tags: ['Site web', 'Hébergement', 'Direction artistique'], imageAlt: 'Capture authentique de la page d’accueil du site Le Bout du Monde',
+        caseStudy: {
+          visualVariant: 'editorial', activity: 'Deux gîtes présentés dans un univers de séjour nature en Baie de Somme.', location: 'Saint-Quentin-en-Tourmont · Baie de Somme',
+          metaTitle: 'Création de site internet pour gîtes en Baie de Somme | Nova Baie',
+          metaDescription: 'Étude de cas Le Bout du Monde : direction artistique et création d’un site vitrine pour deux gîtes en Baie de Somme.',
+          intro: 'Un site de séjour qui laisse le lieu donner le premier ton.',
+          context: 'Le site présente deux hébergements aux atmosphères distinctes, dans un cadre de nature, de bois et de lumière. La découverte commence par l’ambiance, puis se précise au fil des pages consacrées à chaque gîte.',
+          need: 'Faire ressentir le caractère des lieux en ligne, donner des repères simples et accompagner la découverte des hébergements sans rompre la sensation d’évasion.',
+          intervention: 'Nova Baie a conçu et développé le site vitrine, sa direction artistique digitale et la mise en scène des contenus dédiés aux deux gîtes.',
+          artDirection: 'Une composition éditoriale aux tons naturels associe images immersives, typographie élégante et repères sobres. Le site prolonge l’atmosphère du lieu sans la couvrir.',
+          scope: ['Direction artistique digitale', 'Conception et développement du site', 'Présentation des deux gîtes', 'Parcours de découverte responsive']
+        }
+      },
+      en: {
+        category: 'Hospitality website · nature stays', summary: 'Two stays, one invitation to slow down.',
+        description: 'Art direction and a presentation website for two cottages in the Bay of Somme, shaped around the place, its materials and its atmosphere.', tags: ['Website', 'Accommodation', 'Art direction'], imageAlt: 'Authentic capture of the Le Bout du Monde homepage',
+        caseStudy: {
+          visualVariant: 'editorial', activity: 'Two holiday cottages presented within a nature-led stay in the Bay of Somme.', location: 'Saint-Quentin-en-Tourmont · Bay of Somme',
+          metaTitle: 'Website design for cottages in the Bay of Somme | Nova Baie',
+          metaDescription: 'Le Bout du Monde case study: digital art direction and a presentation website for two cottages in the Bay of Somme.',
+          intro: 'A stay website that lets the place set the tone.',
+          context: 'The website presents two stays with distinct atmospheres, surrounded by nature, wood and light. Discovery begins with the mood, then unfolds through pages dedicated to each cottage.',
+          need: 'Bring the character of the place into its digital presence, offer clear points of reference and make it easy to discover each stay without losing the feeling of escape.',
+          intervention: 'Nova Baie designed and developed the presentation website, its digital art direction and the visual storytelling for both cottages.',
+          artDirection: 'An editorial composition in natural tones brings together immersive imagery, elegant typography and quiet signposts. The website extends the atmosphere of the place without overwhelming it.',
+          scope: ['Digital art direction', 'Website design and development', 'Presentation of both cottages', 'Responsive discovery journey']
+        }
+      }
     }
   },
   {
-    id: 'gites-en-baie', slug: 'gites-en-baie', status: 'completed', detailStatus: 'draft',
+    id: 'gites-en-baie', slug: 'gites-en-baie', status: 'completed', detailStatus: 'published',
     portfolioVisible: true, homeVisible: true, homeOrder: 4, portfolioOrder: 5,
     title: { fr: 'Gîtes en Baie', en: 'Gîtes en Baie' }, externalUrl: 'https://www.gite-baie.com/',
-    externalUrlCheckedOn: '2026-11-06', image: '/images/project-gites-en-baie.jpg', gallery: ['/images/project-gites-en-baie.jpg'], video: '/videos/gites-en-baie-demo.mp4',
+    externalUrlCheckedOn: '2026-11-06', image: '/media/projects/gite-en-baie/optimized/home-desktop.webp', gallery: [
+      '/media/projects/gite-en-baie/optimized/home-desktop.webp',
+      '/media/projects/gite-en-baie/optimized/accommodations.webp',
+      '/media/projects/gite-en-baie/optimized/destinations.webp'
+    ],
     categoryId: 'hospitality', expertiseIds: ['identity', 'web'], technologyIds: [],
     copy: {
-      fr: { category: 'Site multi-hébergements', summary: 'Réunir plusieurs hébergements dans un parcours lisible.', description: 'Un site multi-hébergements en Baie de Somme : présentation des logements, informations pratiques et parcours vers la réservation.', tags: ['Multi-hébergements', 'Parcours utilisateur', 'Site web'], imageAlt: 'Capture du site Gîtes en Baie, réalisé par Nova Baie' },
-      en: { category: 'Multi-property website', summary: 'Bringing several properties into one clear visitor journey.', description: 'A multi-property website in the Bay of Somme, with accommodation details, practical information and a route to booking.', tags: ['Multi-property', 'User journey', 'Website'], imageAlt: 'Screenshot of the Gîtes en Baie website by Nova Baie' }
+      fr: {
+        category: 'Site multi-hébergements', summary: 'Réunir plusieurs hébergements dans un parcours lisible.', description: 'Un site multi-hébergements en Baie de Somme : présentation des logements, informations pratiques et parcours vers la réservation.', tags: ['Multi-hébergements', 'Parcours utilisateur', 'Site web'], imageAlt: 'Page d’accueil de Gîtes en Baie sur une photographie panoramique de la baie',
+        caseStudy: {
+          visualVariant: 'editorial', activity: 'Une sélection de gîtes et d’hébergements pour découvrir la Baie de Somme.', location: 'Baie de Somme',
+          metaTitle: 'Création de site internet pour gîtes en Baie de Somme | Nova Baie', metaDescription: 'Étude de cas Gîtes en Baie : conception d’un site vitrine multi-hébergements, de ses parcours éditoriaux et de son expérience de découverte.',
+          intro: 'Un même territoire, plusieurs façons de séjourner.', context: 'Gîtes en Baie rassemble sur un site unique des hébergements aux situations et aux ambiances variées. La baie en est le fil commun : elle donne au visiteur un premier repère avant qu’il explore les logements et les lieux.',
+          need: 'Rendre une offre multi-hébergements facile à parcourir, tout en laissant chaque adresse exprimer son caractère et en reliant les séjours à leur territoire.',
+          intervention: 'Nova Baie a conçu et développé le site vitrine, organisé la présentation des hébergements et construit un parcours de découverte entre les logements, les informations pratiques et les contenus consacrés à la baie.',
+          artDirection: 'Le paysage ouvre la narration. Une interface sombre et lumineuse met les photographies au premier plan, tandis que des repères éditoriaux structurent la découverte sans la réduire à un catalogue.',
+          scope: ['Direction artistique digitale', 'Conception et développement du site', 'Présentation multi-hébergements', 'Parcours de découverte et contenus territoriaux']
+        }
+      },
+      en: {
+        category: 'Multi-property website', summary: 'Bringing several properties into one clear visitor journey.', description: 'A multi-property website in the Bay of Somme, with accommodation details, practical information and a route to booking.', tags: ['Multi-property', 'User journey', 'Website'], imageAlt: 'Gîtes en Baie homepage over a panoramic Bay of Somme photograph',
+        caseStudy: {
+          visualVariant: 'editorial', activity: 'A selection of cottages and stays for discovering the Bay of Somme.', location: 'Bay of Somme',
+          metaTitle: 'Website design for cottages in the Bay of Somme | Nova Baie', metaDescription: 'Gîtes en Baie case study: a multi-property presentation website, editorial journeys and a considered discovery experience.',
+          intro: 'One landscape, several ways to stay.', context: 'Gîtes en Baie brings together accommodation with different settings and atmospheres on one website. The bay connects them, offering visitors a first point of reference before they explore each property and its surroundings.',
+          need: 'Make a multi-property offer easy to browse while giving each address its own character and connecting each stay to the wider landscape.',
+          intervention: 'Nova Baie designed and developed the presentation website, organised the property content and shaped a discovery journey between stays, practical information and editorial content about the bay.',
+          artDirection: 'The landscape opens the story. A dark, luminous interface places photography first, while editorial signposts guide discovery without making it feel like a catalogue.',
+          scope: ['Digital art direction', 'Website design and development', 'Multi-property presentation', 'Discovery journey and local content']
+        }
+      }
     }
-  },
-  {
+  },  {
     id: 'refuge-marmotte', slug: 'le-refuge-de-la-marmotte', status: 'completed', detailStatus: 'published',
     portfolioVisible: true, homeVisible: false, homeOrder: null, portfolioOrder: 6,
     title: { fr: 'Le Refuge de la Marmotte', en: 'Le Refuge de la Marmotte' }, externalUrl: 'https://www.ski-saintefoy.com/',

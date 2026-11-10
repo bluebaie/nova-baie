@@ -10,10 +10,10 @@
     "requestProject": "Let’s talk about your project",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "logoAlt": "Nova Baie — digital development agency"
+    "logoAlt": "Nova Baie — digital studio, websites and business platforms"
   },
   "footer": {
-    "description": "From visual identity to business tools, Nova Baie builds tailored digital solutions for businesses, associations and organisations.",
+    "description": "A digital studio based in the Bay of Somme: websites, business platforms, back offices and automation for businesses, associations, clubs, tourism and real estate, across France.",
     "descriptor": "The premium technology branch of the Blue Baie ecosystem.",
     "linksTitle": "Explore Nova Baie",
     "links": {
@@ -41,9 +41,9 @@
     "capture": "Screenshot of the {title} public website"
   },
   "hero": {
-    "tagline": "Digital development & technology solutions agency",
+    "tagline": "Digital studio · Tailored websites & business platforms",
     "title": "<em>Remarkable</em> digital experiences.",
-    "description": "Technology designed to move your business forward. Identity, websites, business applications, automation and AI: a project shaped around how you work.",
+    "description": "Premium websites, business platforms, back offices and automation for businesses, associations, sports clubs, tourism and real estate. Every project starts from how you work, wherever you are in France.",
     "cta1": "Let’s talk about your project",
     "cta2": "Explore our expertise",
     "imageAlt": "Aerial view of the bay, turquoise water and sandbanks — Nova Baie"
@@ -76,7 +76,7 @@
   "work": {
     "eyebrow": "Projects",
     "title": "Public experiences. Business challenges.",
-    "description": "From public interfaces to business tools, every project starts with its own context.",
+    "description": "A club platform, concierge tools, accommodation websites: every project starts from a real context, from sports clubs to service businesses.",
     "cta": "Explore our projects"
   },
   "method": {
@@ -123,14 +123,16 @@
     "eyebrow": "Your project",
     "title": "What would you like to move forward?",
     "description": "A new website, an identity to clarify, a business tool or a process to simplify: let’s start with your context.",
-    "cta": "Let’s talk about your project"
+    "cta": "Let’s talk about your project",
+    "reassurance": "A first conversation to understand your needs, before any personalised proposal.",
+    "direct": "Or directly"
   },
   "services": {
     "eyebrow": "Expertise",
     "title": "Design, development and useful connections.",
-    "description": "Seven areas of expertise to draw on as needed. Your operations, users and constraints are the starting point.",
-    "metaTitle": "Expertise — Web development, business applications & AI",
-    "metaDescription": "Brand identity and UX/UI, tailored websites, business applications, APIs, automation, applied AI, SEO and maintenance from Nova Baie.",
+    "description": "Seven areas of expertise to draw on as needed: a website, a web platform, a back office, automation or search visibility. Your operations, users and constraints are the starting point.",
+    "metaTitle": "Expertise — Websites, business platforms & SEO",
+    "metaDescription": "Tailored websites, UX/UI, business platforms and back offices, automation, APIs, applied AI, SEO and maintenance: Nova Baie’s areas of expertise.",
     "approachTitle": "An appropriate scope, shaped around your needs.",
     "approachDescription": "We review what already exists, what can be reused and what needs developing. A personalised proposal then sets out the scope, stages and support arrangements."
   },
@@ -174,17 +176,17 @@
   "realisations": {
     "eyebrow": "Projects",
     "title": "Digital experiences shaped around a need.",
-    "description": "Public websites, business tools and digital journeys take different forms to fit the people and operations they serve.",
+    "description": "A platform for a cycling club, concierge ecosystems, accommodation websites: public websites and business tools designed around real use.",
     "listTitle": "A selection of projects",
-    "metaTitle": "Projects — Websites & business solutions",
-    "metaDescription": "Explore Nova Baie’s public websites and business projects, from local hospitality to digital tools designed around day-to-day work."
+    "metaTitle": "Projects — Tailored websites & platforms",
+    "metaDescription": "Nova Baie case studies: a cycling club platform, concierge websites and tools, accommodation websites. Art direction, development and SEO."
   },
   "contact": {
     "eyebrow": "Contact",
     "title": "Let’s talk about your project",
     "description": "Tell us about your activity and what you want to create, improve or simplify. We will clarify your needs together before making a proposal.",
     "metaTitle": "Contact — Let’s talk about your project",
-    "metaDescription": "A website, business application, automation, AI or brand identity? Discuss your tailored digital project with Nova Baie.",
+    "metaDescription": "A website, a business platform, a back office or automation to build? Tell Nova Baie about your project and start with a first conversation.",
     "form": {
       "title": "Your needs",
       "subtitle": "A few lines are enough to start. Only your name, email and message are required.",
@@ -223,23 +225,25 @@
       "step2": "Clarify the scope and constraints.",
       "step3": "Prepare a personalised proposal if the project takes shape.",
       "reassurance": "Tailored work, following a discussion and a review of your needs.",
-      "location": "Bay of Somme · Somme · Opal Coast",
+      "location": "Bay of Somme · projects across France",
       "privacy": "How your enquiry is processed"
     }
   },
   "about": {
     "eyebrow": "About",
     "title": "Technology informed by practical experience.",
-    "description": "Nova Baie supports businesses, associations and organisations by connecting identity, usage and development.",
-    "metaTitle": "About — Nova Baie & the Blue Baie ecosystem",
-    "metaDescription": "Blue Baie’s premium technology branch, Nova Baie combines business understanding, art direction and tailored digital development.",
+    "description": "Nova Baie works with businesses, associations, clubs and independents, connecting identity, usage and development.",
+    "metaTitle": "About — A digital studio rooted in the Bay of Somme",
+    "metaDescription": "Nova Baie designs websites, business platforms and digital tools for businesses, associations and clubs, from the Bay of Somme and across France.",
     "historyTitle": "From operational experience to a cross-sector approach",
     "historyDescription": "Born in the Blue Baie ecosystem, Nova Baie draws on practical operational needs. Tourism is part of that story; it no longer defines the agency’s boundaries.",
     "practiceTitle": "A direct contact for your project",
     "practiceDescription": "The activity is run primarily by one developer. You speak directly with the person designing and developing the solution, maintaining continuity between the need, the decisions and the implementation.",
-    "regionTitle": "Regional roots, projects at a distance",
-    "regionDescription": "Based in the Bay of Somme, Nova Baie works with organisations in the Somme, Opal Coast and Pas-de-Calais. Discussions and project follow-up can also take place remotely.",
-    "partnerCta": "Discover Blue Baie Conciergerie"
+    "regionTitle": "Rooted in the Bay of Somme, working across France",
+    "regionDescription": "Based in the Bay of Somme, Nova Baie works with organisations in the Somme, the Opal Coast and Pas-de-Calais, and supports projects across France. Discussions, approvals and follow-up can also take place remotely.",
+    "partnerCta": "Discover Blue Baie Conciergerie",
+    "sectorsTitle": "Websites and tools for very different trades",
+    "sectorsDescription": "A cycling club and its administration platform, concierge businesses and their management tools, holiday homes in the Bay of Somme and in the Alps: every project starts from how an organisation really works. The same care applies to craftspeople, shops, small and medium businesses and brands looking for an accurate, useful digital presence."
   },
   "actualites": {
     "eyebrow": "Publications",
@@ -255,8 +259,8 @@
     "metaDescription": "Nova Baie’s publications about web journeys and accommodation presentation, preserved as the agency broadens into technology solutions."
   },
   "home": {
-    "metaTitle": "Nova Baie — Tailored web development & technology solutions",
-    "metaDescription": "Digital development agency in the Bay of Somme: brand identity, websites, business applications, automation and AI for businesses and associations."
+    "metaTitle": "Nova Baie — Tailored websites & business platforms",
+    "metaDescription": "A digital studio in the Bay of Somme, working across France: premium websites, business platforms, back offices and SEO for businesses, associations and clubs."
   },
   "lang": {
     "fr": "FR",
@@ -335,5 +339,72 @@
     "exploreExpertise": "Explore this expertise",
     "journeyHint": "Project journey",
     "journeyStage": "STAGE / {current}"
+  },
+  "audiences": {
+    "eyebrow": "Who we work with",
+    "title": "The same standard of care, whatever your field.",
+    "description": "Tourism, real estate, associations, sports clubs, craftspeople, small and medium businesses: the method stays the same. Understand how you work, then design the website or tool that serves it.",
+    "see": "See the project",
+    "cta": "Tell us about your project",
+    "items": {
+      "tourism": {
+        "title": "Tourism & accommodation",
+        "description": "Stay websites, immersive galleries, practical information and journeys to booking."
+      },
+      "realestate": {
+        "title": "Concierge & real estate",
+        "description": "Premium websites for property owners, property presentation and management back offices."
+      },
+      "clubs": {
+        "title": "Associations & sports clubs",
+        "description": "News, events, registrations, partners and an administration shared between volunteers."
+      },
+      "crafts": {
+        "title": "Craftspeople & shops",
+        "description": "A clear website that shows your craft and helps you appear in local searches."
+      },
+      "smb": {
+        "title": "Small & medium businesses",
+        "description": "Business applications, integrations and automation that simplify day-to-day work."
+      },
+      "brands": {
+        "title": "Brands & private projects",
+        "description": "Identity, art direction and the launch of a digital presence that feels like you."
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "Frequently asked questions",
+    "title": "Before you get in touch.",
+    "items": [
+      [
+        "What kind of projects do you deliver?",
+        "Premium websites, web platforms, back offices and business applications, automation and API integrations, along with the identity and search work that supports them."
+      ],
+      [
+        "Do you only work in the Bay of Somme?",
+        "No. Nova Baie is based in the Bay of Somme and supports projects across France: discussions, approvals and follow-up can all take place remotely."
+      ],
+      [
+        "Which sectors do you work with?",
+        "Tourism and accommodation, concierge services and real estate, associations and sports clubs, craftspeople, shops, small and medium businesses, brands and private projects. How your organisation works is always the starting point."
+      ],
+      [
+        "Can you take over an existing website or tool?",
+        "Yes. We first review what exists, what can be kept and what needs to change, before proposing a scope."
+      ],
+      [
+        "Is search engine optimisation included?",
+        "Yes: page structure, metadata, structured data, performance and content are considered from the design stage, then followed up according to your priorities."
+      ],
+      [
+        "What happens after launch?",
+        "Ongoing support can be agreed: fixes, updates and new features, on terms defined for each project."
+      ],
+      [
+        "How do we get started?",
+        "Tell us about your organisation and your needs through the form, by email or by phone. A first conversation helps clarify the need before any personalised proposal."
+      ]
+    ]
   }
 }

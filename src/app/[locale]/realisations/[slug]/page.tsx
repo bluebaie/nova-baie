@@ -1,5 +1,3 @@
-import { RefugeMarmotteCase } from '@/components/shared/refuge-marmotte-case';
-import { CyclosportCase } from '@/components/shared/cyclosport-case';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -12,8 +10,13 @@ import { CaseStudyMedia } from '@/components/shared/case-study-media';
 import { CaseStudyScope } from '@/components/shared/case-study-scope';
 import { SaintJeanCase } from '@/components/shared/saint-jean-case';
 import { BlueBaieCase } from '@/components/shared/blue-baie-case';
+import { BoutDuMondeCase } from '@/components/shared/bout-du-monde-case';
+import { GitesEnBaieCase } from '@/components/shared/gites-en-baie-case';
+import { RefugeMarmotteCase } from '@/components/shared/refuge-marmotte-case';
+import { CyclosportCase } from '@/components/shared/cyclosport-case';
 import { localizeCaseStudy, projects, publishedCaseStudies } from '@/lib/projects';
 import { localeAlternates } from '@/lib/seo';
+import { Breadcrumbs } from '@/components/seo/json-ld';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -58,6 +61,7 @@ export default async function ProjectCasePage({ params }: Props) {
     creator: { '@type': 'Organization', name: 'Nova Baie', url: 'https://www.nova-baie.com' },
     url: `https://www.nova-baie.com${locale === 'en' ? '/en' : ''}/realisations/${project.slug}`
   };
+  const breadcrumb = <Breadcrumbs locale={locale} trail={[{ name: locale === 'en' ? 'Projects' : 'Réalisations', path: '/realisations' }, { name: project.title, path: `/realisations/${project.slug}` }]} />;
   if (project.id === 'csc') {
     const home = `https://www.nova-baie.com${locale === 'en' ? '/en' : ''}`;
     const { '@context': _context, ...work } = graph;
@@ -79,16 +83,29 @@ export default async function ProjectCasePage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(cscGraph).replace(/</g, '\\u003c') }} />
     </>;
   }
-  if (project.id === 'refuge-marmotte') return <>
-    <RefugeMarmotteCase locale={locale} />
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
-  </>;
   if (project.id === 'saint-jean') return <>
     <SaintJeanCase locale={locale} />
+    {breadcrumb}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
   </>;
   if (project.id === 'blue-baie') return <>
     <BlueBaieCase locale={locale} media={project.caseMedia ?? []} />
+    {breadcrumb}
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
+  </>;
+  if (project.id === 'bout-du-monde') return <>
+    <BoutDuMondeCase locale={locale} />
+    {breadcrumb}
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
+  </>;
+  if (project.id === 'refuge-marmotte') return <>
+    <RefugeMarmotteCase locale={locale} />
+    {breadcrumb}
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
+  </>;
+  if (project.id === 'gites-en-baie') return <>
+    <GitesEnBaieCase locale={locale} />
+    {breadcrumb}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
   </>;
   return <>
@@ -158,6 +175,7 @@ export default async function ProjectCasePage({ params }: Props) {
       <div className="case-next-links">{siblings.map(item => <Link key={item.id} href={`/realisations/${item.slug}`}><span aria-hidden="true">↗</span><span>{item.title[locale === 'en' ? 'en' : 'fr']}</span><ArrowRight aria-hidden="true" /></Link>)}</div>
       <div className="case-contact"><p>{locale === 'en' ? 'Have a project with its own horizon?' : 'Un projet avec son propre horizon ?'}</p><Button href="/contact">{c('talkProject')}</Button></div>
     </Container></section>
+    {breadcrumb}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} />
   </>;
 }

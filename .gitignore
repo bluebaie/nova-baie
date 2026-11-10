@@ -44,3 +44,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local working material (captures, inspection output)
+/artifacts/
+# original media kept out of public/ (may contain personal data); derivatives live in public/
+/media-sources/

@@ -1,13 +1,14 @@
 // LOT C.9 — CycloSport Crotellois: reproducible WebP derivatives.
-// Originals in public/media/projects/csc/ are never modified. Derivatives are
+// Originals in media-sources/csc/ (outside public/) are never modified. Derivatives are
 // written to public/media/projects/csc/optimized/.
 // Admin captures are anonymised on the derivative only (blurred regions).
 import sharp from 'sharp';
 import { mkdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 
-const root = path.resolve('public/media/projects/csc');
-const out = path.join(root, 'optimized');
+// Originals live outside public/ (git-ignored) so captures with personal data are never served.
+const root = path.resolve('media-sources/csc');
+const out = path.resolve('public/media/projects/csc/optimized');
 await mkdir(out, { recursive: true });
 
 const shot = name => path.join(root, `Capture d'écran 2026-11-09 ${name}.jpg`);

@@ -29,4 +29,27 @@ for (const path of ['', '/services', '/realisations', '/actualites', '/a-propos'
     assert.equal(fr.status, 200);
     assert.ok(fr.headers.get('x-middleware-rewrite')?.includes(`/fr${path}`));
   });
+  test(`middleware lets an already-rewritten /fr${path || '/'} route continue`, () => {
+    const internal = middleware(new NextRequest(`http://localhost:3146/fr${path}`, {
+      headers: { 'x-next-intl-locale': 'fr' },
+    }));
+    assert.equal(internal.status, 200);
+    assert.equal(internal.headers.get('location'), null);
+    assert.equal(internal.headers.get('x-middleware-rewrite'), null);
+
+    // A normal browser request to the historical /fr URL still normalizes to
+    // the canonical French URL without a prefix.
+    const external = middleware(new NextRequest(`http://localhost:3146/fr${path}`));
+    assert.ok([307, 308].includes(external.status));
+    assert.equal(new URL(external.headers.get('location')!).pathname, path || '/');
+  });
 }
+
+test('French URLs are never redirected by browser language or locale cookie (SEO)', () => {
+  for (const path of ['', '/services', '/realisations/cyclosport-crotellois']) {
+    const response = middleware(new NextRequest(`http://localhost:3146${path}`, { headers: { 'accept-language': 'en-US,en;q=0.9', cookie: 'NEXT_LOCALE=en' } }));
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('location'), null);
+    assert.ok(response.headers.get('x-middleware-rewrite')?.includes(`/fr${path}`));
+  }
+});

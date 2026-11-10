@@ -4,6 +4,7 @@ import { HeroSection } from '@/components/home/hero-section';
 import { CapabilitiesSection } from '@/components/home/capabilities-section';
 import { WorkPreviewSection } from '@/components/home/work-preview-section';
 import { MethodSection } from '@/components/home/method-section';
+import { AudienceSection } from '@/components/home/audience-section';
 import { AboutLinkSection } from '@/components/home/about-link-section';
 import { FinalCtaSection } from '@/components/home/final-cta-section';
 
@@ -12,5 +13,5 @@ export async function generateMetadata({ params }: Props) { return pageMetadata(
 
 export default async function HomePage({ params }: Props) {
   setRequestLocale((await params).locale);
-  return <><HeroSection /><CapabilitiesSection /><WorkPreviewSection /><MethodSection /><AboutLinkSection /><FinalCtaSection /></>;
+  return <><HeroSection /><CapabilitiesSection /><WorkPreviewSection /><AudienceSection /><MethodSection /><AboutLinkSection /><FinalCtaSection /></>;
 }

@@ -10,10 +10,10 @@
     "requestProject": "Parlons de votre projet",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
-    "logoAlt": "Nova Baie — agence de développement digital"
+    "logoAlt": "Nova Baie — studio digital, création de sites internet et plateformes métier"
   },
   "footer": {
-    "description": "De l’identité visuelle aux outils métier, Nova Baie conçoit des solutions numériques sur mesure pour les entreprises, associations et organisations.",
+    "description": "Studio digital basé en Baie de Somme : sites internet, plateformes métier, back-offices et automatisations pour entreprises, associations, clubs et acteurs du tourisme et de l’immobilier, partout en France.",
     "descriptor": "La branche technologique premium de l’écosystème Blue Baie.",
     "linksTitle": "Explorer Nova Baie",
     "links": {
@@ -41,9 +41,9 @@
     "capture": "Capture du site public {title}"
   },
   "hero": {
-    "tagline": "Agence de développement digital & solutions technologiques",
+    "tagline": "Studio digital · Sites internet & plateformes métier sur mesure",
     "title": "Des expériences digitales <em>remarquables.</em>",
-    "description": "Des technologies conçues pour faire avancer votre activité. Identité, sites web, applications métier, automatisations et IA : un projet pensé à partir de vos usages.",
+    "description": "Sites vitrines premium, plateformes métier, back-offices et automatisations pour les entreprises, associations, clubs sportifs, acteurs du tourisme et de l’immobilier. Un projet pensé à partir de vos usages, partout en France.",
     "cta1": "Parlons de votre projet",
     "cta2": "Découvrir les expertises",
     "imageAlt": "Vue aérienne de la baie, entre eau turquoise et bancs de sable — Nova Baie"
@@ -76,7 +76,7 @@
   "work": {
     "eyebrow": "Réalisations",
     "title": "Des projets publics. Des enjeux métier.",
-    "description": "Des interfaces publiques aux outils métier, chaque réalisation part d’un contexte particulier.",
+    "description": "Plateforme associative, outils de conciergerie, sites d’hébergements : chaque réalisation part d’un contexte réel, du club sportif à l’entreprise de services.",
     "cta": "Découvrir nos réalisations"
   },
   "method": {
@@ -123,14 +123,16 @@
     "eyebrow": "Votre projet",
     "title": "Quel besoin souhaitez-vous faire avancer ?",
     "description": "Un nouveau site, une identité à préciser, un outil métier ou un processus à simplifier : commençons par votre contexte.",
-    "cta": "Parlons de votre projet"
+    "cta": "Parlons de votre projet",
+    "reassurance": "Un premier échange pour comprendre votre besoin, avant toute proposition personnalisée.",
+    "direct": "Ou directement"
   },
   "services": {
     "eyebrow": "Expertises",
     "title": "Le design, le développement et les connexions utiles.",
-    "description": "Sept expertises à mobiliser selon votre projet. Le point de départ reste votre fonctionnement, vos utilisateurs et les contraintes à respecter.",
-    "metaTitle": "Expertises — Développement web, applications métier & IA",
-    "metaDescription": "Identité et UX/UI, sites sur mesure, applications métier, API, automatisations, IA appliquée, SEO et maintenance : les expertises de Nova Baie.",
+    "description": "Sept expertises à mobiliser selon votre projet : site vitrine, plateforme web, back-office, automatisation ou référencement. Le point de départ reste votre fonctionnement, vos utilisateurs et vos contraintes.",
+    "metaTitle": "Expertises — Sites internet, plateformes métier & SEO",
+    "metaDescription": "Création de sites internet sur mesure, UX/UI, plateformes et back-offices métier, automatisations, API, IA appliquée, SEO et maintenance : les expertises Nova Baie.",
     "approachTitle": "Un périmètre construit autour de votre besoin.",
     "approachDescription": "Nous examinons ce qui existe déjà, ce qui peut être réutilisé et ce qui doit être développé. Une proposition personnalisée précise ensuite le périmètre, les étapes et les modalités d’accompagnement."
   },
@@ -174,17 +176,17 @@
   "realisations": {
     "eyebrow": "Réalisations",
     "title": "Des expériences façonnées autour d’un besoin.",
-    "description": "Sites publics, outils métier et parcours numériques prennent des formes différentes selon les usages et les activités.",
+    "description": "Plateforme pour un club cycliste, écosystèmes de conciergerie, sites d’hébergements touristiques : des sites publics et des outils métier conçus autour d’usages réels.",
     "listTitle": "Une sélection de projets",
-    "metaTitle": "Réalisations — Sites web & solutions métier",
-    "metaDescription": "Découvrez les sites publics et projets métier de Nova Baie, de l’hébergement local aux outils numériques conçus autour des usages quotidiens."
+    "metaTitle": "Réalisations — Sites internet & plateformes sur mesure",
+    "metaDescription": "Études de cas Nova Baie : plateforme pour club cycliste, sites et outils de conciergerie, sites d’hébergements. Direction artistique, développement et SEO."
   },
   "contact": {
     "eyebrow": "Contact",
     "title": "Parlons de votre projet",
     "description": "Présentez votre activité et ce que vous souhaitez créer, améliorer ou simplifier. Nous préciserons ensemble le besoin avant toute proposition.",
     "metaTitle": "Contact — Parlons de votre projet",
-    "metaDescription": "Un site web, une application métier, une automatisation, de l’IA ou une identité à construire ? Échangez avec Nova Baie sur votre projet sur mesure.",
+    "metaDescription": "Un site internet, une plateforme métier, un back-office ou une automatisation à créer ? Présentez votre projet à Nova Baie pour un premier échange.",
     "form": {
       "title": "Votre besoin",
       "subtitle": "Quelques lignes suffisent pour commencer. Seuls votre nom, votre email et votre message sont obligatoires.",
@@ -223,23 +225,25 @@
       "step2": "Préciser le périmètre et les contraintes.",
       "step3": "Préparer une proposition personnalisée si le projet se précise.",
       "reassurance": "Des prestations sur mesure, après échange et étude du besoin.",
-      "location": "Baie de Somme · Somme · Côte d’Opale",
+      "location": "Baie de Somme · projets partout en France",
       "privacy": "Informations sur le traitement de votre demande"
     }
   },
   "about": {
     "eyebrow": "À propos",
     "title": "La technologie avec une connaissance du terrain.",
-    "description": "Nova Baie accompagne les entreprises, associations et organisations avec une approche qui relie identité, usages et développement.",
-    "metaTitle": "À propos — Nova Baie & l’écosystème Blue Baie",
-    "metaDescription": "Branche technologique premium de Blue Baie, Nova Baie associe compréhension métier, direction artistique et développement numérique sur mesure.",
+    "description": "Nova Baie accompagne entreprises, associations, clubs et indépendants avec une approche qui relie identité, usages et développement.",
+    "metaTitle": "À propos — Un studio digital ancré en Baie de Somme",
+    "metaDescription": "Nova Baie conçoit sites internet, plateformes métier et outils numériques pour entreprises, associations et clubs, depuis la Baie de Somme et partout en France.",
     "historyTitle": "Du terrain à une approche ouverte à tous les métiers",
     "historyDescription": "Née dans l’écosystème Blue Baie, Nova Baie s’appuie sur des besoins opérationnels concrets. Le tourisme fait partie de cette histoire ; il ne définit plus les limites de l’agence.",
     "practiceTitle": "Un interlocuteur direct pour votre projet",
     "practiceDescription": "L’activité est portée principalement par un développeur. Vous échangez directement avec la personne qui conçoit et développe la solution, pour garder une continuité entre le besoin, les choix et la réalisation.",
-    "regionTitle": "Un ancrage régional, des projets à distance",
-    "regionDescription": "Basée en Baie de Somme, Nova Baie s’adresse notamment aux structures de la Somme, de la Côte d’Opale et du Pas-de-Calais. Les échanges et le suivi peuvent aussi se faire à distance.",
-    "partnerCta": "Découvrir Blue Baie Conciergerie"
+    "regionTitle": "Un ancrage en Baie de Somme, des projets partout en France",
+    "regionDescription": "Basée en Baie de Somme, Nova Baie travaille avec des structures de la Somme, de la Côte d’Opale et du Pas-de-Calais, et accompagne des projets partout en France. Les échanges, les validations et le suivi se font aussi à distance.",
+    "partnerCta": "Découvrir Blue Baie Conciergerie",
+    "sectorsTitle": "Des sites et des outils pour des métiers très différents",
+    "sectorsDescription": "Un club cycliste et sa plateforme d’administration, des conciergeries et leurs outils de gestion, des hébergements en Baie de Somme comme dans les Alpes : chaque projet part de la manière dont une structure fonctionne vraiment. La même exigence s’applique aux artisans, commerces, TPE, PME et marques qui veulent une présence digitale juste et utile."
   },
   "actualites": {
     "eyebrow": "Publications",
@@ -255,8 +259,8 @@
     "metaDescription": "Les publications Nova Baie sur les parcours web et la présentation des hébergements, conservées dans le cadre de son évolution vers les solutions technologiques."
   },
   "home": {
-    "metaTitle": "Nova Baie — Agence web & solutions technologiques sur mesure",
-    "metaDescription": "Agence de développement digital en Baie de Somme : identité, sites web, applications métier, automatisations et IA pour entreprises et associations."
+    "metaTitle": "Nova Baie — Création de sites internet & plateformes métier",
+    "metaDescription": "Studio digital en Baie de Somme, partout en France : sites internet premium, plateformes métier, back-offices et SEO pour entreprises, associations et clubs."
   },
   "lang": {
     "fr": "FR",
@@ -335,5 +339,72 @@
     "exploreExpertise": "Explorer cette expertise",
     "journeyHint": "Parcours de conception",
     "journeyStage": "ÉTAPE / {current}"
+  },
+  "audiences": {
+    "eyebrow": "Pour qui",
+    "title": "Un même niveau d’exigence, quel que soit votre métier.",
+    "description": "Tourisme, immobilier, associations, clubs sportifs, artisans, TPE et PME : la méthode reste la même. Comprendre votre fonctionnement, puis concevoir le site ou l’outil qui le sert.",
+    "see": "Voir la réalisation",
+    "cta": "Présenter votre projet",
+    "items": {
+      "tourism": {
+        "title": "Tourisme & hébergements",
+        "description": "Sites de séjour, galeries immersives, informations pratiques et parcours vers la réservation."
+      },
+      "realestate": {
+        "title": "Conciergeries & immobilier",
+        "description": "Vitrines premium pour propriétaires, présentation des biens et back-offices de gestion."
+      },
+      "clubs": {
+        "title": "Associations & clubs sportifs",
+        "description": "Actualités, événements, inscriptions, partenaires et administration partagée entre bénévoles."
+      },
+      "crafts": {
+        "title": "Artisans & commerces",
+        "description": "Un site clair qui montre votre savoir-faire et vous rend visible dans les recherches locales."
+      },
+      "smb": {
+        "title": "TPE & PME",
+        "description": "Applications métier, intégrations et automatisations pour simplifier le travail quotidien."
+      },
+      "brands": {
+        "title": "Marques & projets privés",
+        "description": "Identité, direction artistique et lancement d’une présence digitale qui vous ressemble."
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "Questions fréquentes",
+    "title": "Avant de nous écrire.",
+    "items": [
+      [
+        "Quels types de projets réalisez-vous ?",
+        "Des sites vitrines premium, des plateformes web, des back-offices et applications métier, des automatisations et intégrations API, ainsi que le travail d’identité et de référencement qui les accompagne."
+      ],
+      [
+        "Travaillez-vous uniquement en Baie de Somme ?",
+        "Non. Nova Baie est basée en Baie de Somme et accompagne des projets partout en France : les échanges, les validations et le suivi peuvent se faire à distance."
+      ],
+      [
+        "Pour quels secteurs ?",
+        "Tourisme et hébergements, conciergeries et immobilier, associations et clubs sportifs, artisans, commerces, TPE et PME, marques et projets privés. Le point de départ reste le fonctionnement de votre structure."
+      ],
+      [
+        "Pouvez-vous reprendre un site ou un outil existant ?",
+        "Oui. Nous examinons d’abord ce qui existe, ce qui peut être conservé et ce qui doit évoluer, avant de proposer un périmètre."
+      ],
+      [
+        "Le référencement est-il pris en compte ?",
+        "Oui : structure des pages, métadonnées, données structurées, performance et contenus sont travaillés dès la conception, puis suivis selon vos priorités."
+      ],
+      [
+        "Que se passe-t-il après la mise en ligne ?",
+        "Un suivi adapté peut être défini : corrections, mises à jour et évolutions fonctionnelles, selon des modalités convenues pour chaque projet."
+      ],
+      [
+        "Comment démarrer ?",
+        "Présentez votre activité et votre besoin via le formulaire, par email ou par téléphone. Un premier échange permet de préciser le besoin avant toute proposition personnalisée."
+      ]
+    ]
   }
 }
