@@ -1,11 +1,12 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/lib/navigation'
 import { CheckCircle } from 'lucide-react'
 
 import { submitContact } from '@/lib/contact/submit'
+import { trackLead } from '@/lib/consent'
 import { CONTACT_LIMITS, PROJECT_TYPES } from '@/lib/contact/validation'
 
 const inputClass =
@@ -15,6 +16,7 @@ type Status = 'idle' | 'loading' | 'success' | 'error'
 
 export function ContactForm() {
   const t = useTranslations('contact.form')
+  const locale = useLocale()
   const [nom, setNom] = useState('')
   const [email, setEmail] = useState('')
   const [telephone, setTelephone] = useState('')
@@ -37,6 +39,8 @@ export function ContactForm() {
     try {
       await submitContact({ nom, email, telephone, structure, typeProjet, message, website })
       setStatus('success')
+      // Conversion only after the server confirmed delivery to the webhook (HTTP 202), with consent, no personal data.
+      trackLead(typeProjet, locale)
     } catch {
       setStatus('error')
     } finally {

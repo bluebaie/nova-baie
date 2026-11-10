@@ -3,12 +3,12 @@ import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { Playfair_Display, Inter } from 'next/font/google';
-import Script from 'next/script';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import SchemaOrg from '@/components/seo/schema-org';
 import { MotionScene } from '@/components/ui/motion-scene';
 import { CreativeMotion } from '@/components/ui/creative-motion';
+import { ConsentManager } from '@/components/consent/consent-manager';
 import { routing } from '@/i18n/routing';
 import '@/app/globals.css';
 
@@ -116,28 +116,15 @@ export default async function LocaleLayout({
         <SchemaOrg locale={locale} />
       </head>
       <body className={`${playfair.variable} ${inter.variable} bg-nova-sand text-nova-ink antialiased`}>
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MV4VJGBB"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MV4VJGBB');`,
-          }}
-        />
-        <NextIntlClientProvider messages={{ nav: messages.nav, header: messages.header, lang: messages.lang, contact: messages.contact, errors: messages.errors, actualites: messages.actualites, visual: messages.visual }}>
+        <NextIntlClientProvider messages={{ nav: messages.nav, header: messages.header, lang: messages.lang, contact: messages.contact, errors: messages.errors, actualites: messages.actualites, visual: messages.visual, consent: messages.consent }}>
           <a href="#main-content" className="skip-link">{visual('skip')}</a>
           <Header />
           <main id="main-content">{children}</main>
           <Footer />
           <MotionScene />
           <CreativeMotion />
+          {/* Google Tag Manager is loaded by ConsentManager only after opt-in. */}
+          <ConsentManager />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -34,7 +34,7 @@ export default async function MentionsLegalesPage({ params }: { params: Promise<
         <Container>
           <div className="mx-auto max-w-3xl">
             {sections.map((section) => (
-              <div key={section.title} id={section === sections[3] ? 'confidentialite' : undefined} className="scroll-mt-28">
+              <div key={section.title} id={section === sections[3] ? 'confidentialite' : section === sections[4] ? 'cookies' : undefined} className="scroll-mt-28">
                 <h2 className="mb-3 mt-10 text-xl font-semibold text-nova-navy">{section.title}</h2>
                 <p className="text-sm leading-8 text-nova-text">{section.content}</p>
               </div>

@@ -23,7 +23,8 @@
       "actualites": "Publications",
       "contact": "Parlons de votre projet",
       "mentions": "Mentions légales",
-      "privacy": "Confidentialité"
+      "privacy": "Confidentialité",
+      "cookies": "Gérer les cookies"
     },
     "copyright": "© {year} Nova Baie — Tous droits réservés"
   },
@@ -286,11 +287,11 @@
       },
       {
         "title": "Données personnelles",
-        "content": "Les informations envoyées via le formulaire servent à étudier votre demande et à vous répondre. Leur traitement fait intervenir des prestataires techniques d’hébergement et de transmission, dont Make. Pour toute question sur vos données ou l’exercice de vos droits, contactez contact.novabaie@gmail.com."
+        "content": "Les informations envoyées via le formulaire de contact (nom, email et, le cas échéant, téléphone, structure, sujet et message) servent uniquement à étudier votre demande et à vous répondre. Elles transitent par le serveur du site, hébergé par Vercel, puis sont transmises par l’outil d’automatisation Make à Nova Baie. Pour limiter les abus, une empreinte chiffrée et non réversible de l’adresse email est conservée 15 minutes au plus. Ces données ne sont ni vendues ni utilisées à des fins publicitaires. Vous pouvez demander l’accès, la rectification ou la suppression de vos données à contact.novabaie@gmail.com, et introduire une réclamation auprès de la CNIL."
       },
       {
         "title": "Cookies",
-        "content": "Le site intègre Google Tag Manager, un outil de gestion de balises. Son intégration seule ne permet pas de décrire les traceurs effectivement activés. Pour toute question sur les traitements du site, contactez l’éditeur."
+        "content": "Le site n’utilise aucun cookie publicitaire. Sans votre accord, aucun outil de mesure n’est chargé : seul votre choix est mémorisé dans votre navigateur, pendant 6 mois. Si vous acceptez la mesure d’audience, Google Tag Manager charge Google Analytics 4 (Google Ireland Ltd), qui dépose des cookies (_ga, _ga_*) d’une durée maximale de 13 mois pour produire des statistiques de fréquentation ; les signaux publicitaires restent refusés. Vous pouvez modifier ou retirer votre choix à tout moment avec le lien « Gérer les cookies » en bas de chaque page."
       }
     ],
     "metaTitle": "Mentions légales — Nova Baie",
@@ -406,5 +407,20 @@
         "Présentez votre activité et votre besoin via le formulaire, par email ou par téléphone. Un premier échange permet de préciser le besoin avant toute proposition personnalisée."
       ]
     ]
+  },
+  "consent": {
+    "eyebrow": "Cookies & confidentialité",
+    "title": "Votre choix, simplement.",
+    "text": "Avec votre accord, nous mesurons la fréquentation du site avec Google Analytics pour l’améliorer. Aucun cookie publicitaire. Sans accord, aucun outil de mesure n’est chargé.",
+    "policy": "En savoir plus",
+    "essentialTitle": "Essentiels",
+    "essentialText": "Mémorisation de votre choix et fonctionnement du site.",
+    "always": "Toujours actifs",
+    "analyticsTitle": "Mesure d’audience (Google Analytics)",
+    "analyticsText": "Statistiques de visite anonymisées côté publicité. Cookies conservés 13 mois au plus.",
+    "refuse": "Tout refuser",
+    "customise": "Personnaliser",
+    "save": "Enregistrer mes choix",
+    "accept": "Tout accepter"
   }
 }

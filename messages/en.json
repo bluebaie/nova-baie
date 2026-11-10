@@ -23,7 +23,8 @@
       "actualites": "Publications",
       "contact": "Let’s talk about your project",
       "mentions": "Legal notice",
-      "privacy": "Privacy"
+      "privacy": "Privacy",
+      "cookies": "Manage cookies"
     },
     "copyright": "© {year} Nova Baie — All rights reserved"
   },
@@ -286,11 +287,11 @@
       },
       {
         "title": "Personal data",
-        "content": "Information sent through the form is used to review and respond to your enquiry. Processing involves technical hosting and forwarding providers, including Make. For questions about your data or exercising your rights, contact contact.novabaie@gmail.com."
+        "content": "Information sent through the contact form (name, email and, where provided, phone, organisation, subject and message) is used only to review and answer your enquiry. It passes through the website server, hosted by Vercel, and is then forwarded to Nova Baie by the Make automation tool. To limit abuse, an encrypted, non-reversible fingerprint of the email address is kept for 15 minutes at most. This data is never sold or used for advertising. You can request access, correction or deletion of your data at contact.novabaie@gmail.com, and lodge a complaint with the CNIL."
       },
       {
         "title": "Cookies",
-        "content": "The site includes Google Tag Manager, a tag management tool. Its inclusion alone does not describe which trackers are actually active. Contact the publisher with questions about the site’s data processing."
+        "content": "The website uses no advertising cookies. Without your consent, no measurement tool is loaded: only your choice is remembered in your browser, for 6 months. If you accept audience measurement, Google Tag Manager loads Google Analytics 4 (Google Ireland Ltd), which sets cookies (_ga, _ga_*) for up to 13 months to produce traffic statistics; advertising signals remain denied. You can change or withdraw your choice at any time with the “Manage cookies” link at the bottom of every page."
       }
     ],
     "metaTitle": "Legal notice — Nova Baie",
@@ -406,5 +407,20 @@
         "Tell us about your organisation and your needs through the form, by email or by phone. A first conversation helps clarify the need before any personalised proposal."
       ]
     ]
+  },
+  "consent": {
+    "eyebrow": "Cookies & privacy",
+    "title": "Your choice, simply.",
+    "text": "With your consent, we measure website traffic with Google Analytics to improve it. No advertising cookies. Without consent, no measurement tool is loaded.",
+    "policy": "Learn more",
+    "essentialTitle": "Essential",
+    "essentialText": "Remembering your choice and running the website.",
+    "always": "Always on",
+    "analyticsTitle": "Audience measurement (Google Analytics)",
+    "analyticsText": "Visit statistics, with advertising signals denied. Cookies kept for 13 months at most.",
+    "refuse": "Refuse all",
+    "customise": "Customise",
+    "save": "Save my choices",
+    "accept": "Accept all"
   }
 }
