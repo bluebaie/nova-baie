@@ -2,43 +2,42 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createContactHandler } from '../src/lib/contact/handler';
 import { validateContact, CONTACT_LIMITS, PROJECT_TYPES } from '../src/lib/contact/validation';
+import type { ContactData } from '../src/lib/contact/validation';
 import { createRedisLimiter } from '../src/lib/contact/rate-limit';
 import { submitContact } from '../src/lib/contact/submit';
+import { buildContactEmail, createContactMailer, type ContactMailer, type MailMeta } from '../src/lib/serverEmail';
 
 const valid = { nom: ' Test ', email: 'test@example.invalid', telephone: '', structure: 'Demo', typeProjet: 'website', message: 'Test uniquement' };
 const origin = 'https://nova.example.invalid';
-const webhookUrl = 'https://hook.eu1.make.com/FAKE-NOT-A-REAL-WEBHOOK';
+type Sent = { data: ContactData; meta: MailMeta };
 function request(body: unknown = valid, headers: Record<string, string> = {}) {
   return new Request(`${origin}/api/contact`, { method: 'POST', headers: { origin, 'Content-Type': 'application/json', ...headers }, body: JSON.stringify(body) });
 }
 const allow = async () => ({ allowed: true, retryAfter: 0 });
-function setup(fetcher: typeof fetch = async () => new Response('Accepted'), limiter = allow, timeoutMs = 50) {
-  return createContactHandler({ origins: [origin], webhookUrl, fetcher, limiter, timeoutMs, now: () => new Date('2026-11-05T12:00:00Z') });
+const quiet = () => {};
+function setup(mailer: ContactMailer | null = async () => {}, limiter = allow, timeoutMs = 50) {
+  return createContactHandler({ origins: [origin], mailer, limiter, timeoutMs, now: () => new Date('2026-11-05T12:00:00Z'), log: quiet });
 }
 
-test('normalization and unchanged Make contract; source/date server-owned, honeypot excluded', async () => {
-  let payload: unknown;
-  const handler = setup(async (url, init) => {
-    assert.equal(String(url), webhookUrl);
-    assert.equal(init?.redirect, 'error');
-    payload = JSON.parse(String(init?.body));
-    return new Response('Accepted', { status: 200 });
-  });
-  const response = await handler(request({ ...valid, website: '' }));
+test('normalized data reaches the mailer; success only after it resolves, with a tracking reference', async () => {
+  const sent: Sent[] = [];
+  const response = await setup(async (data, meta) => { sent.push({ data, meta }); })(request({ ...valid, website: '' }, { 'x-form-locale': 'en' }));
   assert.equal(response.status, 202);
-  assert.deepEqual(await response.json(), { code: 'accepted' });
-  assert.deepEqual(payload, { ...valid, nom: 'Test', source: 'Site Nova Baie', date: '2026-11-05T12:00:00.000Z' });
+  const body = await response.json();
+  assert.equal(body.code, 'accepted');
+  assert.match(body.ref, /^NB-[0-9A-F]{10}$/);
+  assert.deepEqual(sent[0].data, { ...valid, nom: 'Test' });
+  assert.equal(sent[0].meta.ref, body.ref);
+  assert.equal(sent[0].meta.language, 'en');
+  assert.equal(sent[0].meta.receivedAt.toISOString(), '2026-11-05T12:00:00.000Z');
   assert.equal(response.headers.get('cache-control'), 'no-store');
 });
 
-for (const typeProjet of PROJECT_TYPES) test(`new topic ${typeProjet} preserves the Make payload structure`, async () => {
-  const response = await setup(async (_url, init) => {
-    const payload = JSON.parse(String(init?.body));
-    assert.equal(payload.typeProjet, typeProjet);
-    assert.deepEqual(Object.keys(payload).sort(), ['nom', 'email', 'telephone', 'structure', 'typeProjet', 'message', 'source', 'date'].sort());
-    return new Response('Accepted');
-  })(request({ ...valid, typeProjet }));
+for (const typeProjet of PROJECT_TYPES) test(`topic ${typeProjet} is delivered`, async () => {
+  let seen = '';
+  const response = await setup(async data => { seen = data.typeProjet; })(request({ ...valid, typeProjet }));
   assert.equal(response.status, 202);
+  assert.equal(seen, typeProjet);
 });
 
 test('project topic is optional, and former package codes are rejected', () => {
@@ -53,12 +52,13 @@ for (const [name, body] of Object.entries({
   wrongType: { ...valid, nom: 42 }, invalidProject: { ...valid, typeProjet: 'admin' },
   unknown: { ...valid, admin: true }, spoofedSource: { ...valid, source: 'Injected' }, spoofedDate: { ...valid, date: 'yesterday' },
   honeypot: { ...valid, website: 'spam' }, blank: { ...valid, message: '   ' }, injection: { ...valid, email: 'a@example.invalid\nBcc:test@example.invalid' },
+  nameInjection: { ...valid, nom: 'Test\nBcc: x@example.invalid' },
   control: { ...valid, message: 'test\u0000' },
   emailDots: { ...valid, email: 'test..name@example.invalid' },
   emptyDomainLabel: { ...valid, email: 'test@example..invalid' },
   invalidDomainLabel: { ...valid, email: 'test@-example.invalid' },
-})) test(`rejects ${name} without outbound calls`, async () => {
-  const response = await setup(async () => { assert.fail('Outbound call forbidden'); })(request(body));
+})) test(`rejects ${name} without sending`, async () => {
+  const response = await setup(async () => { assert.fail('No email for invalid input'); })(request(body));
   assert.equal(response.status, 400);
 });
 
@@ -81,36 +81,49 @@ test('origin, fetch metadata, method and media type gates', async () => {
   assert.equal((await setup()(new Request(`${origin}/api/contact`))).status, 405);
 });
 
-for (const status of [301, 400, 429, 500]) test(`Make ${status} cannot produce success or leak body`, async () => {
-  const response = await setup(async () => new Response('SENSITIVE_UPSTREAM_BODY', { status }))(request());
-  assert.equal(response.status, 502);
-  assert.equal((await response.text()).includes('SENSITIVE'), false);
+test('SMTP failure or timeout never produces success nor leaks details', async () => {
+  const failing = await setup(async () => { throw Object.assign(new Error('535 bad credentials secret'), { responseCode: 535 }); })(request());
+  assert.equal(failing.status, 502);
+  const text = await failing.text();
+  assert.equal(/535|secret|credential/.test(text), false);
+  assert.match(text, /NB-/);
+  const slow = setup(() => new Promise(() => {}), allow, 5);
+  assert.equal((await slow(request())).status, 504);
 });
 
-test('timeout aborts outbound request and returns failure', async () => {
-  const handler = setup(async (_url, init) => new Promise((_resolve, reject) => {
-    init?.signal?.addEventListener('abort', () => reject(init.signal?.reason), { once: true });
-    // Keep a referenced timer: AbortSignal.timeout itself is unref'ed in Node.
-    setTimeout(() => reject(new Error('Timeout test guard')), 100).unref();
-  }), allow, 5);
-  const keepAlive = setTimeout(() => {}, 150);
-  try { assert.equal((await handler(request())).status, 504); }
-  finally { clearTimeout(keepAlive); }
-});
-
-test('network and limiter failures are closed, not success', async () => {
-  assert.equal((await setup(async () => { throw new Error('private detail'); })(request())).status, 502);
+test('limiter failures are closed and limits are enforced before sending', async () => {
   assert.equal((await setup(undefined, async () => { throw new Error('private redis'); })(request())).status, 503);
-  const response = await setup(async () => { assert.fail('No Make call'); }, async () => ({ allowed: false, retryAfter: 900 }))(request());
+  const response = await setup(async () => { assert.fail('No email when rate limited'); }, async () => ({ allowed: false, retryAfter: 900 }))(request());
   assert.equal(response.status, 429);
   assert.equal(response.headers.get('retry-after'), '900');
 });
 
-test('missing/invalid webhook config never sends', async () => {
-  for (const url of ['', 'http://hook.eu1.make.com/x', 'https://attacker.invalid/x', 'https://user:pass@hook.eu1.make.com/x']) {
-    const handler = createContactHandler({ origins: [origin], webhookUrl: url, limiter: allow, fetcher: async () => { assert.fail('No outbound call'); } });
-    assert.equal((await handler(request())).status, 503);
-  }
+test('missing SMTP configuration never reports success', async () => {
+  assert.equal((await setup(null)(request())).status, 503);
+  assert.equal(createContactMailer({}), null);
+  assert.equal(createContactMailer({ SMTP_USER: 'a@example.invalid' }), null);
+});
+
+test('email: explicit subject, all fields, escaped HTML, plain text, no secrets', () => {
+  const data = { nom: 'Ada <b>', email: 'ada@example.invalid', telephone: '', structure: '', typeProjet: 'business_app', message: 'Bonjour <script>x</script>\nLigne 2' };
+  const mail = buildContactEmail(data, { receivedAt: new Date('2026-11-10T09:30:00Z'), ref: 'NB-0123456789', language: 'fr' });
+  assert.equal(mail.subject, 'Nova Baie — Nouvelle demande de contact');
+  for (const part of ['Ada <b>', 'ada@example.invalid', 'Non renseigné', 'Non renseignée', 'Application métier', '10:30', 'Formulaire de contact Nova Baie', 'NB-0123456789', 'Ligne 2']) assert.ok(mail.text.includes(part), part);
+  assert.ok(mail.html.includes('Ada &lt;b&gt;') && !mail.html.includes('<script>'));
+  assert.ok(!/pass|token|smtp/i.test(mail.text + mail.html));
+});
+
+test('mailer: authenticated sender, fixed recipient, visitor only as Reply-To; refused recipient is failure', async () => {
+  const calls: Record<string, unknown>[] = [];
+  const transport = { sendMail: async (options: Record<string, unknown>) => { calls.push(options); return { accepted: ['contact.novabaie@gmail.com'], rejected: [] }; } };
+  const env = { SMTP_USER: 'sender@example.invalid', SMTP_PASS: 'fake fake fake fake' };
+  const mailer = createContactMailer(env, transport as never)!;
+  await mailer({ ...valid, nom: 'Test' }, { receivedAt: new Date(), ref: 'NB-AAAAAAAAAA', language: 'fr' });
+  assert.deepEqual(calls[0].from, { name: 'Site Nova Baie', address: 'sender@example.invalid' });
+  assert.equal(calls[0].to, 'contact.novabaie@gmail.com');
+  assert.deepEqual(calls[0].replyTo, { name: 'Test', address: valid.email });
+  const refused = createContactMailer(env, { sendMail: async () => ({ accepted: [], rejected: ['contact.novabaie@gmail.com'] }) } as never)!;
+  await assert.rejects(refused({ ...valid }, { receivedAt: new Date(), ref: 'NB-B', language: 'fr' }));
 });
 
 test('distributed limiter uses atomic EVAL, HMAC key and TTLs; no raw email', async () => {
@@ -132,12 +145,13 @@ test('limiter rejects malformed or failed backend response', async () => {
   }
 });
 
-test('client accepts only explicit 202/accepted, never HTTP error or malformed success', async () => {
+test('client accepts only explicit 202/accepted, sends the page locale, never HTTP error or malformed success', async () => {
   for (const response of [new Response('', { status: 500 }), Response.json({ code: 'accepted' }), Response.json({ code: 'bad' }, { status: 202 }), new Response('bad', { status: 202 })]) {
     await assert.rejects(submitContact(valid, async () => response));
   }
-  await submitContact(valid, async (url) => {
+  await submitContact(valid, async (url, init) => {
     assert.equal(url, '/api/contact');
-    return Response.json({ code: 'accepted' }, { status: 202 });
-  });
+    assert.equal(new Headers(init?.headers).get('x-form-locale'), 'en');
+    return Response.json({ code: 'accepted', ref: 'NB-X' }, { status: 202 });
+  }, 'en');
 });

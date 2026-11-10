@@ -214,8 +214,8 @@
       },
       "submit": "Envoyer ma demande",
       "sending": "Envoi en cours…",
-      "successTitle": "Demande acceptée",
-      "successDescription": "Votre demande a été acceptée par notre service de transmission. Cela ne confirme pas encore la livraison d’un email ni son traitement. En cas de doute, contactez-nous directement.",
+      "successTitle": "Message envoyé",
+      "successDescription": "Votre message a bien été transmis à Nova Baie. Nous vous répondrons à l’adresse {email}.",
       "successCta": "Découvrir les expertises →",
       "error": "Une erreur est survenue. Écrivez-nous directement à"
     },
@@ -287,7 +287,7 @@
       },
       {
         "title": "Données personnelles",
-        "content": "Les informations envoyées via le formulaire de contact (nom, email et, le cas échéant, téléphone, structure, sujet et message) servent uniquement à étudier votre demande et à vous répondre. Elles transitent par le serveur du site, hébergé par Vercel, puis sont transmises par l’outil d’automatisation Make à Nova Baie. Pour limiter les abus, une empreinte chiffrée et non réversible de l’adresse email est conservée 15 minutes au plus. Ces données ne sont ni vendues ni utilisées à des fins publicitaires. Vous pouvez demander l’accès, la rectification ou la suppression de vos données à contact.novabaie@gmail.com, et introduire une réclamation auprès de la CNIL."
+        "content": "Les informations envoyées via le formulaire de contact (nom, email et, le cas échéant, téléphone, structure, sujet et message) servent uniquement à étudier votre demande et à vous répondre. Elles transitent par le serveur du site, hébergé par Vercel, puis sont envoyées par email (messagerie Gmail de Google) à Nova Baie, sans être enregistrées dans une base de données du site. Pour limiter les abus, une empreinte chiffrée et non réversible de l’adresse email est conservée 15 minutes au plus. Ces données ne sont ni vendues ni utilisées à des fins publicitaires. Vous pouvez demander l’accès, la rectification ou la suppression de vos données à contact.novabaie@gmail.com, et introduire une réclamation auprès de la CNIL."
       },
       {
         "title": "Cookies",

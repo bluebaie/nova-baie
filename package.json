@@ -23,6 +23,7 @@
     "lucide-react": "^0.511.0",
     "next": "15.5.29",
     "next-intl": "^4.9.2",
+    "nodemailer": "10.1.7",
     "react": "19.2.9",
     "react-dom": "19.2.9",
     "sharp": "0.35.5"
@@ -33,6 +34,7 @@
     "@playwright/test": "1.61.1",
     "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^22.14.0",
+    "@types/nodemailer": "8.0.2",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "autoprefixer": "^10.4.21",

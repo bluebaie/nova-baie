@@ -37,9 +37,9 @@ export function ContactForm() {
     busy.current = true
     setStatus('loading')
     try {
-      await submitContact({ nom, email, telephone, structure, typeProjet, message, website })
+      await submitContact({ nom, email, telephone, structure, typeProjet, message, website }, fetch, locale)
       setStatus('success')
-      // Conversion only after the server confirmed delivery to the webhook (HTTP 202), with consent, no personal data.
+      // Conversion only after the server confirmed SMTP acceptance (HTTP 202), with consent, no personal data.
       trackLead(typeProjet, locale)
     } catch {
       setStatus('error')

@@ -1,18 +1,25 @@
+import { randomBytes } from 'node:crypto';
 import { ContactInputError, validateContact } from './validation';
 import type { ContactLimiter } from './rate-limit';
+import type { ContactMailer } from '../serverEmail';
 
 type Dependencies = {
-  webhookUrl: string;
+  /** Sends the email and resolves only once the SMTP server accepted it; null when not configured. */
+  mailer: ContactMailer | null;
   origins: string[];
   limiter: ContactLimiter;
-  fetcher?: typeof fetch;
   now?: () => Date;
   timeoutMs?: number;
+  log?: (event: string, details: Record<string, string | number>) => void;
 };
 const MAX_BYTES = 24_000;
-const reply = (status: number, code: string, headers: Record<string, string> = {}) => Response.json(
-  { code }, { status, headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', ...headers } },
+const reply = (status: number, code: string, headers: Record<string, string> = {}, extra: Record<string, string> = {}) => Response.json(
+  { code, ...extra }, { status, headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', ...headers } },
 );
+/** Short, non-sensitive tracking id shared by the response, the email and the server log. */
+const newRef = () => `NB-${randomBytes(5).toString('hex').toUpperCase()}`;
+// Only the event, status and reference are logged: never visitor data, addresses or credentials.
+const defaultLog = (event: string, details: Record<string, string | number>) => console.info(`[contact] ${event}`, details);
 
 async function readBody(request: Request) {
   const declared = request.headers.get('content-length');
@@ -41,6 +48,7 @@ async function readBody(request: Request) {
 }
 
 export function createContactHandler(deps: Dependencies) {
+  const log = deps.log ?? defaultLog;
   return async (request: Request): Promise<Response> => {
     if (request.method !== 'POST') return reply(405, 'method_not_allowed', { Allow: 'POST' });
     if (!deps.origins.length) return reply(503, 'unavailable');
@@ -50,29 +58,31 @@ export function createContactHandler(deps: Dependencies) {
     let data;
     try { data = validateContact(await readBody(request)); }
     catch (error) { return reply(error instanceof RangeError ? 413 : 400, 'invalid_request'); }
-    // No URL or payload is logged or returned. Reject invalid/private configuration before sending.
-    let webhook: URL;
-    try {
-      webhook = new URL(deps.webhookUrl);
-      if (webhook.protocol !== 'https:' || !/^hook\.[a-z0-9-]+\.make\.com$/.test(webhook.hostname) || webhook.username || webhook.password || webhook.port || webhook.hash) throw new Error();
-    } catch { return reply(503, 'unavailable'); }
+    if (!deps.mailer) { log('unavailable', { reason: 'smtp_not_configured' }); return reply(503, 'unavailable'); }
     try {
       const limit = await deps.limiter(data.email);
       if (!limit.allowed) return reply(429, 'rate_limited', { 'Retry-After': String(limit.retryAfter) });
-    } catch { return reply(503, 'unavailable'); }
+    } catch { log('unavailable', { reason: 'limiter' }); return reply(503, 'unavailable'); }
+    const ref = newRef();
+    const language = request.headers.get('x-form-locale') === 'en' ? 'en' : 'fr';
+    const started = Date.now();
+    let timer: ReturnType<typeof setTimeout> | undefined;
     try {
-      const response = await (deps.fetcher ?? fetch)(webhook, {
-        method: 'POST', redirect: 'error', cache: 'no-store',
-        signal: AbortSignal.timeout(deps.timeoutMs ?? 8000),
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, source: 'Site Nova Baie', date: (deps.now ?? (() => new Date()))().toISOString() }),
-      });
-      // Never forward an upstream response, header, error body or URL to the browser.
-      if (response.body) await response.body.cancel();
-      if (!response.ok) return reply(502, 'upstream_error');
-      return reply(202, 'accepted');
+      // Success is returned only after the SMTP server accepted the message.
+      await Promise.race([
+        deps.mailer(data, { receivedAt: (deps.now ?? (() => new Date()))(), ref, language }),
+        new Promise<never>((_, reject) => { timer = setTimeout(() => reject(Object.assign(new Error('timeout'), { name: 'TimeoutError' })), deps.timeoutMs ?? 20_000); })
+      ]);
+      log('sent', { ref, ms: Date.now() - started });
+      return reply(202, 'accepted', {}, { ref });
     } catch (error) {
-      return reply(error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError') ? 504 : 502, 'upstream_error');
+      const timeout = error instanceof Error && error.name === 'TimeoutError';
+      // Error class and SMTP response code only: no message body, address or credential.
+      const smtpCode = (error as { responseCode?: number })?.responseCode;
+      log('failed', { ref, kind: timeout ? 'timeout' : error instanceof Error ? error.name : 'unknown', ...(smtpCode ? { smtpCode } : {}) });
+      return reply(timeout ? 504 : 502, 'upstream_error', {}, { ref });
+    } finally {
+      clearTimeout(timer);
     }
   };
 }

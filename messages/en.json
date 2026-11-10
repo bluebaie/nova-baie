@@ -214,8 +214,8 @@
       },
       "submit": "Send my enquiry",
       "sending": "Sending…",
-      "successTitle": "Request accepted",
-      "successDescription": "Our forwarding service accepted your request. This does not yet confirm email delivery or further processing. If in doubt, contact us directly.",
+      "successTitle": "Message sent",
+      "successDescription": "Your message has been delivered to Nova Baie. We will reply to {email}.",
       "successCta": "Explore our expertise →",
       "error": "An error occurred. Write to us directly at"
     },
@@ -287,7 +287,7 @@
       },
       {
         "title": "Personal data",
-        "content": "Information sent through the contact form (name, email and, where provided, phone, organisation, subject and message) is used only to review and answer your enquiry. It passes through the website server, hosted by Vercel, and is then forwarded to Nova Baie by the Make automation tool. To limit abuse, an encrypted, non-reversible fingerprint of the email address is kept for 15 minutes at most. This data is never sold or used for advertising. You can request access, correction or deletion of your data at contact.novabaie@gmail.com, and lodge a complaint with the CNIL."
+        "content": "Information sent through the contact form (name, email and, where provided, phone, organisation, subject and message) is used only to review and answer your enquiry. It passes through the website server, hosted by Vercel, and is then sent by email (Google Gmail) to Nova Baie, without being stored in a website database. To limit abuse, an encrypted, non-reversible fingerprint of the email address is kept for 15 minutes at most. This data is never sold or used for advertising. You can request access, correction or deletion of your data at contact.novabaie@gmail.com, and lodge a complaint with the CNIL."
       },
       {
         "title": "Cookies",

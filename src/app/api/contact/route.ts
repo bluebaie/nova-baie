@@ -1,21 +1,22 @@
 import { createContactHandler } from '@/lib/contact/handler';
 import { createRedisLimiter } from '@/lib/contact/rate-limit';
+import { createContactMailer } from '@/lib/serverEmail';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const maxDuration = 30;
 
 export async function POST(request: Request) {
-  // Read private configuration only at request time. Missing limiter fails closed.
+  // Read private configuration only at request time. Missing limiter or SMTP fails closed (503).
   const origins = (process.env.CONTACT_ALLOWED_ORIGINS ?? '').split(',').map(value => value.trim()).filter(Boolean);
   let limiter;
   try {
-    // Upstash for Redis (Vercel Marketplace, prefix CONTACT_) exposes CONTACT_KV_REST_API_*.
+    // Upstash for Redis (Vercel Marketplace, prefix CONTACT) exposes CONTACT_KV_REST_API_*.
     const url = process.env.CONTACT_REDIS_REST_URL || process.env.CONTACT_KV_REST_API_URL || '';
     const token = process.env.CONTACT_REDIS_REST_TOKEN || process.env.CONTACT_KV_REST_API_TOKEN || '';
     limiter = createRedisLimiter(url, token, process.env.CONTACT_RATE_LIMIT_SECRET ?? '');
   } catch {
     limiter = async () => { throw new Error('Contact unavailable'); };
   }
-  return createContactHandler({ webhookUrl: process.env.MAKE_WEBHOOK_URL ?? '', origins, limiter })(request);
+  return createContactHandler({ mailer: createContactMailer(process.env), origins, limiter })(request);
 }
